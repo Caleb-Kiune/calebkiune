@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/hero";
+import { About } from "@/components/sections/about";
 import { Services } from "@/components/sections/services";
 import { Contact } from "@/components/sections/contact";
 import { ProjectCard } from "@/components/sections/project-card";
@@ -11,7 +12,10 @@ export default function Home() {
       {/* 1. Hero Section */}
       <Hero />
 
-      {/* 2. Projects Section */}
+      {/* 2. About / Authority Section */}
+      <About />
+
+      {/* 3. Projects Section */}
       <section id="projects" className="container mx-auto px-6 max-w-5xl">
         <SectionHeading
           title="Selected Work"
