@@ -1,17 +1,34 @@
+"use client";
+
 import { services } from '@/lib/constants/services';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { Smartphone, Layout, Server, Database, Code, Globe } from 'lucide-react'; // Import potential icons
+import { Smartphone, Layout, Server, Database, Code, Globe } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
-// Helper to map string icon names to Lucide components if needed, 
-// or just use a default for now since we are mapping from data that might have string names.
-const IconMap: Record<string, any> = {
+const IconMap: Record<string, LucideIcon> = {
     "Smartphone": Smartphone,
     "Layout": Layout,
     "Server": Server,
     "Database": Database,
     "Code": Code,
     "Globe": Globe
+};
+
+const container = {
+    hidden: { opacity: 0 },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1
+        }
+    }
+};
+
+const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
 };
 
 export function Services() {
@@ -24,14 +41,21 @@ export function Services() {
                     className="mb-8 md:mb-12"
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
                     {services.map((service, index) => {
-                        const IconComponent = service.icon ? IconMap[service.icon] : Code; // Default to Code icon
+                        const IconComponent = service.icon ? IconMap[service.icon] : Code;
                         const isMobileFirst = service.title === "Mobile-First Optimization";
 
                         return (
-                            <div
+                            <motion.div
                                 key={index}
+                                variants={item}
                                 className={cn(
                                     "group relative overflow-hidden rounded-lg bg-white p-6 shadow-sm transition-all hover:shadow-md border",
                                     isMobileFirst ? "border-primary/50 ring-1 ring-primary/10" : "border-slate-100"
@@ -52,16 +76,10 @@ export function Services() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         );
                     })}
-
-                    {/* Fallback content if services array is small for the grid, just to show grid structure if needed, 
-              but for now we strictly render what is in the constants file as requested. 
-              The user only asked to "Hardcode the service data we created". 
-              If the array is short, the grid will just have fewer items. 
-          */}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

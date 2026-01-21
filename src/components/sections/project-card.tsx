@@ -1,9 +1,11 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/lib/types';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { TrendingUp, Code2, ExternalLink, Github } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ProjectCardProps {
     project: Project;
@@ -11,7 +13,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
     return (
-        <div className="flex flex-col rounded-lg border border-slate-200 overflow-hidden bg-card text-card-foreground shadow-sm">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col rounded-lg border border-slate-200 overflow-hidden bg-card text-card-foreground shadow-sm"
+        >
             {/* Image Section */}
             <div className="relative aspect-video w-full overflow-hidden">
                 {/* Placeholder blur for now, assuming images might not exist yet or using color placeholder if failed */}
@@ -81,6 +89,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     )}
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }

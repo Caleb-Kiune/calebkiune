@@ -7,6 +7,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { motion } from "framer-motion";
 
 // Form Schema
 const formSchema = z.object({
@@ -40,7 +41,7 @@ export function Contact() {
                     Accept: "application/json",
                 },
                 body: JSON.stringify({
-                    access_key: "YOUR_ACCESS_KEY_HERE", // User to replace this
+                    access_key: "954bee54-dbde-450f-9ae3-8fa2ce34566a",
                     ...data,
                 }),
             });
@@ -53,13 +54,20 @@ export function Contact() {
             } else {
                 setError(result.message || "Something went wrong. Please try again.");
             }
-        } catch (err) {
+        } catch {
             setError("Failed to send message. Please check your connection.");
         }
     };
 
     return (
-        <section id="contact" className="py-16 md:py-24 px-6 bg-slate-50/50">
+        <motion.section
+            id="contact"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="py-16 md:py-24 px-6 bg-slate-50/50"
+        >
             <div className="container mx-auto max-w-2xl">
                 <SectionHeading
                     title="Let's Work Together"
@@ -75,7 +83,7 @@ export function Contact() {
                             </div>
                             <h3 className="text-xl font-semibold text-slate-900">Message Sent!</h3>
                             <p className="text-slate-500">
-                                Thanks for reaching out. I'll be in touch shortly.
+                                Thanks for reaching out. I&apos;ll be in touch shortly.
                             </p>
                             <Button
                                 variant="outline"
@@ -166,6 +174,6 @@ export function Contact() {
                     )}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }
