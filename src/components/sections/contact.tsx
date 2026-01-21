@@ -8,11 +8,15 @@ import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 // Form Schema
 const formSchema = z.object({
     name: z.string().min(2, "Name is required"),
     email: z.string().email("Invalid email address"),
+    type: z.enum(["freelance", "fulltime", "other"] as const, {
+        message: "Please select an inquiry type",
+    }),
     message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -59,6 +63,9 @@ export function Contact() {
         }
     };
 
+    // DRY: Reusable input classes
+    const inputClasses = "w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-indigo-600 outline-none transition-all bg-white";
+
     return (
         <motion.section
             id="contact"
@@ -95,19 +102,16 @@ export function Contact() {
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                            {/* Access Key Input (Already handled in onSubmit body, but can be hidden input if using standard form action. Here we use JSON fetch) */}
-
                             {/* Name Input */}
                             <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                <label htmlFor="name" className="text-sm font-medium text-slate-700">
                                     Name
                                 </label>
                                 <input
                                     id="name"
                                     type="text"
                                     placeholder="John Doe"
-                                    className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.name ? "border-red-500 focus-visible:ring-red-500" : "border-input"
-                                        }`}
+                                    className={cn(inputClasses, errors.name && "border-red-500 focus:ring-red-500")}
                                     {...register("name")}
                                 />
                                 {errors.name && (
@@ -117,15 +121,14 @@ export function Contact() {
 
                             {/* Email Input */}
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                <label htmlFor="email" className="text-sm font-medium text-slate-700">
                                     Email
                                 </label>
                                 <input
                                     id="email"
                                     type="email"
                                     placeholder="john@example.com"
-                                    className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : "border-input"
-                                        }`}
+                                    className={cn(inputClasses, errors.email && "border-red-500 focus:ring-red-500")}
                                     {...register("email")}
                                 />
                                 {errors.email && (
@@ -133,17 +136,37 @@ export function Contact() {
                                 )}
                             </div>
 
+                            {/* Inquiry Type Dropdown */}
+                            <div className="space-y-2">
+                                <label htmlFor="type" className="text-sm font-medium text-slate-700">
+                                    I am interested in...
+                                </label>
+                                <select
+                                    id="type"
+                                    className={cn(inputClasses, errors.type && "border-red-500 focus:ring-red-500")}
+                                    defaultValue=""
+                                    {...register("type")}
+                                >
+                                    <option value="" disabled>Select an option</option>
+                                    <option value="freelance">Freelance Project (Build an App)</option>
+                                    <option value="fulltime">Full-Time Opportunity (Hiring)</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                                {errors.type && (
+                                    <p className="text-sm text-red-500">{errors.type.message}</p>
+                                )}
+                            </div>
+
                             {/* Message Input */}
                             <div className="space-y-2">
-                                <label htmlFor="message" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                <label htmlFor="message" className="text-sm font-medium text-slate-700">
                                     Message
                                 </label>
                                 <textarea
                                     id="message"
                                     placeholder="Tell me about your project..."
                                     rows={5}
-                                    className={`flex w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${errors.message ? "border-red-500 focus-visible:ring-red-500" : "border-input"
-                                        }`}
+                                    className={cn(inputClasses, errors.message && "border-red-500 focus:ring-red-500")}
                                     {...register("message")}
                                 />
                                 {errors.message && (
@@ -157,7 +180,7 @@ export function Contact() {
                                 </div>
                             )}
 
-                            <Button type="submit" className="w-full" disabled={isSubmitting}>
+                            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                                 {isSubmitting ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -170,6 +193,11 @@ export function Contact() {
                                     </>
                                 )}
                             </Button>
+
+                            {/* Privacy Footer */}
+                            <p className="text-xs text-center text-slate-400 mt-4">
+                                Your data is safe. I usually reply within 24 hours.
+                            </p>
                         </form>
                     )}
                 </div>
