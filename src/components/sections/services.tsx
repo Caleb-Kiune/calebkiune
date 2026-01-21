@@ -36,7 +36,7 @@ const item = {
 
 export function Services() {
     return (
-        <section className="py-12 md:py-20 lg:py-24 bg-slate-50/50" id="services">
+        <section className="py-12 md:py-20 lg:py-24 bg-slate-100/80 border-y border-slate-200" id="services">
             <div className="container px-4 md:px-6 mx-auto">
                 <SectionHeading
                     title="My Expertise"
@@ -61,7 +61,7 @@ export function Services() {
                                 variants={item}
                                 className={cn(
                                     "group relative overflow-hidden rounded-lg bg-white p-6 shadow-sm transition-all hover:shadow-md border",
-                                    isMobileFirst ? "border-primary/50 ring-1 ring-primary/10" : "border-slate-100"
+                                    isMobileFirst ? "border-indigo-200 ring-2 ring-indigo-50" : "border-slate-200"
                                 )}
                             >
                                 <div className="flex flex-col gap-4">

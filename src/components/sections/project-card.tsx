@@ -58,7 +58,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
 
             {/* Block B: Technical Stack */}
-            <div className="bg-slate-50 p-6 flex-grow border-b border-slate-100">
+            <div className="bg-slate-100 p-6 flex-grow border-b border-slate-200">
                 <div className="flex items-center gap-2 mb-2 text-slate-700 font-semibold">
                     <Code2 className="h-4 w-4" />
                     <span className="text-sm uppercase tracking-wider">Under the Hood</span>
