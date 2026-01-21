@@ -2,7 +2,7 @@
 
 import { services } from '@/lib/constants/services';
 import { SectionHeading } from '@/components/ui/section-heading';
-import { Smartphone, Layout, Server, Database, Code, Globe } from 'lucide-react';
+import { Smartphone, Layout, Server, Database, Code, Globe, Zap, Rocket, TrendingUp } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
@@ -13,7 +13,10 @@ const IconMap: Record<string, LucideIcon> = {
     "Server": Server,
     "Database": Database,
     "Code": Code,
-    "Globe": Globe
+    "Globe": Globe,
+    "Zap": Zap,
+    "Rocket": Rocket,
+    "TrendingUp": TrendingUp,
 };
 
 const container = {

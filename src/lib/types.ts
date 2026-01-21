@@ -11,8 +11,10 @@ export interface Project {
     technicalStack: string;
 }
 
+export type IconName = "Smartphone" | "Code" | "Zap" | "TrendingUp" | "Rocket" | "Layout" | "Server" | "Database" | "Globe";
+
 export interface Service {
     title: string;
     description: string;
-    icon?: string; // Optional icon name from Lucide
+    icon?: IconName;
 }
