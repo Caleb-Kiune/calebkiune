@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Building production-ready web apps for startups and growing businesses in Nairobi. Expert in Next.js, React, and T3 Stack.",
 };
 
+import { Footer } from "@/components/layout/footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,6 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-slate-900`}
       >
         {children}
+        <Footer />
       </body>
     </html>
   );
