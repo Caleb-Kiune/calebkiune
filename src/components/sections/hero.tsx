@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Terminal } from "lucide-react";
+import { ArrowRight, Download, Terminal, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -35,7 +35,7 @@ export function Hero() {
                         CALEB KIUNE
                     </h1>
                     <p className="text-xl md:text-3xl font-light text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        I build <span className="text-indigo-600 font-medium">high-performance</span> digital products for ambitious brands and growing businesses.
+                        I build <span className="text-indigo-600 font-medium">high-performance </span>web applications that drive revenue.
                     </p>
                 </motion.div>
 
@@ -47,17 +47,17 @@ export function Hero() {
                     className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4"
                 >
                     <Button asChild size="lg" className="h-12 px-8 text-base shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 transition-all">
-                        <Link href="#contact">
+                        <Link href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call" target="_blank">
                             Book Strategy Call
-                            <ArrowRight className="ml-2 h-4 w-4" />
+                            <Calendar className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
 
                     <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base border-slate-300 hover:bg-slate-50">
                         {/* Ensure resume.pdf is in public folder */}
                         <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                            <Download className="mr-2 h-4 w-4" />
                             Download CV
+                            <Download className="ml-2 h-4 w-4" />
                         </Link>
                     </Button>
                 </motion.div>

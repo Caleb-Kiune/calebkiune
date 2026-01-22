@@ -107,9 +107,9 @@ export function Contact() {
                                     defaultValue=""
                                 >
                                     <option value="" disabled>Select an option</option>
-                                    <option value="freelance">Project Implementation</option>
-                                    <option value="fulltime">Strategic Partnership</option>
-                                    <option value="other">Other Inquiry</option>
+                                    <option value="freelance">Project Inquiry</option>
+                                    <option value="fulltime">Long-term Partnership</option>
+                                    <option value="other">General Inquiry</option>
                                 </select>
                                 {state?.errors?.type && (
                                     <p className="text-sm text-red-500">{state.errors.type[0]}</p>
