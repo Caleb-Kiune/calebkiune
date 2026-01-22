@@ -38,7 +38,8 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, ...props }, ref) => {
+    ({ className, variant, size, asChild = false, ...props }, ref) => {
+        void asChild; // Consume the variable to avoid linting errors
         return (
             <button
                 className={cn(buttonVariants({ variant, size, className }))}
