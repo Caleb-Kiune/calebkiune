@@ -1,68 +1,26 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-
-// Form Schema
-const formSchema = z.object({
-    name: z.string().min(2, "Name is required"),
-    email: z.string().email("Invalid email address"),
-    type: z.enum(["freelance", "fulltime", "other"] as const, {
-        message: "Please select an inquiry type",
-    }),
-    message: z.string().min(5, "Message must be at least 5 characters"),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { submitContactForm } from "@/app/actions";
 
 export function Contact() {
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    // using useActionState for form state management
+    const [state, formAction, isPending] = useActionState(submitContactForm, null);
 
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors, isSubmitting },
-    } = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
-    });
+    // We can also keep local state for success view if we want to reset form or toggle view
+    const [showSuccess, setShowSuccess] = useState(false);
 
-    const onSubmit = async (data: FormValues) => {
-        setError(null);
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-                body: JSON.stringify({
-                    access_key: "954bee54-dbde-450f-9ae3-8fa2ce34566a",
-                    ...data,
-                }),
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                setIsSuccess(true);
-                reset();
-            } else {
-                setError(result.message || "Something went wrong. Please try again.");
-            }
-        } catch {
-            setError("Failed to send message. Please check your connection.");
+    useEffect(() => {
+        if (state?.success) {
+            setShowSuccess(true);
         }
-    };
+    }, [state?.success]);
 
     // DRY: Reusable input classes
     const inputClasses = "w-full p-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-indigo-600 outline-none transition-all bg-white";
@@ -84,7 +42,7 @@ export function Contact() {
                 />
 
                 <div className="bg-white p-6 md:p-8 rounded-lg border border-slate-200 shadow-sm">
-                    {isSuccess ? (
+                    {showSuccess ? (
                         <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
                             <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                                 <CheckCircle2 className="h-6 w-6" />
@@ -95,14 +53,14 @@ export function Contact() {
                             </p>
                             <Button
                                 variant="outline"
-                                onClick={() => setIsSuccess(false)}
+                                onClick={() => setShowSuccess(false)}
                                 className="mt-4"
                             >
                                 Send another message
                             </Button>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        <form action={formAction} className="space-y-6">
                             {/* Name Input */}
                             <div className="space-y-2">
                                 <label htmlFor="name" className="text-sm font-medium text-slate-700">
@@ -110,13 +68,13 @@ export function Contact() {
                                 </label>
                                 <input
                                     id="name"
+                                    name="name"
                                     type="text"
                                     placeholder="John Doe"
-                                    className={cn(inputClasses, errors.name && "border-red-500 focus:ring-red-500")}
-                                    {...register("name")}
+                                    className={cn(inputClasses, state?.errors?.name && "border-red-500 focus:ring-red-500")}
                                 />
-                                {errors.name && (
-                                    <p className="text-sm text-red-500">{errors.name.message}</p>
+                                {state?.errors?.name && (
+                                    <p className="text-sm text-red-500">{state.errors.name[0]}</p>
                                 )}
                             </div>
 
@@ -127,13 +85,13 @@ export function Contact() {
                                 </label>
                                 <input
                                     id="email"
+                                    name="email"
                                     type="email"
                                     placeholder="john@example.com"
-                                    className={cn(inputClasses, errors.email && "border-red-500 focus:ring-red-500")}
-                                    {...register("email")}
+                                    className={cn(inputClasses, state?.errors?.email && "border-red-500 focus:ring-red-500")}
                                 />
-                                {errors.email && (
-                                    <p className="text-sm text-red-500">{errors.email.message}</p>
+                                {state?.errors?.email && (
+                                    <p className="text-sm text-red-500">{state.errors.email[0]}</p>
                                 )}
                             </div>
 
@@ -144,17 +102,17 @@ export function Contact() {
                                 </label>
                                 <select
                                     id="type"
-                                    className={cn(inputClasses, errors.type && "border-red-500 focus:ring-red-500")}
+                                    name="type"
+                                    className={cn(inputClasses, state?.errors?.type && "border-red-500 focus:ring-red-500")}
                                     defaultValue=""
-                                    {...register("type")}
                                 >
                                     <option value="" disabled>Select an option</option>
-                                    <option value="freelance">Freelance Project (Build an App)</option>
-                                    <option value="fulltime">Full-Time Opportunity (Hiring)</option>
+                                    <option value="freelance">Project Implementation</option>
+                                    <option value="fulltime">Strategic Partnership</option>
                                     <option value="other">Other Inquiry</option>
                                 </select>
-                                {errors.type && (
-                                    <p className="text-sm text-red-500">{errors.type.message}</p>
+                                {state?.errors?.type && (
+                                    <p className="text-sm text-red-500">{state.errors.type[0]}</p>
                                 )}
                             </div>
 
@@ -165,25 +123,25 @@ export function Contact() {
                                 </label>
                                 <textarea
                                     id="message"
+                                    name="message"
                                     placeholder="Tell me about your project..."
                                     rows={5}
-                                    className={cn(inputClasses, errors.message && "border-red-500 focus:ring-red-500")}
-                                    {...register("message")}
+                                    className={cn(inputClasses, state?.errors?.message && "border-red-500 focus:ring-red-500")}
                                 />
-                                {errors.message && (
-                                    <p className="text-sm text-red-500">{errors.message.message}</p>
+                                {state?.errors?.message && (
+                                    <p className="text-sm text-red-500">{state.errors.message[0]}</p>
                                 )}
                             </div>
 
-                            {error && (
+                            {state?.message && !state?.success && (
                                 <div className="p-3 bg-red-50 border border-red-100 rounded-md text-sm text-red-600">
-                                    {error}
+                                    {state.message}
                                 </div>
                             )}
 
                             <div className="flex flex-col md:flex-row gap-4 pt-2">
-                                <Button type="submit" className="flex-1 order-2 md:order-1" size="lg" disabled={isSubmitting}>
-                                    {isSubmitting ? (
+                                <Button type="submit" className="flex-1 order-2 md:order-1" size="lg" disabled={isPending}>
+                                    {isPending ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                             Sending...
