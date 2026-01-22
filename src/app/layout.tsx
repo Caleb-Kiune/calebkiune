@@ -13,8 +13,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Caleb Kiune | Full-Stack Developer & Technical Partner",
-  description: "Building production-ready web apps for startups and growing businesses in Nairobi. Expert in Next.js, React, and T3 Stack.",
+  title: {
+    default: "Caleb Kiune | Full-Stack Developer & Technical Partner",
+    template: "%s | Caleb Kiune",
+  },
+  description: "Senior Full-Stack Developer in Nairobi. Specializing in high-performance Next.js apps for Insurance, FinTech, and growing businesses.",
+  keywords: ["Next.js Developer", "Nairobi Tech", "Freelance Software Engineer", "React", "T3 Stack", "Web Development Kenya"],
+  authors: [{ name: "Caleb Kiune" }],
+  openGraph: {
+    type: "website",
+    locale: "en_KE",
+    url: "https://calebkiune.vercel.app",
+    siteName: "Caleb Kiune Portfolio",
+    title: "Caleb Kiune | Technical Partner",
+    description: "Building production-ready web apps for startups and growing businesses. View my selected work.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Caleb Kiune Portfolio Preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Caleb Kiune | Full-Stack Developer",
+    description: "Building production-ready web apps for startups and growing businesses.",
+    images: ["/og-image.jpg"],
+  },
 };
 
 import { Footer } from "@/components/layout/footer";
