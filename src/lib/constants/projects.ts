@@ -13,8 +13,9 @@ export const projects: Project[] = [
             demo: "https://eco-plains-safaris.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/eco-plains-safaris"
         },
-        businessSolution: "Bridging the gap between luxury tourism and conservation. This platform replaces manual inquiry forms with an immersive digital showcase, helping Eco-Tour Operators capture high-end travelers seeking sustainable adventures in East Africa.",
-        technicalStack: "Animation-rich React codebase delivering a premium feel. Optimized for visual storytelling with high-performance image delivery. Built to be responsive and accessible across all devices."
+        businessValue: "Bridging the gap between luxury tourism and conservation. This platform replaces manual inquiry forms with an immersive digital showcase, helping Eco-Tour Operators capture high-end travelers seeking sustainable adventures in East Africa.",
+        techValue: "Animation-rich React codebase delivering a premium feel. Optimized for visual storytelling with high-performance image delivery. Built to be responsive and accessible across all devices.",
+        stack: ["React", "Tailwind CSS", "Framer Motion", "Vite"]
     },
     {
         id: "kentab",
@@ -25,8 +26,9 @@ export const projects: Project[] = [
             demo: "https://kentab-six.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/kentab"
         },
-        businessSolution: "Digitizing the traditional broker workflow. Transforms a 20-minute phone call into a 3-minute self-service experience. Users can explore products, generate instant quotes, and initiate policies via a mobile-first interface designed for the Kenyan market.",
-        technicalStack: "Next.js 14 with SSR for maximum SEO visibility. Features a Smart Quote Engine powered by Zod for rigorous runtime validation. Integrated with Nodemailer for instant real-time alerts to agents."
+        businessValue: "Digitizing the traditional broker workflow. Transforms a 20-minute phone call into a 3-minute self-service experience. Users can explore products, generate instant quotes, and initiate policies via a mobile-first interface designed for the Kenyan market.",
+        techValue: "Next.js 14 with SSR for maximum SEO visibility. Features a Smart Quote Engine powered by Zod for rigorous runtime validation. Integrated with Nodemailer for instant real-time alerts to agents.",
+        stack: ["Next.js 14", "TypeScript", "Zod", "Nodemailer", "Tailwind"]
     },
     {
         id: "happy-feet",
@@ -37,7 +39,8 @@ export const projects: Project[] = [
             demo: "https://happy-happy-feet.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/Happy-Happy-Feet"
         },
-        businessSolution: "Reducing checkout friction for local shoppers. Features a unique 'WhatsApp Ordering System' that pre-fills order details into a chat message, closing the sale on the platform users trust most. Includes dynamic search and filtering.",
-        technicalStack: "Cutting-edge T3 Stack: Next.js 16 (App Router), Tailwind CSS v4, and Shadcn/ui. Powered by Supabase for Database & Auth. Implements Global State management for the Cart and client-side optimistic updates."
+        businessValue: "Reducing checkout friction for local shoppers. Features a unique 'WhatsApp Ordering System' that pre-fills order details into a chat message, closing the sale on the platform users trust most. Includes dynamic search and filtering.",
+        techValue: "Cutting-edge T3 Stack: Next.js 16 (App Router), Tailwind CSS v4, and Shadcn/ui. Powered by Supabase for Database & Auth. Implements Global State management for the Cart and client-side optimistic updates.",
+        stack: ["Next.js 16", "Supabase", "Shadcn/ui", "Tailwind v4", "Zustand"]
     }
 ];

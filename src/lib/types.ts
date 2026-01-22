@@ -9,8 +9,9 @@ export interface Project {
         demo?: string;
         repo?: string;
     };
-    businessSolution: string;
-    technicalStack: string;
+    businessValue: string;
+    techValue: string;
+    stack: string[];
 }
 
 export type IconName = "Smartphone" | "Code" | "Zap" | "TrendingUp" | "Rocket" | "Layout" | "Server" | "Database" | "Globe";
