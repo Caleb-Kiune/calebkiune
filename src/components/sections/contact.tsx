@@ -180,19 +180,33 @@ export function Contact() {
                                 </div>
                             )}
 
-                            <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-                                {isSubmitting ? (
-                                    <>
-                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        <Send className="mr-2 h-4 w-4" />
-                                        Send Message
-                                    </>
-                                )}
-                            </Button>
+                            <div className="flex flex-col md:flex-row gap-4 pt-2">
+                                <Button type="submit" className="flex-1 order-2 md:order-1" size="lg" disabled={isSubmitting}>
+                                    {isSubmitting ? (
+                                        <>
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send className="mr-2 h-4 w-4" />
+                                            Send Message
+                                        </>
+                                    )}
+                                </Button>
+
+                                <Button asChild variant="secondary" size="lg" className="flex-1 order-1 md:order-2 bg-white text-slate-700 border border-slate-300 hover:bg-slate-50">
+                                    <a href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call" target="_blank" rel="noopener noreferrer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2">
+                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                            <line x1="16" x2="16" y1="2" y2="6" />
+                                            <line x1="8" x2="8" y1="2" y2="6" />
+                                            <line x1="3" x2="21" y1="10" y2="10" />
+                                        </svg>
+                                        Book Strategy Call
+                                    </a>
+                                </Button>
+                            </div>
 
                             {/* Privacy Footer */}
                             <p className="text-xs text-center text-slate-400 mt-4">

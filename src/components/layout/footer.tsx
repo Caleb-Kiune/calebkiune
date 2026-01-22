@@ -7,8 +7,9 @@ export function Footer() {
         <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-12">
             <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
                 {/* Copyright */}
-                <div className="text-sm text-center md:text-left">
-                    <p>© {currentYear} Caleb Kiune | Built with Next.js</p>
+                <div className="text-sm text-center md:text-left space-y-1">
+                    <p>© {currentYear} Caleb Kiune | Built in Nairobi 🇰🇪</p>
+                    <p className="text-xs text-slate-500">Compliant with Kenya Data Protection Act (2019).</p>
                 </div>
 
                 {/* Social Links */}
