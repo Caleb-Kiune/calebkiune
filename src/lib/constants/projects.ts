@@ -1,11 +1,14 @@
 import { Project } from "@/lib/types";
+import ecoPlains from "@/assets/projects/eco-plains-safaris.png";
+import kentab from "@/assets/projects/kentab-insurance-agency.png";
+import happyFeet from "@/assets/projects/happy-happy-feet.png";
 
 export const projects: Project[] = [
     {
         id: "eco-plains",
         title: "Eco Plains Safaris",
         category: "Travel & Tours Platform",
-        image: "/projects/eco-plains-safaris.png",
+        image: ecoPlains,
         links: {
             demo: "https://eco-plains-safaris.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/eco-plains-safaris"
@@ -17,7 +20,7 @@ export const projects: Project[] = [
         id: "kentab",
         title: "Kentab Insurance Agency",
         category: "FinTech / InsurTech",
-        image: "/projects/kentab-insurance-agency.png",
+        image: kentab,
         links: {
             demo: "https://kentab-six.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/kentab"
@@ -29,7 +32,7 @@ export const projects: Project[] = [
         id: "happy-feet",
         title: "Happy Happy Feet",
         category: "E-Commerce Store",
-        image: "/projects/happy-happy-feet.png",
+        image: happyFeet,
         links: {
             demo: "https://happy-happy-feet.vercel.app/",
             repo: "https://github.com/Caleb-Kiune/Happy-Happy-Feet"
