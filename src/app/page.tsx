@@ -3,6 +3,7 @@ import { About } from "@/components/sections/about";
 import { Services } from "@/components/sections/services";
 import { Contact } from "@/components/sections/contact";
 import { ProjectCard } from "@/components/sections/project-card";
+import { Testimonials } from "@/components/sections/testimonials";
 import { projects } from "@/lib/constants/projects";
 import { SectionHeading } from "@/components/ui/section-heading";
 
@@ -36,10 +37,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. Services Section */}
+      {/* 4. Testimonials (Social Proof) */}
+      <Testimonials />
+
+      {/* 5. Services Section */}
       <Services />
 
-      {/* 4. Contact Section */}
+      {/* 6. Contact Section */}
       <Contact />
     </main>
   );
