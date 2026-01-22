@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { motion } from "framer-motion";
@@ -17,7 +18,7 @@ const formSchema = z.object({
     type: z.enum(["freelance", "fulltime", "other"] as const, {
         message: "Please select an inquiry type",
     }),
-    message: z.string().min(10, "Message must be at least 10 characters"),
+    message: z.string().min(5, "Message must be at least 5 characters"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -195,17 +196,19 @@ export function Contact() {
                                     )}
                                 </Button>
 
-                                <Button asChild variant="secondary" size="lg" className="flex-1 order-1 md:order-2 bg-white text-slate-700 border border-slate-300 hover:bg-slate-50">
-                                    <a href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call" target="_blank" rel="noopener noreferrer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2">
-                                            <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
-                                            <line x1="16" x2="16" y1="2" y2="6" />
-                                            <line x1="8" x2="8" y1="2" y2="6" />
-                                            <line x1="3" x2="21" y1="10" y2="10" />
-                                        </svg>
-                                        Book Strategy Call
-                                    </a>
-                                </Button>
+                                <Link
+                                    href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
+                                    target="_blank"
+                                    className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "flex-1 order-1 md:order-2 bg-white text-slate-700 border border-slate-300 hover:bg-slate-50")}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 mr-2">
+                                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                                        <line x1="16" x2="16" y1="2" y2="6" />
+                                        <line x1="8" x2="8" y1="2" y2="6" />
+                                        <line x1="3" x2="21" y1="10" y2="10" />
+                                    </svg>
+                                    Book Strategy Call
+                                </Link>
                             </div>
 
                             {/* Privacy Footer */}
