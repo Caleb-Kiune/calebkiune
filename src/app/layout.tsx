@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://calebkiune.vercel.app"),
   title: {
     default: "Caleb Kiune | Full-Stack Developer & Technical Partner",
     template: "%s | Caleb Kiune",

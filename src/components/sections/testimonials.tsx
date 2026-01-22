@@ -25,7 +25,7 @@ export function Testimonials() {
                             className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
                         >
                             <Quote className="h-8 w-8 text-indigo-500/20 fill-indigo-500" />
-                            <p className="text-slate-600 italic flex-grow leading-relaxed">"{testimonial.quote}"</p>
+                            <p className="text-slate-600 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
                             <div className="pt-2 border-t border-slate-100/50">
                                 <p className="font-semibold text-slate-900">{testimonial.client}</p>
                                 <p className="text-sm text-slate-500">{testimonial.role}</p>

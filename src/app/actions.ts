@@ -70,6 +70,7 @@ export async function submitContactForm(prevState: ContactFormState | null, form
             };
         }
     } catch (error) {
+        console.error(error);
         return {
             success: false,
             message: "Failed to connect to the server."
