@@ -36,7 +36,7 @@ const item = {
 
 export function Services() {
     return (
-        <section className="py-12 md:py-20 lg:py-24 bg-slate-100/80 border-y border-slate-200" id="services">
+        <section className="py-12 md:py-20 lg:py-24 border-y border-slate-800 bg-slate-900/20" id="services">
             <div className="container px-4 md:px-6 mx-auto">
                 <SectionHeading
                     title="My Expertise"
@@ -60,21 +60,19 @@ export function Services() {
                                 key={index}
                                 variants={item}
                                 className={cn(
-                                    "group relative overflow-hidden rounded-lg bg-white p-6 shadow-sm transition-all hover:shadow-md border",
-                                    isMobileFirst ? "border-indigo-200 ring-2 ring-indigo-50" : "border-slate-200"
+                                    "group relative overflow-hidden rounded-sm bg-slate-900/50 p-6 shadow-sm transition-all hover:bg-slate-800 border border-slate-800",
                                 )}
                             >
                                 <div className="flex flex-col gap-4">
                                     <div className={cn(
-                                        "p-3 w-fit rounded-lg",
-                                        isMobileFirst ? "bg-primary/10 text-primary" : "bg-slate-100 text-slate-700"
+                                        "p-3 w-fit rounded-sm bg-slate-800 text-primary",
                                     )}>
                                         <IconComponent className="h-6 w-6" />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <h3 className="font-bold text-xl">{service.title}</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">
+                                        <h3 className="font-bold text-xl text-slate-200">{service.title}</h3>
+                                        <p className="text-slate-400 text-sm leading-relaxed">
                                             {service.description}
                                         </p>
                                     </div>

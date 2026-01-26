@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function Testimonials() {
     return (
-        <section className="py-16 md:py-24 bg-white border-y border-slate-50" id="testimonials">
+        <section className="py-16 md:py-24 border-y border-slate-800 bg-background" id="testimonials">
             <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
                     title="What Clients Say"
@@ -22,12 +22,12 @@ export function Testimonials() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
-                            className="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-100 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
+                            className="bg-slate-900/50 p-6 md:p-8 rounded-sm border border-slate-800 flex flex-col gap-4 hover:border-slate-700 transition-colors"
                         >
-                            <Quote className="h-8 w-8 text-indigo-500/20 fill-indigo-500" />
-                            <p className="text-slate-600 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
-                            <div className="pt-2 border-t border-slate-100/50">
-                                <p className="font-semibold text-slate-900">{testimonial.client}</p>
+                            <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />
+                            <p className="text-slate-300 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
+                            <div className="pt-2 border-t border-slate-800">
+                                <p className="font-semibold text-white font-mono tracking-tight">{testimonial.client}</p>
                                 <p className="text-sm text-slate-500">{testimonial.role}</p>
                             </div>
                         </motion.div>
