@@ -53,7 +53,6 @@ export function Services() {
                 >
                     {services.map((service, index) => {
                         const IconComponent = service.icon ? IconMap[service.icon] : Code;
-                        const isMobileFirst = service.title === "Mobile-First Optimization";
 
                         return (
                             <motion.div
