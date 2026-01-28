@@ -4,7 +4,7 @@ import { useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { CheckCircle2, Loader2, Send, Calendar } from "lucide-react";
+import { CheckCircle2, Loader2, Send, Calendar, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { submitContactForm } from "@/app/actions";
@@ -168,6 +168,17 @@ export function Contact() {
                             <p className="text-xs text-center text-slate-400 mt-4">
                                 Your data is safe. I usually reply within 24 hours.
                             </p>
+
+                            <div className="pt-6 border-t border-slate-800 flex justify-center">
+                                <Link
+                                    href="https://wa.me/254705774171"
+                                    target="_blank"
+                                    className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
+                                >
+                                    <MessageCircle className="h-4 w-4" />
+                                    <span>Prefer a quick chat? Message on WhatsApp</span>
+                                </Link>
+                            </div>
                         </form>
                     )}
                 </div>
