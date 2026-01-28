@@ -1,21 +1,23 @@
 import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
+import { SkillsSection } from "@/components/sections/skills";
 import { Services } from "@/components/sections/services";
 import { Contact } from "@/components/sections/contact";
 import { SelectedWork } from "@/components/sections/selected-work";
 import { Testimonials } from "@/components/sections/testimonials";
-// Removed unused imports: projects, ProjectCard, SectionHeading (SectionHeading used? No, removed from usage in page.tsx)
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-16 md:gap-24 pb-16">
+    <main className="flex flex-col gap-0 pb-0">
       <Hero />
-      <About />
-
       <SelectedWork />
+      <About />
+      <SkillsSection />
 
-      <Testimonials />
+      {/* Secondary Trust Signals */}
       <Services />
+      <Testimonials />
+
       <Contact />
     </main>
   );

@@ -27,7 +27,7 @@ export function Hero() {
                         CALEB KIUNE
                     </h1>
                     <p className="text-xl md:text-3xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                        Building <span className="text-accent font-medium">high-ROI systems</span> with <span className="text-primary font-medium">robust architecture</span>.
+                        Software Developer & <span className="text-accent font-medium">Insurance Tech Specialist</span>. I help Kenyan businesses build <span className="text-primary font-medium">high-ROI systems</span> with robust architecture.
                     </p>
                 </div>
 
