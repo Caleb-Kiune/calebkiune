@@ -27,8 +27,8 @@ export function Testimonials() {
                             <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />
                             <p className="text-slate-300 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
                             <div className="pt-2 border-t border-slate-800">
-                                <p className="font-semibold text-white font-mono tracking-tight">{testimonial.client}</p>
-                                <p className="text-sm text-slate-500">{testimonial.role}</p>
+                                <p className="font-semibold text-white font-mono tracking-tight">{testimonial.name}</p>
+                                <p className="text-sm text-slate-500">{testimonial.role}, {testimonial.company}</p>
                             </div>
                         </motion.div>
                     ))}
