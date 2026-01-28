@@ -6,7 +6,7 @@ import { projects } from "@/lib/constants/projects";
 
 export function SelectedWork() {
     return (
-        <section id="projects" className="container mx-auto px-6 max-w-7xl py-16 md:py-24">
+        <section id="work" className="container mx-auto px-6 max-w-7xl py-16 md:py-24">
             <SectionHeading
                 title="Selected Work"
                 subtitle="Real-world solutions delivering tangible business results."

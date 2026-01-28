@@ -47,16 +47,19 @@ export const metadata: Metadata = {
 
 import { Footer } from "@/components/layout/footer";
 
+import { Header } from "@/components/layout/header";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth scroll-pt-24">
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground`}
       >
+        <Header />
         {children}
         <Footer />
       </body>
