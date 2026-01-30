@@ -35,7 +35,11 @@ export function Hero() {
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-8">
                     {/* Primary: High Contrast Business */}
                     <Button asChild size="lg" className="h-14 px-8 text-base font-semibold bg-white text-slate-900 hover:bg-slate-200 transition-all rounded-sm">
-                        <Link href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call" target="_blank">
+                        <Link 
+                            href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
                             Book Strategy Call
                             <Calendar className="ml-2 h-4 w-4 text-slate-600" />
                         </Link>
@@ -43,7 +47,11 @@ export function Hero() {
 
                     {/* Secondary: Technical/Legacy */}
                     <Button asChild variant="outline" size="lg" className="h-14 px-8 text-base font-mono border-slate-800 text-slate-400 hover:bg-slate-900 hover:text-white transition-all rounded-sm">
-                        <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <Link 
+                            href="/caleb-kiune-cv.pdf" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
                             Download CV
                             <Download className="ml-2 h-4 w-4" />
                         </Link>
