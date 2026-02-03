@@ -6,14 +6,14 @@ export interface SkillCategory {
 export const SKILLS_DATA: SkillCategory[] = [
     {
         title: "Frontend Ecosystem",
-        skills: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
+        skills: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
     },
     {
         title: "Backend Infrastructure",
-        skills: ["Supabase", "PostgreSQL", "Node.js", "Prisma", "Server Actions"]
+        skills: ["Supabase", "PostgreSQL", "Prisma", "Node.js"]
     },
     {
         title: "Business & Tools",
-        skills: ["WhatsApp Business API", "Global SEO", "Advanced Analytics", "Stripe Connect"]
+        skills: ["M-Pesa / Daraja API", "WhatsApp Business API", "Google Analytics", "Technical SEO"]
     }
 ];
