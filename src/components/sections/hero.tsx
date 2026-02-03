@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Calendar, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -55,30 +53,42 @@ export function Hero() {
                             I build <span className="text-slate-200">audit-proof digital systems</span> that cut policy issuance time by 80%.
                         </motion.p>
 
-                        {/* 4. CTA Cluster */}
+                        {/* 4. CTA Cluster - Premium Linear-style Buttons */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
                         >
-                            <Button asChild size="lg" className="h-12 px-6 md:px-8 text-sm font-semibold bg-white text-slate-900 hover:bg-slate-200 rounded-md shadow-sm transition-all">
-                                <Link
-                                    href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
+                            {/* Primary Button - Shimmer Effect */}
+                            <motion.a
+                                href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="group relative inline-flex items-center justify-center h-12 px-6 md:px-8 overflow-hidden rounded-lg bg-white text-[#0F1117] text-sm font-medium tracking-tight shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20"
+                            >
+                                {/* Shimmer overlay */}
+                                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                                <span className="relative z-10 flex items-center gap-2">
                                     Book Strategy Call
-                                    <Calendar className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                </span>
+                            </motion.a>
 
-                            <Button asChild variant="outline" size="lg" className="h-12 px-6 md:px-8 text-sm font-medium border-slate-700 bg-transparent text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 rounded-md transition-all">
-                                <Link href="#work">
+                            {/* Secondary Button - Glassmorphism */}
+                            <motion.a
+                                href="#work"
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="group inline-flex items-center justify-center h-12 px-6 md:px-8 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-slate-300 text-sm font-medium tracking-tight transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                            >
+                                <span className="flex items-center gap-2">
                                     View Work
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                                </span>
+                            </motion.a>
                         </motion.div>
 
                         {/* 5. Trust Signals */}

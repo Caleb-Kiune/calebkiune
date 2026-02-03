@@ -48,10 +48,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
             whileHover={{ y: -5 }}
-            className="group relative flex flex-col overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/10 transition-all duration-300"
+            className="group relative flex flex-col overflow-hidden rounded-lg bg-[#161b22] border border-white/5 hover:border-white/10 transition-all duration-300"
         >
             {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
             {/* Top: Image Container */}
             <div className="relative aspect-video overflow-hidden">

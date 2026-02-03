@@ -1,8 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CheckCircle2, Loader2, Send, Calendar, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -23,7 +22,7 @@ export function Contact() {
     }, [state?.success]);
 
     // DRY: Reusable input classes
-    const inputClasses = "w-full p-3 rounded-sm border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
+    const inputClasses = "w-full p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
 
     return (
         <motion.section
@@ -140,44 +139,64 @@ export function Contact() {
                             )}
 
                             <div className="flex flex-col md:flex-row gap-4 pt-2">
-                                <Button type="submit" className="flex-1 order-2 md:order-1 font-semibold text-slate-900 bg-white hover:bg-slate-200" size="lg" disabled={isPending}>
-                                    {isPending ? (
-                                        <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Sending...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Send className="mr-2 h-4 w-4" />
-                                            Send Message
-                                        </>
-                                    )}
-                                </Button>
+                                {/* Premium Shimmer Submit Button */}
+                                <motion.button
+                                    type="submit"
+                                    disabled={isPending}
+                                    whileHover={{ scale: isPending ? 1 : 1.02 }}
+                                    whileTap={{ scale: isPending ? 1 : 0.98 }}
+                                    className="group relative flex-1 order-2 md:order-1 h-12 inline-flex items-center justify-center overflow-hidden rounded-lg bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                                >
+                                    {/* Shimmer overlay */}
+                                    <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        {isPending ? (
+                                            <>
+                                                <Loader2 className="h-4 w-4 animate-spin" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Send className="h-4 w-4" />
+                                                Send Message
+                                            </>
+                                        )}
+                                    </span>
+                                </motion.button>
 
-                                <Link
+                                {/* Secondary CTA - Glassmorphism */}
+                                <motion.a
                                     href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
                                     target="_blank"
-                                    className={cn(buttonVariants({ variant: "outline", size: "lg" }), "flex-1 order-1 md:order-2 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white")}
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="flex-1 order-1 md:order-2 h-12 inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-slate-300 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
                                 >
-                                    <Calendar className="w-4 h-4 mr-2" />
+                                    <Calendar className="w-4 h-4" />
                                     Book Strategy Call
-                                </Link>
+                                </motion.a>
                             </div>
 
                             {/* Privacy Footer */}
-                            <p className="text-xs text-center text-slate-400 mt-4">
+                            <p className="text-xs text-center text-slate-500 mt-4">
                                 Your data is safe. I usually reply within 24 hours.
                             </p>
 
+                            {/* WhatsApp Link - Underline Animation */}
                             <div className="pt-6 border-t border-slate-800 flex justify-center">
-                                <Link
+                                <a
                                     href="https://wa.me/254705774171"
                                     target="_blank"
-                                    className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
+                                    rel="noopener noreferrer"
+                                    className="group inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-400 transition-colors"
                                 >
                                     <MessageCircle className="h-4 w-4" />
-                                    <span>Prefer a quick chat? Message on WhatsApp</span>
-                                </Link>
+                                    <span className="relative">
+                                        Prefer a quick chat? Message on WhatsApp
+                                        <span className="absolute bottom-0 left-0 w-0 h-px bg-emerald-400 group-hover:w-full transition-all duration-300" />
+                                    </span>
+                                </a>
                             </div>
                         </form>
                     )}
