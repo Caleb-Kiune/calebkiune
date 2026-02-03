@@ -9,15 +9,15 @@ import ecoPlains from "@/assets/projects/eco-plains-safaris.png";
 import kentab from "@/assets/projects/kentab-insurance-agency.png";
 import happyFeet from "@/assets/projects/happy-happy-feet.png";
 
-// Curated project data
+// Curated project data - Engineering Truths from READMEs
 const PROJECTS: ProjectData[] = [
     {
         id: "eco-plains",
         title: "Eco Plains Safaris",
         tag: "Conservation Tourism",
-        hook: "Bridging the trust gap for luxury travel.",
-        metric: "150% Inquiry Increase",
-        stack: ["React", "Tailwind CSS"],
+        hook: "Bridging the gap between luxury tourism and conservation.",
+        metric: "Immersive Experience",
+        stack: ["React 19", "Framer Motion", "Lenis Scroll", "Cloudinary"],
         imageSrc: ecoPlains,
         demoUrl: "https://eco-plains-safaris.vercel.app",
     },
@@ -25,9 +25,9 @@ const PROJECTS: ProjectData[] = [
         id: "kentab",
         title: "Kentab Insurance Agency",
         tag: "FinTech / InsurTech",
-        hook: "20-minute calls turned into 3-minute self-service.",
-        metric: "85% Faster Issuance",
-        stack: ["Next.js 14"],
+        hook: "Digitizing manual workflows for real-time policy issuance.",
+        metric: "Sub-Second Quotes",
+        stack: ["Next.js 14", "TypeScript", "Zod", "Nodemailer"],
         imageSrc: kentab,
         demoUrl: "https://kentab.co.ke",
     },
@@ -35,9 +35,9 @@ const PROJECTS: ProjectData[] = [
         id: "happy-feet",
         title: "Happy Happy Feet",
         tag: "E-Commerce",
-        hook: "Zero-latency search with WhatsApp checkout.",
-        metric: "0ms Perceived Latency",
-        stack: ["Next.js 16", "Supabase"],
+        hook: "Seamless performance with zero-latency search.",
+        metric: "WhatsApp-First Commerce",
+        stack: ["Next.js 16", "Supabase", "Tailwind v4", "Framer Motion"],
         imageSrc: happyFeet,
         demoUrl: "https://happy-happy-feet.vercel.app",
     },
