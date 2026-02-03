@@ -7,16 +7,16 @@ import { motion } from "framer-motion";
 
 export function Hero() {
     return (
-        <section className="relative pt-24 pb-16 md:pt-36 md:pb-24 px-6 overflow-hidden min-h-[80vh] flex items-center">
-            {/* Background: Radiant Orbs for 'Linear' feel */}
-            <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
+        <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 px-6 overflow-hidden flex items-center">
+            {/* Background: Radiant Orbs */}
+            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] md:w-[600px] md:h-[600px] rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
 
             <div className="container mx-auto max-w-6xl relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
 
                     {/* LEFT COLUMN: The Pitch */}
-                    <div className="flex flex-col items-start text-left space-y-8">
+                    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8">
 
                         {/* 1. Trust Pill */}
                         <motion.div
@@ -37,9 +37,12 @@ export function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[1.1]"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]"
                         >
-                            I turn manual insurance processes into <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">automated digital systems.</span>
+                            Automate your{" "}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">
+                                manual underwriting.
+                            </span>
                         </motion.h1>
 
                         {/* 3. Subheadline */}
@@ -47,9 +50,9 @@ export function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
-                            className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
+                            className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-md md:max-w-xl leading-relaxed"
                         >
-                            Partnering with African underwriters to build <span className="text-slate-200">audit-proof platforms</span> that cut turnaround times by 80%.
+                            I build <span className="text-slate-200">audit-proof digital systems</span> that cut policy issuance time by 80%.
                         </motion.p>
 
                         {/* 4. CTA Cluster */}
@@ -57,9 +60,9 @@ export function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+                            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
                         >
-                            <Button asChild size="lg" className="h-12 px-8 text-sm font-semibold bg-white text-slate-900 hover:bg-slate-200 rounded-md shadow-sm transition-all">
+                            <Button asChild size="lg" className="h-12 px-6 md:px-8 text-sm font-semibold bg-white text-slate-900 hover:bg-slate-200 rounded-md shadow-sm transition-all">
                                 <Link
                                     href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
                                     target="_blank"
@@ -70,9 +73,9 @@ export function Hero() {
                                 </Link>
                             </Button>
 
-                            <Button asChild variant="outline" size="lg" className="h-12 px-8 text-sm font-medium border-slate-700 bg-transparent text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 rounded-md transition-all">
+                            <Button asChild variant="outline" size="lg" className="h-12 px-6 md:px-8 text-sm font-medium border-slate-700 bg-transparent text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-600 rounded-md transition-all">
                                 <Link href="#work">
-                                    View Selected Work
+                                    View Work
                                     <ArrowRight className="ml-2 h-4 w-4" />
                                 </Link>
                             </Button>
@@ -83,7 +86,7 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.5 }}
-                            className="pt-4 flex items-center gap-6 text-sm text-slate-500"
+                            className="pt-2 md:pt-4 flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 text-xs md:text-sm text-slate-500"
                         >
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-emerald-500/80" />
@@ -96,12 +99,12 @@ export function Hero() {
                         </motion.div>
                     </div>
 
-                    {/* RIGHT COLUMN: The Visual Hook */}
+                    {/* RIGHT COLUMN: The Visual Hook (Hidden on Mobile) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative hidden lg:block h-[500px] w-full"
+                        className="relative hidden md:block h-[400px] lg:h-[500px] w-full"
                     >
                         {/* Abstract Representation of "Structure" */}
                         <div className="absolute inset-0 bg-surface-50 border border-surface-100 rounded-2xl backdrop-blur-sm overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-700 ease-out">
@@ -113,7 +116,7 @@ export function Hero() {
                             </div>
 
                             {/* Code/Data Visualization */}
-                            <div className="p-8 space-y-6 opacity-80">
+                            <div className="p-6 lg:p-8 space-y-6 opacity-80">
                                 <div className="flex items-center justify-between border-b border-white/5 pb-4">
                                     <div className="space-y-1">
                                         <div className="h-2 w-24 bg-primary/40 rounded" />
@@ -128,7 +131,7 @@ export function Hero() {
                                     <div className="h-2 w-3/4 bg-slate-800 rounded animate-pulse delay-75" />
                                     <div className="h-2 w-5/6 bg-slate-800 rounded animate-pulse delay-150" />
                                 </div>
-                                <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                                <div className="mt-6 lg:mt-8 p-4 bg-primary/10 rounded-lg border border-primary/20">
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-xs font-mono text-primary animate-pulse">System Health</span>
                                         <span className="text-xs font-mono text-primary">99.9%</span>
@@ -140,8 +143,8 @@ export function Hero() {
                             </div>
 
                             {/* Floating Badge */}
-                            <div className="absolute -bottom-6 -right-6 bg-surface-100 backdrop-blur-xl border border-white/10 p-4 rounded-xl shadow-2xl">
-                                <span className="text-2xl">🚀</span>
+                            <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-surface-100 backdrop-blur-xl border border-white/10 p-3 lg:p-4 rounded-xl shadow-2xl">
+                                <span className="text-xl lg:text-2xl">🚀</span>
                             </div>
                         </div>
                     </motion.div>
