@@ -3,6 +3,7 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProjectCard } from "@/components/sections/project-card";
 import { projects } from "@/lib/constants/projects";
+import { motion } from "framer-motion";
 
 export function SelectedWork() {
     return (
@@ -12,16 +13,30 @@ export function SelectedWork() {
                 subtitle="Real-world solutions delivering tangible business results."
                 className="mb-16 md:mb-32"
             />
-            {/* Massive vertical stack with Zig-Zag logic */}
-            <div className="flex flex-col gap-24 md:gap-32">
-                {projects.map((project, index) => (
+            {/* Uniform Grid Layout */}
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={{
+                    hidden: { opacity: 0 },
+                    show: {
+                        opacity: 1,
+                        transition: {
+                            staggerChildren: 0.15
+                        }
+                    }
+                }}
+            >
+                {projects.map((project) => (
                     <ProjectCard
                         key={project.id}
                         project={project}
-                        isReversed={index % 2 !== 0}
+                    // Uniform cards: No special col-span classes
                     />
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 }

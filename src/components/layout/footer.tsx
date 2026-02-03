@@ -56,12 +56,22 @@ export function Footer() {
                         </div>
 
                         {/* Status Indicator */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/30 border border-emerald-900/50 text-emerald-400 text-xs font-mono font-medium tracking-wide w-fit">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                            </span>
-                            <span>System Online</span>
+                        <div className="flex flex-col gap-4">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/30 border border-emerald-900/50 text-emerald-400 text-xs font-mono font-medium tracking-wide w-fit">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span>Operational</span>
+                            </div>
+
+                            <Link
+                                href="/caleb-kiune-cv.pdf"
+                                target="_blank"
+                                className="text-sm text-slate-500 hover:text-white transition-colors underline underline-offset-4 decoration-slate-700 hover:decoration-white"
+                            >
+                                Download Curriculum Vitae
+                            </Link>
                         </div>
                     </div>
 

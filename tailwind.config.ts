@@ -18,42 +18,45 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // BASE: Oxford Navy
-        background: "#0B1120",
-        foreground: "#E2E8F0", // Slate-200 for high readability
+        // BASE: Midnight Slate (Linear Style)
+        background: "#0F1117",
+        foreground: "#E2E8F0",
 
-        // LAYERS: Glass & Panels
+        // LAYERS: Glass & Surfaces
+        surface: {
+          50: "rgba(255, 255, 255, 0.05)", // Ultra-light glass
+          100: "rgba(255, 255, 255, 0.10)", // Light Border/Hover
+          200: "rgba(255, 255, 255, 0.20)", // Active states
+        },
+
         card: {
-          DEFAULT: "rgba(30, 41, 59, 0.5)", // Slate-800 @ 50%
+          DEFAULT: "#161B22", // Solid fallback
           foreground: "#E2E8F0",
         },
         popover: {
-          DEFAULT: "#0B1120",
+          DEFAULT: "#0F1117",
           foreground: "#E2E8F0",
         },
 
-        // DOCTRINE COLORS
+        // DOCTRINE COLORS - Refined
         primary: {
-          DEFAULT: "#2DD4BF", // TEAL-400 (Tech / Execution / Stack)
-          foreground: "#0F172A", // Slate-900
+          DEFAULT: "#5E6AD2", // LINEAR INDIGO/PURPLE - Tech & Stability
+          foreground: "#FFFFFF",
+          glow: "rgba(94, 106, 210, 0.5)",
         },
         accent: {
-          DEFAULT: "#FFD166", // WARM GOLD (Business / ROI / Strategy)
-          foreground: "#0F172A",
-        },
-        success: {
-          DEFAULT: "#34D399", // Emerald-400 (Status Only)
+          DEFAULT: "#F59E0B", // AMBER-500 - Warmth/Strategy (unchanged but refined)
           foreground: "#0F172A",
         },
         muted: {
-          DEFAULT: "#1E293B", // Slate-800
-          foreground: "#94A3B8", // Slate-400
+          DEFAULT: "#1E293B",
+          foreground: "#8A93A3", // Linear's signature text grey
         },
 
         // UTILITY
-        border: "#1E293B", // Slate-800 (Subtle)
-        input: "#1E293B",
-        ring: "#2DD4BF", // Teal Focus Rings
+        border: "rgba(255, 255, 255, 0.08)", // Subtle borders
+        input: "rgba(255, 255, 255, 0.08)",
+        ring: "#5E6AD2",
 
         // Destructive
         destructive: {
