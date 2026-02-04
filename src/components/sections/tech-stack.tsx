@@ -15,6 +15,7 @@ import {
 import { Smartphone } from "lucide-react";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 // Type for tech stack items
 interface TechItem {
@@ -56,44 +57,6 @@ const TECH_STACK: TechCategory[] = [
     },
 ];
 
-// Scroll-linked reveal variants
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1] as const,
-        },
-    },
-};
-
-const categoryVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1] as const,
-            staggerChildren: 0.06,
-            delayChildren: 0.1,
-        },
-    },
-};
-
 export function TechStack() {
     return (
         <section className="py-section md:py-section-lg bg-page border-t border-slate-800">
@@ -101,10 +64,10 @@ export function TechStack() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
+                    viewport={VIEWPORT_CONFIG}
+                    variants={STAGGER_CONTAINER_VARIANTS}
                 >
-                    <motion.div variants={itemVariants}>
+                    <motion.div variants={FADE_UP_VARIANTS}>
                         <SectionHeading
                             title="Technical Competence"
                             subtitle="A curated, production-grade stack built for scale and reliability."
@@ -116,7 +79,7 @@ export function TechStack() {
                         {TECH_STACK.map((category, categoryIdx) => (
                             <motion.div
                                 key={category.title}
-                                variants={categoryVariants}
+                                variants={STAGGER_CONTAINER_VARIANTS}
                                 custom={categoryIdx}
                                 className="group"
                             >
@@ -132,7 +95,7 @@ export function TechStack() {
                                         return (
                                             <motion.div
                                                 key={item.name}
-                                                variants={itemVariants}
+                                                variants={FADE_UP_VARIANTS}
                                                 className="group/item flex items-center gap-4 p-3 -mx-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-default"
                                             >
                                                 {/* Icon */}

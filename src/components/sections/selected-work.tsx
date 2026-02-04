@@ -3,6 +3,7 @@
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProjectCard, ProjectData } from "@/components/sections/project-card";
 import { motion } from "framer-motion";
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 // Project images
 import ecoPlains from "@/assets/projects/eco-plains-safaris.png";
@@ -40,29 +41,6 @@ const PROJECTS: ProjectData[] = [
     },
 ];
 
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1] as const,
-        },
-    },
-};
-
 export function SelectedWork() {
     return (
         <section id="work" className="relative py-section md:py-section-lg bg-page border-t border-slate-800">
@@ -71,10 +49,10 @@ export function SelectedWork() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
+                    viewport={VIEWPORT_CONFIG}
+                    variants={STAGGER_CONTAINER_VARIANTS}
                 >
-                    <motion.div variants={itemVariants}>
+                    <motion.div variants={FADE_UP_VARIANTS}>
                         <SectionHeading
                             title="Selected Work"
                             subtitle="Real-world solutions delivering tangible business results."
@@ -85,12 +63,12 @@ export function SelectedWork() {
                     {/* Uniform Grid - No Spanning */}
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-                        variants={containerVariants}
+                        variants={STAGGER_CONTAINER_VARIANTS}
                     >
                         {PROJECTS.map((project) => (
                             <motion.div
                                 key={project.id}
-                                variants={itemVariants}
+                                variants={FADE_UP_VARIANTS}
                                 className="col-span-1 h-full"
                             >
                                 <ProjectCard project={project} />

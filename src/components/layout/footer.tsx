@@ -3,23 +3,31 @@
 import Link from "next/link";
 import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa6";
 import { Download, ShieldCheck } from "lucide-react";
+import { motion } from "framer-motion";
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
         <footer className="bg-page border-t border-slate-800 pt-20 overflow-hidden relative">
-            <div className="container mx-auto px-6 max-w-6xl relative z-10">
-                
+            <motion.div
+                className="container mx-auto px-6 max-w-6xl relative z-10"
+                initial="hidden"
+                whileInView="visible"
+                viewport={VIEWPORT_CONFIG}
+                variants={STAGGER_CONTAINER_VARIANTS}
+            >
+
                 {/* THE BENTO FOOTER GRID */}
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24">
-                    
+                <motion.div variants={FADE_UP_VARIANTS} className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24">
+
                     {/* CARD 1: IDENTITY (Span 5) */}
                     <div className="md:col-span-5 bg-surface border border-slate-800 rounded-2xl p-8 flex flex-col h-full">
-                        
+
                         {/* Centered Content Block */}
                         <div className="flex-1 flex flex-col justify-center space-y-6">
-                            
+
                             {/* Status Indicator - The "Minimalist" Wireframe Style */}
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-transparent border border-slate-700 text-primary text-xs font-mono font-medium tracking-wide w-fit">
                                 {/* The Activity Equalizer Icons */}
@@ -30,7 +38,7 @@ export function Footer() {
                                 </div>
                                 <span className="text-slate-300">Active & Building</span>
                             </div>
-                            
+
                             <p className="text-slate-400 text-lg leading-relaxed">
                                 Building <span className="text-white font-medium">audit-proof systems</span> for the next generation of Kenyan fintech.
                             </p>
@@ -67,7 +75,7 @@ export function Footer() {
                     {/* CARD 3: RESOURCES (Span 3) */}
                     <div className="md:col-span-3 flex flex-col gap-6">
                         {/* CV Download */}
-                        <Link 
+                        <Link
                             href="/caleb-kiune-cv.pdf"
                             target="_blank"
                             className="flex-1 bg-surface border border-slate-800 rounded-2xl p-6 flex flex-col justify-center items-center gap-3 hover:border-primary/50 transition-colors group text-center"
@@ -81,24 +89,30 @@ export function Footer() {
                         {/* Legal Badge */}
                         <div className="flex-1 bg-surface border border-slate-800 rounded-2xl p-6 flex flex-col justify-center items-center gap-2 text-center">
                             <ShieldCheck className="w-5 h-5 text-emerald-500" />
-                            <span className="text-xs text-slate-500">Data Privacy Compliant<br/>(DPA 2019)</span>
+                            <span className="text-xs text-slate-500">Data Privacy Compliant<br />(DPA 2019)</span>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* THE MIC DROP: MASSIVE TYPOGRAPHY */}
-                <div className="border-t border-slate-800 pt-8 pb-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
+                <motion.div variants={FADE_UP_VARIANTS} className="border-t border-slate-800 pt-8 pb-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
                     <p>© {currentYear} Kiune Technologies.</p>
                     <p>All Rights Reserved.</p>
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
 
             {/* Background Watermark - The Visual Anchor */}
-            <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none opacity-[0.02]">
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.02 }}
+                transition={{ duration: 1.5 }}
+                viewport={VIEWPORT_CONFIG}
+                className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none opacity-[0.02]"
+            >
                 <h1 className="text-[15vw] md:text-[12vw] font-bold text-white leading-none text-center tracking-tighter whitespace-nowrap select-none">
                     KIUNE
                 </h1>
-            </div>
+            </motion.div>
         </footer>
     );
 }

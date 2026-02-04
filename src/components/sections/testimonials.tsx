@@ -4,30 +4,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { TESTIMONIALS } from "@/lib/constants/testimonials";
 import { Quote } from "lucide-react";
 import { motion } from "framer-motion";
-
-// Scroll-linked reveal variants
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.12,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1] as const,
-        },
-    },
-};
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 export function Testimonials() {
     return (
@@ -37,10 +14,10 @@ export function Testimonials() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
+                    viewport={VIEWPORT_CONFIG}
+                    variants={STAGGER_CONTAINER_VARIANTS}
                 >
-                    <motion.div variants={itemVariants}>
+                    <motion.div variants={FADE_UP_VARIANTS}>
                         <SectionHeading
                             title="What Clients Say"
                             subtitle="Trusted by businesses to deliver ROI-driven software."
@@ -50,12 +27,12 @@ export function Testimonials() {
 
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-                        variants={containerVariants}
+                        variants={STAGGER_CONTAINER_VARIANTS}
                     >
                         {TESTIMONIALS.map((testimonial) => (
                             <motion.div
                                 key={testimonial.id}
-                                variants={itemVariants}
+                                variants={FADE_UP_VARIANTS}
                                 className="bg-surface p-6 md:p-8 rounded-xl border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-surface-elevated transition-all duration-300"
                             >
                                 <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />

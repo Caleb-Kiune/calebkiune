@@ -8,17 +8,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { submitContactForm } from "@/app/actions";
-
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1,
-        },
-    },
-};
+import { STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 export function Contact() {
     // using useActionState for form state management
@@ -54,8 +44,8 @@ export function Contact() {
             id="contact"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
+            viewport={VIEWPORT_CONFIG}
+            variants={STAGGER_CONTAINER_VARIANTS}
             className="py-section md:py-section-lg border-t border-slate-800 bg-page"
         >
             <div className="container mx-auto px-6 max-w-6xl">

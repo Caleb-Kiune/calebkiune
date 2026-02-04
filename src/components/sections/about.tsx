@@ -3,24 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, TrendingUp, ShieldCheck, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-// Animation Variants
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { staggerChildren: 0.1 },
-    },
-};
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5 },
-    },
-};
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 export function About() {
     return (
@@ -43,12 +26,12 @@ export function About() {
                     className="grid grid-cols-1 md:grid-cols-3 gap-6"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
+                    viewport={VIEWPORT_CONFIG}
+                    variants={STAGGER_CONTAINER_VARIANTS}
                 >
                     {/* CARD 1: The Narrative (Wide) */}
                     <motion.div
-                        variants={cardVariants}
+                        variants={FADE_UP_VARIANTS}
                         className="md:col-span-2 bg-surface border border-slate-800 p-8 rounded-2xl relative overflow-hidden group"
                     >
 
@@ -64,7 +47,7 @@ export function About() {
 
                     {/* CARD 2: The Stats (Square) */}
                     <motion.div
-                        variants={cardVariants}
+                        variants={FADE_UP_VARIANTS}
                         className="md:col-span-1 bg-surface border border-slate-800 p-8 rounded-2xl flex flex-col justify-center items-center text-center group hover:bg-surface-elevated transition-colors"
                     >
                         <div className="mb-4 p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
@@ -78,7 +61,7 @@ export function About() {
 
                     {/* CARD 3: Location (Square) */}
                     <motion.div
-                        variants={cardVariants}
+                        variants={FADE_UP_VARIANTS}
                         className="md:col-span-1 bg-surface border border-slate-800 p-8 rounded-2xl flex flex-col justify-between group hover:bg-surface-elevated transition-colors"
                     >
                         <div className="flex justify-between items-start">
@@ -103,7 +86,7 @@ export function About() {
 
                     {/* CARD 4: Philosophy/Stack (Wide) */}
                     <motion.div
-                        variants={cardVariants}
+                        variants={FADE_UP_VARIANTS}
                         className="md:col-span-2 bg-surface border border-slate-800 p-8 rounded-2xl"
                     >
                         <h3 className="text-xl font-bold text-white mb-4">Technical Precision</h3>

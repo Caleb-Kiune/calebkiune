@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS } from "@/lib/motion";
 
 export function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -55,6 +56,9 @@ export function Hero() {
             <motion.div
                 style={{ opacity: opacityFade }}
                 className="container mx-auto px-6 max-w-7xl relative z-10"
+                variants={STAGGER_CONTAINER_VARIANTS}
+                initial="hidden"
+                animate="visible"
             >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
 
@@ -65,9 +69,7 @@ export function Hero() {
 
                         {/* Headline */}
                         <motion.h1
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
+                            variants={FADE_UP_VARIANTS}
                             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
                         >
                             Automate your{" "}
@@ -78,9 +80,7 @@ export function Hero() {
 
                         {/* Subheadline */}
                         <motion.p
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
+                            variants={FADE_UP_VARIANTS}
                             className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
                         >
                             I build <span className="text-slate-200 font-medium">audit-proof digital systems</span> that cut policy issuance time by 80%.
@@ -88,9 +88,7 @@ export function Hero() {
 
                         {/* CTA Buttons */}
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.3 }}
+                            variants={FADE_UP_VARIANTS}
                             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
                         >
                             <a
@@ -117,9 +115,7 @@ export function Hero() {
 
                     {/* RIGHT COLUMN: Profile Photo */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
+                        variants={FADE_UP_VARIANTS}
                         className="relative hidden md:flex flex-col items-center justify-center max-h-[400px]"
                     >
                         <div className="relative w-[280px] h-[280px] lg:w-[320px] lg:h-[320px]">
@@ -143,7 +139,7 @@ export function Hero() {
                             >
                                 {/* Minimal Status Indicator: Single Static Dot */}
                                 <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
-                                
+
                                 <span className="text-xs font-mono font-medium tracking-wide text-primary uppercase">
                                     Open for Projects
                                 </span>

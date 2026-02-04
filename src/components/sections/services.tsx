@@ -6,6 +6,7 @@ import { Smartphone, Layout, Server, Database, Code, Globe, Zap, Rocket, Trendin
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 const IconMap: Record<string, LucideIcon> = {
     "Smartphone": Smartphone,
@@ -19,30 +20,6 @@ const IconMap: Record<string, LucideIcon> = {
     "TrendingUp": TrendingUp,
 };
 
-// Scroll-linked reveal variants
-const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.1,
-            delayChildren: 0.1,
-        },
-    },
-};
-
-const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1] as const,
-        },
-    },
-};
-
 export function Services() {
     return (
         <section className="relative py-section border-y border-slate-800 bg-page" id="services">
@@ -51,10 +28,10 @@ export function Services() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={containerVariants}
+                    viewport={VIEWPORT_CONFIG}
+                    variants={STAGGER_CONTAINER_VARIANTS}
                 >
-                    <motion.div variants={itemVariants}>
+                    <motion.div variants={FADE_UP_VARIANTS}>
                         <SectionHeading
                             title="My Expertise"
                             subtitle="Bridging the gap between complex technical problems and seamless user experiences."
@@ -63,7 +40,7 @@ export function Services() {
                     </motion.div>
 
                     <motion.div
-                        variants={containerVariants}
+                        variants={STAGGER_CONTAINER_VARIANTS}
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                     >
                         {services.map((service, index) => {
@@ -72,7 +49,7 @@ export function Services() {
                             return (
                                 <motion.div
                                     key={index}
-                                    variants={itemVariants}
+                                    variants={FADE_UP_VARIANTS}
                                     className={cn(
                                         "group relative overflow-hidden rounded-xl bg-surface p-6 md:p-8 shadow-sm transition-all hover:bg-surface-elevated border border-slate-800 hover:border-slate-700",
                                     )}
