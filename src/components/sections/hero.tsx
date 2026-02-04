@@ -137,10 +137,15 @@ export function Hero() {
                             <motion.div
                                 animate={{ y: [-5, 5, -5] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#0B0D12]/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-xl whitespace-nowrap"
+                                className="absolute -bottom-4 left-1/2 -translate-x-1/2 translate-x-4 bg-page/50 border border-white/10 backdrop-blur-md px-4 py-1.5 rounded-full shadow-md flex items-center gap-2 whitespace-nowrap z-20 hover:border-primary/20 transition-colors"
+                                aria-label="Open for new projects"
+                                role="status"
                             >
-                                <span className="text-xs font-semibold text-primary">
-                                    ● Open for New Projects
+                                {/* Minimal Status Indicator: Single Static Dot */}
+                                <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                
+                                <span className="text-xs font-mono font-medium tracking-wide text-primary uppercase">
+                                    Open for Projects
                                 </span>
                             </motion.div>
                         </div>
