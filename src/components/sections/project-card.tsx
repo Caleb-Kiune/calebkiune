@@ -46,7 +46,8 @@ export interface ProjectData {
     id: string;
     title: string;
     tag: string;
-    hook: string;
+    // Removed 'hook' property as requested
+    // hook: string; 
     metric: string;
     stack: string[];
     imageSrc: string | StaticImageData;
@@ -95,8 +96,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {/* Note: pointer-events-none allows clicks to pass through to the image link 
                     BUT we need to re-enable pointer-events for interactive elements like the button below */}
 
-                {/* Reduced space-y from 4 to 2.5 and mb-6 to mb-4 */}
-                <div className="space-y-2.5 mb-4">
+                {/* Reduced space-y from 4 to 2 to tighten layout further after hook removal */}
+                <div className="space-y-2 mb-4">
                     {/* Micro-Label: Minimalist Tag - No Background */}
                     <span className="inline-block text-emerald-400 text-[10px] font-bold tracking-widest uppercase">
                         {project.tag}
@@ -113,10 +114,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         </p>
                     </div>
 
-                    {/* Hook Description (Clamped to 1 line) */}
-                    <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-1">
-                        {project.hook}
-                    </p>
+                    {/* Hook Description REMOVED as requested */}
                 </div>
 
                 {/* Footer Split: Icons Left | Action Button Right */}
@@ -133,7 +131,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                                     title={tech}
                                     className="text-slate-500 hover:text-emerald-400 transition-colors"
                                 >
-                                    {Icon && <Icon className="w-5 h-5" />}
+                                    {Icon && <Icon className="w-4 h-4" />}
                                 </div>
                             );
                         })}
