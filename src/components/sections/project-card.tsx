@@ -14,7 +14,6 @@ import {
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 // Tech icon mapping - supports both react-icons and Lucide
 const TECH_ICONS: Record<string, IconType | LucideIcon> = {
@@ -56,38 +55,29 @@ export interface ProjectData {
 
 interface ProjectCardProps {
     project: ProjectData;
-    featured?: boolean;
 }
 
-export function ProjectCard({ project, featured = false }: ProjectCardProps) {
+export function ProjectCard({ project }: ProjectCardProps) {
     return (
         <motion.article
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -5 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className={cn(
-                "group relative flex flex-col overflow-hidden rounded-xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300",
-                featured
-                    ? "h-[420px] md:h-[480px] lg:h-[520px]"
-                    : "h-[400px] md:h-[460px]"
-            )}
+            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300"
         >
             {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-            {/* Top: Image Container - Variable Height Based on Featured */}
-            <div className={cn(
-                "relative overflow-hidden rounded-t-xl",
-                featured ? "h-[55%]" : "h-[50%]"
-            )}>
+            {/* Top: Image Section - Intrinsic Aspect Ratio */}
+            <div className="relative w-full aspect-video overflow-hidden">
                 <Image
                     src={project.imageSrc}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes={featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {/* Subtle bottom fade for seamless blend */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-60" />
 
                 {/* External Link */}
                 {project.demoUrl && (
@@ -102,56 +92,41 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
                 )}
             </div>
 
-            {/* Bottom: Content Container - Editorial Spacing */}
-            <div className={cn(
-                "relative z-10 flex flex-col justify-between",
-                featured ? "h-[45%] p-6 md:p-8" : "h-[50%] p-5 md:p-6"
-            )}>
-                {/* Top Content Group */}
-                <div className="space-y-3">
+            {/* Bottom: Content Section - Auto Growth */}
+            <div className="flex flex-col flex-1 p-5 md:p-6 relative z-10">
+                <div className="space-y-4 mb-6">
                     {/* Micro-Label: Industry Tag */}
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400 block">
                         {project.tag}
                     </span>
 
-                    {/* Project Name - De-emphasized */}
-                    <h3 className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors">
-                        {project.title}
-                    </h3>
+                    {/* Project Name and Metric */}
+                    <div>
+                        <h3 className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors mb-1">
+                            {project.title}
+                        </h3>
+                        <p className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight leading-[1.1]">
+                            {project.metric}
+                        </p>
+                    </div>
 
-                    {/* The Metric (Hero) - Editorial Display Typography */}
-                    <p className={cn(
-                        "font-display font-bold text-white tracking-tight leading-[1.1]",
-                        featured
-                            ? "text-2xl md:text-3xl lg:text-4xl"
-                            : "text-xl md:text-2xl"
-                    )}>
-                        {project.metric}
-                    </p>
-
-                    {/* Hook Description - Clamped to 2 lines */}
-                    <p className={cn(
-                        "text-slate-500 leading-relaxed",
-                        featured ? "text-sm md:text-base line-clamp-3" : "text-sm line-clamp-2"
-                    )}>
+                    {/* Hook Description */}
+                    <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-1">
                         {project.hook}
                     </p>
                 </div>
 
-                {/* Tech Stack Icons - Pinned to Bottom */}
-                <div className="flex items-center gap-2.5 pt-4 border-t border-white/5 mt-auto">
+                {/* Tech Stack Icons - Minimalist Footer */}
+                <div className="mt-auto flex flex-wrap gap-4 pt-4 border-t border-white/5">
                     {project.stack.map((tech) => {
                         const Icon = TECH_ICONS[tech];
-                        if (!Icon) return null;
                         return (
                             <div
                                 key={tech}
-                                className="p-2 rounded-lg bg-slate-800/60 border border-slate-700/40 text-slate-500 group-hover:text-slate-400 group-hover:border-slate-600/60 transition-all duration-200"
                                 title={tech}
+                                className="text-slate-400 hover:text-white transition-colors"
                             >
-                                <Icon className={cn(
-                                    featured ? "w-4 h-4" : "w-3.5 h-3.5"
-                                )} />
+                                {Icon && <Icon className="w-5 h-5" />}
                             </div>
                         );
                     })}

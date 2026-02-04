@@ -9,13 +9,13 @@ import ecoPlains from "@/assets/projects/eco-plains-safaris.png";
 import kentab from "@/assets/projects/kentab-insurance-agency.png";
 import happyFeet from "@/assets/projects/happy-happy-feet.png";
 
-// Curated project data - Engineering Truths from READMEs
+
 const PROJECTS: ProjectData[] = [
     {
         id: "eco-plains",
         title: "Eco Plains Safaris",
         tag: "Conservation Tourism",
-        hook: "Bridging the gap between luxury tourism and conservation.",
+        hook: "Luxury meets conservation.", 
         metric: "Immersive Experience",
         stack: ["React 19", "Framer Motion", "Lenis Scroll", "Cloudinary"],
         imageSrc: ecoPlains,
@@ -25,25 +25,24 @@ const PROJECTS: ProjectData[] = [
         id: "kentab",
         title: "Kentab Insurance Agency",
         tag: "FinTech / InsurTech",
-        hook: "Digitizing manual workflows for real-time policy issuance.",
+        hook: "Automated policy issuance.", 
         metric: "Sub-Second Quotes",
         stack: ["Next.js 14", "TypeScript", "Zod", "Nodemailer"],
         imageSrc: kentab,
-        demoUrl: "https://kentab.co.ke",
+        demoUrl: "https://kentab-six.vercel.app",
     },
     {
         id: "happy-feet",
         title: "Happy Happy Feet",
         tag: "E-Commerce",
-        hook: "Seamless performance with zero-latency search.",
-        metric: "WhatsApp-First Commerce",
+        hook: "Instant, zero-latency search.", 
+        metric: "WhatsApp Commerce", 
         stack: ["Next.js 16", "Supabase", "Tailwind v4", "Framer Motion"],
         imageSrc: happyFeet,
         demoUrl: "https://happy-happy-feet.vercel.app",
     },
 ];
 
-// Scroll-linked reveal variants
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +61,7 @@ const itemVariants = {
         y: 0,
         transition: {
             duration: 0.6,
-            ease: [0.22, 1, 0.36, 1] as const, // easeOutExpo bezier
+            ease: [0.22, 1, 0.36, 1] as const,
         },
     },
 };
@@ -85,26 +84,18 @@ export function SelectedWork() {
                         />
                     </motion.div>
 
-                    {/* Asymmetric Editorial Bento Grid */}
+                    {/* Uniform Grid - No Spanning */}
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
                         variants={containerVariants}
                     >
-                        {PROJECTS.map((project, index) => (
+                        {PROJECTS.map((project) => (
                             <motion.div
                                 key={project.id}
                                 variants={itemVariants}
-                                // First project spans 2 columns on large screens
-                                className={
-                                    index === 0
-                                        ? "lg:col-span-2"
-                                        : ""
-                                }
+                                className="col-span-1 h-full"
                             >
-                                <ProjectCard
-                                    project={project}
-                                    featured={index === 0}
-                                />
+                                <ProjectCard project={project} />
                             </motion.div>
                         ))}
                     </motion.div>
