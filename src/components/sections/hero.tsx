@@ -14,11 +14,9 @@ export function Hero() {
         offset: ["start start", "end start"],
     });
 
-    // Parallax: Moderate movement to avoid overlap issues
     const yParallax = useTransform(scrollYProgress, [0, 1], [0, 50]);
     const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-    // Cursor tracking logic
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!sectionRef.current) return;
@@ -36,11 +34,7 @@ export function Hero() {
     return (
         <section
             ref={sectionRef}
-            // STRATEGY IMPLEMENTATION:
-            // 1. Mobile (Default): 'h-auto', 'pt-28' (112px to clear header), 'pb-16'. Linear flow.
-            // 2. Desktop (md): 'min-h-[svh]' (Full Screen), 'pt-28' (Reduced Safety Ceiling), 'justify-center' (Center Stage).
-            // Reduced desktop padding from pt-32 to pt-28 to save vertical space.
-            className="spotlight relative w-full overflow-hidden bg-[#0B0D12] pt-28 pb-16 h-auto md:min-h-[svh] md:pt-28 md:pb-20 md:flex md:flex-col md:justify-center"
+            className="spotlight relative w-full overflow-hidden bg-[#0B0D12] pt-28 pb-16 min-h-screen flex flex-col justify-center md:pt-28 md:pb-20"
             style={
                 {
                     "--spotlight-x": mousePos.x,
@@ -48,7 +42,6 @@ export function Hero() {
                 } as React.CSSProperties
             }
         >
-            {/* Background Orbs */}
             <motion.div
                 style={{ y: yParallax }}
                 className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-primary/20 blur-[100px] pointer-events-none"
@@ -62,19 +55,18 @@ export function Hero() {
                 style={{ opacity: opacityFade }}
                 className="container mx-auto px-6 max-w-7xl relative z-10"
             >
-                {/* Content Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                     {/* LEFT COLUMN: The Pitch */}
-                    {/* Tightened space-y from 6 to 4 */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+                    {/* KEY FIX: Changed 'space-y-4' to 'space-y-8 md:space-y-6' */}
+                    {/* This adds 32px of breathing room between elements on mobile, spreading them out */}
+                    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 md:space-y-6">
 
                         {/* Headline */}
                         <motion.h1
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            // Added leading-[1.1] or leading-tight to reduce spread
                             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
                         >
                             Automate your{" "}
@@ -98,7 +90,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto pt-2"
+                            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
                         >
                             <a
                                 href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
@@ -123,7 +115,6 @@ export function Hero() {
                     </div>
 
                     {/* RIGHT COLUMN: Profile Photo */}
-                    {/* Ensure centered alignment with items-center */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -131,10 +122,7 @@ export function Hero() {
                         className="relative hidden md:flex flex-col items-center justify-center max-h-[400px]"
                     >
                         <div className="relative w-[280px] h-[280px] lg:w-[320px] lg:h-[320px]">
-                            {/* Glow Background */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-
-                            {/* Image Container */}
                             <div className="relative w-full h-full rounded-full border border-white/10 overflow-hidden shadow-2xl shadow-emerald-900/20">
                                 <Image
                                     src="/caleb-kiune.jpg"
@@ -145,8 +133,6 @@ export function Hero() {
                                     sizes="(max-width: 1024px) 280px, 320px"
                                 />
                             </div>
-
-                            {/* Floating Badge */}
                             <motion.div
                                 animate={{ y: [-5, 5, -5] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
