@@ -19,66 +19,81 @@ const IconMap: Record<string, LucideIcon> = {
     "TrendingUp": TrendingUp,
 };
 
-const container = {
+// Scroll-linked reveal variants
+const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
+    visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.1
-        }
-    }
+            staggerChildren: 0.1,
+            delayChildren: 0.1,
+        },
+    },
 };
 
-const item = {
+const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1] as const,
+        },
+    },
 };
 
 export function Services() {
     return (
-        <section className="py-12 md:py-20 lg:py-24 border-y border-slate-800 bg-slate-900/20" id="services">
-            <div className="container px-4 md:px-6 mx-auto">
-                <SectionHeading
-                    title="My Expertise"
-                    subtitle="Bridging the gap between complex technical problems and seamless user experiences."
-                    className="mb-8 md:mb-12"
-                />
-
+        <section className="py-section border-y border-slate-800 bg-slate-900/20" id="services">
+            <div className="container px-6 mx-auto max-w-6xl">
                 <motion.div
-                    variants={container}
                     initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}
                 >
-                    {services.map((service, index) => {
-                        const IconComponent = service.icon ? IconMap[service.icon] : Code;
+                    <motion.div variants={itemVariants}>
+                        <SectionHeading
+                            title="My Expertise"
+                            subtitle="Bridging the gap between complex technical problems and seamless user experiences."
+                            className="mb-12 md:mb-16"
+                        />
+                    </motion.div>
 
-                        return (
-                            <motion.div
-                                key={index}
-                                variants={item}
-                                className={cn(
-                                    "group relative overflow-hidden rounded-sm bg-slate-900/50 p-6 shadow-sm transition-all hover:bg-slate-800 border border-slate-800",
-                                )}
-                            >
-                                <div className="flex flex-col gap-4">
-                                    <div className={cn(
-                                        "p-3 w-fit rounded-sm bg-slate-800 text-primary",
-                                    )}>
-                                        <IconComponent className="h-6 w-6" />
-                                    </div>
+                    <motion.div
+                        variants={containerVariants}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                    >
+                        {services.map((service, index) => {
+                            const IconComponent = service.icon ? IconMap[service.icon] : Code;
 
-                                    <div className="space-y-2">
-                                        <h3 className="font-bold text-xl text-slate-200">{service.title}</h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed">
-                                            {service.description}
-                                        </p>
+                            return (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    className={cn(
+                                        "group relative overflow-hidden rounded-xl bg-slate-900/50 p-6 md:p-8 shadow-sm transition-all hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700",
+                                    )}
+                                >
+                                    <div className="flex flex-col gap-5">
+                                        <div className={cn(
+                                            "p-3.5 w-fit rounded-lg bg-slate-800 border border-slate-700/50 text-primary group-hover:bg-slate-700 transition-colors",
+                                        )}>
+                                            <IconComponent className="h-6 w-6" />
+                                        </div>
+
+                                        <div className="space-y-2.5">
+                                            <h3 className="font-display font-bold text-xl text-slate-200 group-hover:text-white transition-colors">{service.title}</h3>
+                                            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
+                                                {service.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </motion.div>
-                        );
-                    })}
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

@@ -13,9 +13,14 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
-  /* Heading Hierarchy - Danks1980 Style */
+  /* Heading Hierarchy - Editorial Display Style */
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight font-sans;
+  }
+
+  /* Display headings get the Outfit font */
+  .font-display {
+    font-family: var(--font-outfit), ui-sans-serif, system-ui;
   }
 
   /* Linear-style Grain Overlay */
@@ -39,8 +44,46 @@
     text-wrap: balance;
   }
   
-  /* Utility for the "Searchlight" effect later */
+  /* Utility for the "Glass" panels */
   .glass-panel {
     @apply bg-surface-50 border border-white/10 backdrop-blur-md;
+  }
+
+  /* Cursor-tracking Spotlight Effect (Linear-style) */
+  .spotlight {
+    --spotlight-x: 50%;
+    --spotlight-y: 50%;
+    position: relative;
+  }
+
+  .spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--spotlight-x) var(--spotlight-y),
+      rgba(94, 106, 210, 0.12),
+      transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .spotlight:hover::after {
+    opacity: 1;
+  }
+
+  /* Scroll-linked reveal animation base */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

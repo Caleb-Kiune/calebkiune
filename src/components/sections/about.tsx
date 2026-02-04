@@ -2,31 +2,55 @@
 
 import { motion } from "framer-motion";
 
+// Scroll-linked reveal variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as const, // easeOutExpo bezier
+        },
+    },
+};
+
 export function About() {
     return (
-        <section className="py-24 border-y border-slate-800 bg-slate-950" id="about">
+        <section className="py-section border-y border-slate-800 bg-slate-950" id="about">
             <div className="container mx-auto px-6 max-w-6xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}
+                >
                     {/* Column 1: The Hook */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
+                        variants={itemVariants}
                         className="space-y-6"
                     >
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-                            Bridging the Gap Between <span className="text-primary">Insurance Operations</span> & Software.
+                        <h2 className="font-display text-display-sm md:text-display-md text-white leading-tight">
+                            Bridging the Gap Between{" "}
+                            <span className="text-primary">Insurance Operations</span> & Software.
                         </h2>
                     </motion.div>
 
                     {/* Column 2: The Narrative */}
                     <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        variants={itemVariants}
                         className="space-y-6 text-lg text-slate-400 leading-relaxed font-light"
                     >
                         <p>
@@ -39,7 +63,7 @@ export function About() {
                             I transitioned to software engineering to automate the complex workflows I used to struggle with manually. Now, I help businesses build systems that are not just technically sound, but operationally game-changing.
                         </p>
                     </motion.div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

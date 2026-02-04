@@ -1,21 +1,65 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 export function Hero() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const [mousePos, setMousePos] = useState({ x: "50%", y: "50%" });
+
+    // Scroll-linked parallax for visual depth
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"],
+    });
+    const yParallax = useTransform(scrollYProgress, [0, 1], [0, 100]);
+    const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+    // Cursor-tracking spotlight effect
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+            setMousePos({
+                x: `${e.clientX - rect.left}px`,
+                y: `${e.clientY - rect.top}px`,
+            });
+        };
+        const section = sectionRef.current;
+        section?.addEventListener("mousemove", handleMouseMove);
+        return () => section?.removeEventListener("mousemove", handleMouseMove);
+    }, []);
+
     return (
-        <section className="relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 px-6 overflow-hidden flex items-center">
-            {/* Background: Radiant Orbs */}
-            <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] md:w-[600px] md:h-[600px] rounded-full bg-primary/20 blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
+        <section
+            ref={sectionRef}
+            className="spotlight relative min-h-screen pt-24 md:pt-32 pb-16 md:pb-24 px-6 overflow-hidden flex items-center"
+            style={
+                {
+                    "--spotlight-x": mousePos.x,
+                    "--spotlight-y": mousePos.y,
+                } as React.CSSProperties
+            }
+        >
+            {/* Background: Radiant Orbs with Parallax */}
+            <motion.div
+                style={{ y: yParallax }}
+                className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] md:w-[600px] md:h-[600px] rounded-full bg-primary/20 blur-[120px] pointer-events-none"
+            />
+            <motion.div
+                style={{ y: yParallax }}
+                className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] md:w-[500px] md:h-[500px] rounded-full bg-accent/10 blur-[100px] pointer-events-none"
+            />
 
-            <div className="container mx-auto max-w-6xl relative z-10">
+            <motion.div
+                style={{ opacity: opacityFade }}
+                className="container mx-auto max-w-6xl relative z-10"
+            >
                 <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
-
                     {/* LEFT COLUMN: The Pitch */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8">
-
                         {/* 1. Trust Pill */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
@@ -30,12 +74,12 @@ export function Hero() {
                             Operational in Nairobi
                         </motion.div>
 
-                        {/* 2. Headline */}
+                        {/* 2. Headline - Editorial Display Typography */}
                         <motion.h1
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]"
+                            className="font-display text-display-sm sm:text-display-md md:text-display-lg lg:text-display-xl text-white leading-[1.05]"
                         >
                             Automate your{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-400">
@@ -50,7 +94,11 @@ export function Hero() {
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-md md:max-w-xl leading-relaxed"
                         >
-                            I build <span className="text-slate-200">audit-proof digital systems</span> that cut policy issuance time by 80%.
+                            I build{" "}
+                            <span className="text-slate-200">
+                                audit-proof digital systems
+                            </span>{" "}
+                            that cut policy issuance time by 80%.
                         </motion.p>
 
                         {/* 4. CTA Cluster - Premium Linear-style Buttons */}
@@ -109,57 +157,68 @@ export function Hero() {
                         </motion.div>
                     </div>
 
-                    {/* RIGHT COLUMN: The Visual Hook (Hidden on Mobile) */}
+                    {/* RIGHT COLUMN: Profile Photo with Glow (Humanity Layer) */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative hidden md:block h-[400px] lg:h-[500px] w-full"
+                        className="relative hidden md:flex flex-col items-center justify-center h-[400px] lg:h-[480px] w-full"
                     >
-                        {/* Abstract Representation of "Structure" */}
-                        <div className="absolute inset-0 bg-surface-50 border border-surface-100 rounded-2xl backdrop-blur-sm overflow-hidden transform rotate-3 hover:rotate-0 transition-transform duration-700 ease-out">
-                            {/* Terminal-like header */}
-                            <div className="h-10 border-b border-surface-100 bg-surface-100/50 flex items-center px-4 gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500/20" />
-                                <div className="w-3 h-3 rounded-full bg-green-500/20" />
+                        {/* Glow Ring Effect */}
+                        <div className="relative">
+                            <div className="absolute -inset-6 bg-gradient-to-br from-primary/40 via-indigo-500/20 to-accent/20 rounded-full blur-2xl opacity-70 animate-pulse" />
+                            <div className="absolute -inset-3 bg-gradient-to-tr from-primary/30 to-transparent rounded-full blur-xl" />
+
+                            {/* Profile Photo */}
+                            <div className="relative w-[260px] h-[260px] lg:w-[300px] lg:h-[300px] rounded-full overflow-hidden border-2 border-white/10 shadow-2xl shadow-primary/20">
+                                <Image
+                                    src="/caleb-kiune.jpg"
+                                    alt="Caleb Kiune - Full-Stack Developer"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                    sizes="(max-width: 1024px) 260px, 300px"
+                                />
                             </div>
 
-                            {/* Code/Data Visualization */}
-                            <div className="p-6 lg:p-8 space-y-6 opacity-80">
-                                <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                                    <div className="space-y-1">
-                                        <div className="h-2 w-24 bg-primary/40 rounded" />
-                                        <div className="h-2 w-16 bg-slate-700 rounded" />
-                                    </div>
-                                    <div className="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center animate-pulse">
-                                        <div className="h-2 w-2 bg-emerald-400 rounded-full" />
-                                    </div>
-                                </div>
-                                <div className="space-y-3">
-                                    <div className="h-2 w-full bg-slate-800 rounded animate-pulse" />
-                                    <div className="h-2 w-3/4 bg-slate-800 rounded animate-pulse delay-75" />
-                                    <div className="h-2 w-5/6 bg-slate-800 rounded animate-pulse delay-150" />
-                                </div>
-                                <div className="mt-6 lg:mt-8 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                                    <div className="flex justify-between items-center mb-2">
-                                        <span className="text-xs font-mono text-primary animate-pulse">System Health</span>
-                                        <span className="text-xs font-mono text-primary">99.9%</span>
-                                    </div>
-                                    <div className="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
-                                        <div className="h-full w-[99.9%] bg-primary shadow-[0_0_10px_2px_rgba(94,106,210,0.5)]" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Floating Badge */}
-                            <div className="absolute -bottom-4 -right-4 lg:-bottom-6 lg:-right-6 bg-surface-100 backdrop-blur-xl border border-white/10 p-3 lg:p-4 rounded-xl shadow-2xl">
-                                <span className="text-xl lg:text-2xl">🚀</span>
-                            </div>
+                            {/* Floating Status Badge */}
+                            <motion.div
+                                animate={{ y: [-4, 4, -4] }}
+                                transition={{
+                                    duration: 4,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                                className="absolute -bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-full bg-surface-100/80 border border-white/10 backdrop-blur-md shadow-lg"
+                            >
+                                <span className="text-xs font-medium text-slate-300 whitespace-nowrap">
+                                    ✅ Available for Q1 2026
+                                </span>
+                            </motion.div>
                         </div>
+
+                        {/* Decorative Floating Elements */}
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{
+                                duration: 20,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                            className="absolute top-10 right-10 w-16 h-16 rounded-full border border-white/5 opacity-40"
+                        />
+                        <motion.div
+                            animate={{ rotate: -360 }}
+                            transition={{
+                                duration: 25,
+                                repeat: Infinity,
+                                ease: "linear",
+                            }}
+                            className="absolute bottom-20 left-10 w-24 h-24 rounded-full border border-primary/10 opacity-30"
+                        />
                     </motion.div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

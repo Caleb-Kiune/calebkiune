@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 // Tech icon mapping - supports both react-icons and Lucide
 const TECH_ICONS: Record<string, IconType | LucideIcon> = {
@@ -55,33 +56,38 @@ export interface ProjectData {
 
 interface ProjectCardProps {
     project: ProjectData;
-    index: number;
+    featured?: boolean;
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, featured = false }: ProjectCardProps) {
     return (
         <motion.article
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            whileHover={{ y: -5 }}
-            className="group relative flex flex-col overflow-hidden rounded-lg bg-[#161b22] border border-white/5 hover:border-white/10 transition-all duration-300 h-[400px] md:h-[420px]"
+            whileHover={{ y: -6 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={cn(
+                "group relative flex flex-col overflow-hidden rounded-xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300",
+                featured
+                    ? "h-[420px] md:h-[480px] lg:h-[520px]"
+                    : "h-[400px] md:h-[460px]"
+            )}
         >
             {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-            {/* Top: Image Container - 50% Height */}
-            <div className="relative h-1/2 overflow-hidden rounded-t-lg">
+            {/* Top: Image Container - Variable Height Based on Featured */}
+            <div className={cn(
+                "relative overflow-hidden rounded-t-xl",
+                featured ? "h-[55%]" : "h-[50%]"
+            )}>
                 <Image
                     src={project.imageSrc}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    sizes={featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
                 />
                 {/* Subtle bottom fade for seamless blend */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-50" />
 
                 {/* External Link */}
                 {project.demoUrl && (
@@ -89,50 +95,63 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                         href={project.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="absolute top-4 right-4 z-20 p-2 rounded-md bg-[#0F1117]/80 backdrop-blur-md border border-white/10 text-slate-300 hover:text-white hover:bg-white/20 transition-colors"
+                        className="absolute top-4 right-4 z-20 p-2.5 rounded-lg bg-[#0F1117]/80 backdrop-blur-md border border-white/10 text-slate-300 hover:text-white hover:bg-white/20 hover:border-white/20 transition-all duration-200"
                     >
                         <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 )}
             </div>
 
-            {/* Bottom: Content Container - 50% Height */}
-            <div className="relative z-10 flex flex-col h-1/2 p-5 justify-between">
+            {/* Bottom: Content Container - Editorial Spacing */}
+            <div className={cn(
+                "relative z-10 flex flex-col justify-between",
+                featured ? "h-[45%] p-6 md:p-8" : "h-[50%] p-5 md:p-6"
+            )}>
                 {/* Top Content Group */}
-                <div className="space-y-2">
+                <div className="space-y-3">
                     {/* Micro-Label: Industry Tag */}
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-400">
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
                         {project.tag}
                     </span>
 
-                    {/* Project Name */}
+                    {/* Project Name - De-emphasized */}
                     <h3 className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors">
                         {project.title}
                     </h3>
 
-                    {/* The Metric (Hero) */}
-                    <p className="text-xl md:text-2xl font-bold text-white tracking-tight leading-tight">
+                    {/* The Metric (Hero) - Editorial Display Typography */}
+                    <p className={cn(
+                        "font-display font-bold text-white tracking-tight leading-[1.1]",
+                        featured
+                            ? "text-2xl md:text-3xl lg:text-4xl"
+                            : "text-xl md:text-2xl"
+                    )}>
                         {project.metric}
                     </p>
 
                     {/* Hook Description - Clamped to 2 lines */}
-                    <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
+                    <p className={cn(
+                        "text-slate-500 leading-relaxed",
+                        featured ? "text-sm md:text-base line-clamp-3" : "text-sm line-clamp-2"
+                    )}>
                         {project.hook}
                     </p>
                 </div>
 
                 {/* Tech Stack Icons - Pinned to Bottom */}
-                <div className="flex items-center gap-2 pt-3 border-t border-white/5 mt-auto">
+                <div className="flex items-center gap-2.5 pt-4 border-t border-white/5 mt-auto">
                     {project.stack.map((tech) => {
                         const Icon = TECH_ICONS[tech];
                         if (!Icon) return null;
                         return (
                             <div
                                 key={tech}
-                                className="p-1.5 rounded-md bg-slate-800/50 text-slate-500 group-hover:text-slate-400 transition-colors"
+                                className="p-2 rounded-lg bg-slate-800/60 border border-slate-700/40 text-slate-500 group-hover:text-slate-400 group-hover:border-slate-600/60 transition-all duration-200"
                                 title={tech}
                             >
-                                <Icon className="w-3.5 h-3.5" />
+                                <Icon className={cn(
+                                    featured ? "w-4 h-4" : "w-3.5 h-3.5"
+                                )} />
                             </div>
                         );
                     })}

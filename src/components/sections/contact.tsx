@@ -8,6 +8,17 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { submitContactForm } from "@/app/actions";
 
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.1,
+        },
+    },
+};
+
 export function Contact() {
     // using useActionState for form state management
     const [state, formAction, isPending] = useActionState(submitContactForm, null);
@@ -22,16 +33,16 @@ export function Contact() {
     }, [state?.success]);
 
     // DRY: Reusable input classes
-    const inputClasses = "w-full p-3 rounded-lg border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
+    const inputClasses = "w-full p-3.5 rounded-lg border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
 
     return (
         <motion.section
             id="contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="py-16 md:py-24 px-6 border-t border-slate-800 bg-background"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+            className="py-section md:py-section-lg px-6 border-t border-slate-800 bg-background"
         >
             <div className="container mx-auto max-w-2xl">
                 <SectionHeading

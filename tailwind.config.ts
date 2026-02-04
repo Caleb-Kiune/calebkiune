@@ -53,8 +53,12 @@ const config: Config = {
           foreground: "#8A93A3", // Linear's signature text grey
         },
 
-        // UTILITY
-        border: "rgba(255, 255, 255, 0.08)", // Subtle borders
+        // UTILITY - Refined border system (Linear micro-borders)
+        border: {
+          DEFAULT: "rgba(255, 255, 255, 0.08)",
+          subtle: "rgba(255, 255, 255, 0.05)",
+          highlight: "rgba(255, 255, 255, 0.12)",
+        },
         input: "rgba(255, 255, 255, 0.08)",
         ring: "#5E6AD2",
 
@@ -64,13 +68,42 @@ const config: Config = {
           foreground: "hsl(0 0% 98%)",
         },
       },
+      // Luxury spacing system (Ram Maheshwari negative space)
+      spacing: {
+        "18": "4.5rem",
+        "22": "5.5rem",
+        "26": "6.5rem",
+        "30": "7.5rem",
+        section: "8rem",
+        "section-lg": "10rem",
+      },
+      // Editorial typography scale (Ram Maheshwari inspired)
+      fontSize: {
+        "display-xl": [
+          "4.5rem",
+          { lineHeight: "1", letterSpacing: "-0.03em", fontWeight: "700" },
+        ],
+        "display-lg": [
+          "3.75rem",
+          { lineHeight: "1.05", letterSpacing: "-0.025em", fontWeight: "700" },
+        ],
+        "display-md": [
+          "3rem",
+          { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "600" },
+        ],
+        "display-sm": [
+          "2.25rem",
+          { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "600" },
+        ],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui"],
+        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
+        display: ["var(--font-outfit)", "ui-sans-serif", "system-ui"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular"],
       },
     },

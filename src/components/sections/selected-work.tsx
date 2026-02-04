@@ -43,39 +43,71 @@ const PROJECTS: ProjectData[] = [
     },
 ];
 
+// Scroll-linked reveal variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as const, // easeOutExpo bezier
+        },
+    },
+};
+
 export function SelectedWork() {
     return (
-        <section id="work" className="py-24 md:py-32 bg-slate-950">
+        <section id="work" className="py-section md:py-section-lg bg-slate-950">
             <div className="container mx-auto px-6 max-w-6xl">
-                <SectionHeading
-                    title="Selected Work"
-                    subtitle="Real-world solutions delivering tangible business results."
-                    className="mb-16"
-                />
-
-                {/* Bento Grid */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6"
                     initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-50px" }}
-                    variants={{
-                        hidden: { opacity: 0 },
-                        show: {
-                            opacity: 1,
-                            transition: {
-                                staggerChildren: 0.1,
-                            },
-                        },
-                    }}
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}
                 >
-                    {PROJECTS.map((project, index) => (
-                        <ProjectCard
-                            key={project.id}
-                            project={project}
-                            index={index}
+                    <motion.div variants={itemVariants}>
+                        <SectionHeading
+                            title="Selected Work"
+                            subtitle="Real-world solutions delivering tangible business results."
+                            className="mb-16 md:mb-20"
                         />
-                    ))}
+                    </motion.div>
+
+                    {/* Asymmetric Editorial Bento Grid */}
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+                        variants={containerVariants}
+                    >
+                        {PROJECTS.map((project, index) => (
+                            <motion.div
+                                key={project.id}
+                                variants={itemVariants}
+                                // First project spans 2 columns on large screens
+                                className={
+                                    index === 0
+                                        ? "lg:col-span-2"
+                                        : ""
+                                }
+                            >
+                                <ProjectCard
+                                    project={project}
+                                    featured={index === 0}
+                                />
+                            </motion.div>
+                        ))}
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

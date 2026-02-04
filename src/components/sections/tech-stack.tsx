@@ -56,68 +56,107 @@ const TECH_STACK: TechCategory[] = [
     },
 ];
 
+// Scroll-linked reveal variants
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.08,
+            delayChildren: 0.1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1] as const,
+        },
+    },
+};
+
+const categoryVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as const,
+            staggerChildren: 0.06,
+            delayChildren: 0.1,
+        },
+    },
+};
+
 export function TechStack() {
     return (
-        <section className="py-24 bg-slate-950" id="tech-stack">
+        <section className="py-section md:py-section-lg bg-slate-950" id="tech-stack">
             <div className="container mx-auto px-6 max-w-6xl">
-                <SectionHeading
-                    title="Technical Competence"
-                    subtitle="A curated, production-grade stack built for scale and reliability."
-                    className="mb-16"
-                />
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}
+                >
+                    <motion.div variants={itemVariants}>
+                        <SectionHeading
+                            title="Technical Competence"
+                            subtitle="A curated, production-grade stack built for scale and reliability."
+                            className="mb-16 md:mb-20"
+                        />
+                    </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-                    {TECH_STACK.map((category, categoryIdx) => (
-                        <motion.div
-                            key={category.title}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: categoryIdx * 0.12, duration: 0.5 }}
-                            className="group"
-                        >
-                            {/* Category Header */}
-                            <h3 className="text-xs font-medium uppercase tracking-widest text-slate-500 mb-6 pb-3 border-b border-slate-800/50">
-                                {category.title}
-                            </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+                        {TECH_STACK.map((category, categoryIdx) => (
+                            <motion.div
+                                key={category.title}
+                                variants={categoryVariants}
+                                custom={categoryIdx}
+                                className="group"
+                            >
+                                {/* Category Header */}
+                                <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 mb-6 pb-4 border-b border-slate-800/50">
+                                    {category.title}
+                                </h3>
 
-                            {/* Tech Items - Vertical Stack */}
-                            <div className="space-y-4">
-                                {category.items.map((item, itemIdx) => {
-                                    const Icon = item.icon;
-                                    return (
-                                        <motion.div
-                                            key={item.name}
-                                            initial={{ opacity: 0, x: -8 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                delay: categoryIdx * 0.12 + itemIdx * 0.06,
-                                                duration: 0.35,
-                                            }}
-                                            className="group/item flex items-center gap-4 p-3 -mx-3 rounded-lg hover:bg-slate-900/40 transition-colors duration-200 cursor-default"
-                                        >
-                                            {/* Icon */}
-                                            <div className="flex items-center justify-center w-9 h-9 rounded-md bg-slate-800/60 border border-slate-700/40 group-hover/item:border-slate-600/60 transition-colors">
-                                                <Icon className="w-4 h-4 text-slate-400 group-hover/item:text-slate-200 transition-colors" />
-                                            </div>
+                                {/* Tech Items - Vertical Stack */}
+                                <div className="space-y-4">
+                                    {category.items.map((item) => {
+                                        const Icon = item.icon;
+                                        return (
+                                            <motion.div
+                                                key={item.name}
+                                                variants={itemVariants}
+                                                className="group/item flex items-center gap-4 p-3 -mx-3 rounded-lg hover:bg-slate-900/50 transition-colors duration-200 cursor-default"
+                                            >
+                                                {/* Icon */}
+                                                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-800/60 border border-slate-700/40 group-hover/item:border-slate-600/60 transition-colors">
+                                                    <Icon className="w-4.5 h-4.5 text-slate-400 group-hover/item:text-slate-200 transition-colors" />
+                                                </div>
 
-                                            {/* Text */}
-                                            <div className="flex-1 min-w-0">
-                                                <h4 className="text-sm font-medium text-slate-300 group-hover/item:text-slate-100 transition-colors">
-                                                    {item.name}
-                                                </h4>
-                                                <p className="text-xs text-slate-500 group-hover/item:text-slate-400 transition-colors">
-                                                    {item.description}
-                                                </p>
-                                            </div>
-                                        </motion.div>
-                                    );
-                                })}
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+                                                {/* Text */}
+                                                <div className="flex-1 min-w-0">
+                                                    <h4 className="text-sm font-medium text-slate-300 group-hover/item:text-slate-100 transition-colors">
+                                                        {item.name}
+                                                    </h4>
+                                                    <p className="text-xs text-slate-500 group-hover/item:text-slate-400 transition-colors">
+                                                        {item.description}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        );
+                                    })}
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
         </section>
     );
