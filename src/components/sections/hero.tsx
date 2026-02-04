@@ -13,10 +13,12 @@ export function Hero() {
         target: sectionRef,
         offset: ["start start", "end start"],
     });
-    // Reduced parallax intensity slightly to prevent overlap on small screens
+
+    // Parallax: Moderate movement to avoid overlap issues
     const yParallax = useTransform(scrollYProgress, [0, 1], [0, 50]);
     const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+    // Cursor tracking logic
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (!sectionRef.current) return;
@@ -34,9 +36,11 @@ export function Hero() {
     return (
         <section
             ref={sectionRef}
-            // FIX 1: 'min-h-[85vh]' instead of screen. This prevents the "too tall" feeling.
-            // FIX 2: Reduced padding 'pt-24 md:pt-32' -> 'pt-28 md:pt-32'.
-            className="spotlight relative w-full overflow-hidden bg-[#0B0D12] pt-32 pb-16 md:pt-32 md:pb-20 min-h-[85vh] md:min-h-[svh] flex flex-col md:justify-center"
+            // STRATEGY IMPLEMENTATION:
+            // 1. Mobile (Default): 'h-auto', 'pt-28' (112px to clear header), 'pb-16'. Linear flow.
+            // 2. Desktop (md): 'min-h-[svh]' (Full Screen), 'pt-28' (Reduced Safety Ceiling), 'justify-center' (Center Stage).
+            // Reduced desktop padding from pt-32 to pt-28 to save vertical space.
+            className="spotlight relative w-full overflow-hidden bg-[#0B0D12] pt-28 pb-16 h-auto md:min-h-[svh] md:pt-28 md:pb-20 md:flex md:flex-col md:justify-center"
             style={
                 {
                     "--spotlight-x": mousePos.x,
@@ -44,7 +48,7 @@ export function Hero() {
                 } as React.CSSProperties
             }
         >
-            {/* Background: Radiant Orbs (Scaled down slightly for mobile) */}
+            {/* Background Orbs */}
             <motion.div
                 style={{ y: yParallax }}
                 className="absolute top-[-10%] right-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-primary/20 blur-[100px] pointer-events-none"
@@ -58,32 +62,19 @@ export function Hero() {
                 style={{ opacity: opacityFade }}
                 className="container mx-auto px-6 max-w-7xl relative z-10"
             >
-                {/* FIX 3: Reduced gap from 'gap-12' to 'gap-8 lg:gap-16' for tighter layout */}
+                {/* Content Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                     {/* LEFT COLUMN: The Pitch */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-5 md:space-y-6">
+                    {/* Tightened space-y from 6 to 4 */}
+                    <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
 
-                        {/* 1. Trust Pill */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-medium tracking-wide backdrop-blur-md"
-                        >
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                            </span>
-                            Operational in Nairobi
-                        </motion.div>
-
-                        {/* 2. Headline */}
+                        {/* Headline */}
                         <motion.h1
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            // FIX 4: Scaled down mobile text slightly (4xl -> 3xl/4xl) to save vertical space
+                            // Added leading-[1.1] or leading-tight to reduce spread
                             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
                         >
                             Automate your{" "}
@@ -92,7 +83,7 @@ export function Hero() {
                             </span>
                         </motion.h1>
 
-                        {/* 3. Subheadline */}
+                        {/* Subheadline */}
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -102,7 +93,7 @@ export function Hero() {
                             I build <span className="text-slate-200 font-medium">audit-proof digital systems</span> that cut policy issuance time by 80%.
                         </motion.p>
 
-                        {/* 4. CTA Buttons */}
+                        {/* CTA Buttons */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -113,7 +104,7 @@ export function Hero() {
                                 href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative inline-flex items-center justify-center h-11 md:h-12 px-8 overflow-hidden rounded-lg bg-white text-slate-900 text-sm font-semibold tracking-wide transition-transform active:scale-95"
+                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-white text-slate-900 text-sm font-semibold tracking-wide transition-transform active:scale-95"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-emerald-200/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 <span className="relative flex items-center gap-2">
@@ -124,18 +115,15 @@ export function Hero() {
 
                             <a
                                 href="#work"
-                                className="inline-flex items-center justify-center h-11 md:h-12 px-8 rounded-lg border border-white/10 bg-white/5 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors active:scale-95"
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-lg border border-white/10 bg-white/5 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors active:scale-95"
                             >
                                 View Work
                             </a>
                         </motion.div>
-
-                        {/* 5. Trust Signals - Hidden on very small screens (sm:flex) to prevent overflow */}
-
                     </div>
 
                     {/* RIGHT COLUMN: Profile Photo */}
-                    {/* FIX 5: Max-Height/Width constraints to stop it from forcing page grow */}
+                    {/* Ensure centered alignment with items-center */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -143,7 +131,7 @@ export function Hero() {
                         className="relative hidden md:flex flex-col items-center justify-center max-h-[400px]"
                     >
                         <div className="relative w-[280px] h-[280px] lg:w-[320px] lg:h-[320px]">
-                            {/* Abstract Glow Background */}
+                            {/* Glow Background */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
 
                             {/* Image Container */}
