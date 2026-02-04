@@ -62,7 +62,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <motion.article
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300 shadow-2xl shadow-black/40"
+            // Added hover:border-white/20 per request
+            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
         >
             {/* Top: Image Section - Clean, No Overlay Buttons */}
             <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
@@ -73,14 +74,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                
+
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#161b22]/80 via-transparent to-transparent opacity-60" />
 
                 {/* Full Card Clickable Link (Optional UX enhancement) */}
                 {project.demoUrl && (
-                    <Link 
-                        href={project.demoUrl} 
+                    <Link
+                        href={project.demoUrl}
                         target="_blank"
                         className="absolute inset-0 z-10"
                         aria-label={`View ${project.title}`}
@@ -89,13 +90,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
 
             {/* Bottom: Content Section */}
-            <div className="flex flex-col flex-1 p-5 md:p-6 relative z-20 pointer-events-none">
+            {/* Reduced padding from p-5/p-6 to p-4/p-5 */}
+            <div className="flex flex-col flex-1 p-4 md:p-5 relative z-20 pointer-events-none">
                 {/* Note: pointer-events-none allows clicks to pass through to the image link 
                     BUT we need to re-enable pointer-events for interactive elements like the button below */}
-                
-                <div className="space-y-4 mb-6">
-                    {/* Micro-Label: Industry Tag */}
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block">
+
+                {/* Reduced space-y from 4 to 2.5 and mb-6 to mb-4 */}
+                <div className="space-y-2.5 mb-4">
+                    {/* Micro-Label: Minimalist Tag - No Background */}
+                    <span className="inline-block text-emerald-400 text-[10px] font-bold tracking-widest uppercase">
                         {project.tag}
                     </span>
 
@@ -104,7 +107,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         <h3 className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors mb-1">
                             {project.title}
                         </h3>
-                        <p className="font-display font-bold text-2xl md:text-3xl text-white tracking-tight leading-[1.1]">
+                        {/* Metric Typography - Updated with Gradient */}
+                        <p className="font-display font-bold text-2xl md:text-3xl tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
                             {project.metric}
                         </p>
                     </div>
@@ -116,8 +120,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 </div>
 
                 {/* Footer Split: Icons Left | Action Button Right */}
-                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between gap-4 pointer-events-auto">
-                    
+                {/* Reduced pt-4 to pt-3 */}
+                <div className="mt-auto pt-3 border-t border-white/5 flex items-center justify-between gap-4 pointer-events-auto">
+
                     {/* Left: Tech Stack Icons */}
                     <div className="flex items-center gap-3">
                         {project.stack.map((tech) => {
@@ -134,18 +139,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         })}
                     </div>
 
-                    {/* Right: Visit Action Button */}
+                    {/* Right: Visit Action Button - Ghost Link Style */}
                     {project.demoUrl && (
                         <Link
                             href={project.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/btn flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider"
+                            className="group/link flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider hover:text-emerald-400 transition-colors"
                         >
-                            Visit
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black group-hover/btn:bg-emerald-400 group-hover/btn:scale-110 transition-all duration-300">
-                                <ArrowUpRight className="w-4 h-4" />
-                            </div>
+                            View Project
+                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
                         </Link>
                     )}
                 </div>
