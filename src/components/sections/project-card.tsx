@@ -62,13 +62,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <motion.article
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300"
+            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/15 transition-all duration-300 shadow-2xl shadow-black/40"
         >
-            {/* Subtle glow on hover */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
-
-            {/* Top: Image Section - Intrinsic Aspect Ratio */}
-            <div className="relative w-full aspect-video overflow-hidden">
+            {/* Top: Image Section - Clean, No Overlay Buttons */}
+            <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
                 <Image
                     src={project.imageSrc}
                     alt={project.title}
@@ -76,27 +73,29 @@ export function ProjectCard({ project }: ProjectCardProps) {
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                {/* Subtle bottom fade for seamless blend */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22] via-transparent to-transparent opacity-60" />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22]/80 via-transparent to-transparent opacity-60" />
 
-                {/* External Link */}
+                {/* Full Card Clickable Link (Optional UX enhancement) */}
                 {project.demoUrl && (
-                    <Link
-                        href={project.demoUrl}
+                    <Link 
+                        href={project.demoUrl} 
                         target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute top-4 right-4 z-20 p-2.5 rounded-lg bg-[#0F1117]/80 backdrop-blur-md border border-white/10 text-slate-300 hover:text-white hover:bg-white/20 hover:border-white/20 transition-all duration-200"
-                    >
-                        <ArrowUpRight className="w-4 h-4" />
-                    </Link>
+                        className="absolute inset-0 z-10"
+                        aria-label={`View ${project.title}`}
+                    />
                 )}
             </div>
 
-            {/* Bottom: Content Section - Auto Growth */}
-            <div className="flex flex-col flex-1 p-5 md:p-6 relative z-10">
+            {/* Bottom: Content Section */}
+            <div className="flex flex-col flex-1 p-5 md:p-6 relative z-20 pointer-events-none">
+                {/* Note: pointer-events-none allows clicks to pass through to the image link 
+                    BUT we need to re-enable pointer-events for interactive elements like the button below */}
+                
                 <div className="space-y-4 mb-6">
                     {/* Micro-Label: Industry Tag */}
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-400 block">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block">
                         {project.tag}
                     </span>
 
@@ -110,26 +109,45 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         </p>
                     </div>
 
-                    {/* Hook Description */}
+                    {/* Hook Description (Clamped to 1 line) */}
                     <p className="text-slate-500 text-sm md:text-base leading-relaxed line-clamp-1">
                         {project.hook}
                     </p>
                 </div>
 
-                {/* Tech Stack Icons - Minimalist Footer */}
-                <div className="mt-auto flex flex-wrap gap-4 pt-4 border-t border-white/5">
-                    {project.stack.map((tech) => {
-                        const Icon = TECH_ICONS[tech];
-                        return (
-                            <div
-                                key={tech}
-                                title={tech}
-                                className="text-slate-400 hover:text-white transition-colors"
-                            >
-                                {Icon && <Icon className="w-5 h-5" />}
+                {/* Footer Split: Icons Left | Action Button Right */}
+                <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between gap-4 pointer-events-auto">
+                    
+                    {/* Left: Tech Stack Icons */}
+                    <div className="flex items-center gap-3">
+                        {project.stack.map((tech) => {
+                            const Icon = TECH_ICONS[tech];
+                            return (
+                                <div
+                                    key={tech}
+                                    title={tech}
+                                    className="text-slate-500 hover:text-emerald-400 transition-colors"
+                                >
+                                    {Icon && <Icon className="w-5 h-5" />}
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Right: Visit Action Button */}
+                    {project.demoUrl && (
+                        <Link
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/btn flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider"
+                        >
+                            Visit
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black group-hover/btn:bg-emerald-400 group-hover/btn:scale-110 transition-all duration-300">
+                                <ArrowUpRight className="w-4 h-4" />
                             </div>
-                        );
-                    })}
+                        </Link>
+                    )}
                 </div>
             </div>
         </motion.article>
