@@ -45,8 +45,9 @@ const itemVariants = {
 
 export function Services() {
     return (
-        <section className="py-section border-y border-slate-800 bg-page" id="services">
-            <div className="container px-6 mx-auto max-w-6xl">
+        <section className="relative py-section border-y border-slate-800 bg-page" id="services">
+            <div className="bg-noise" aria-hidden="true" />
+            <div className="container relative z-10 px-6 mx-auto max-w-6xl">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

@@ -24,8 +24,9 @@ const cardVariants = {
 
 export function About() {
     return (
-        <section id="about" className="py-section md:py-section-lg bg-page border-t border-slate-800">
-            <div className="container mx-auto px-6 max-w-6xl">
+        <section id="about" className="relative py-section md:py-section-lg bg-page border-t border-slate-800">
+            <div className="bg-noise" aria-hidden="true" />
+            <div className="container relative z-10 mx-auto px-6 max-w-6xl">
 
                 {/* Section Header */}
                 <div className="mb-12 md:mb-16">

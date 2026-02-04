@@ -65,8 +65,9 @@ const itemVariants = {
 
 export function SelectedWork() {
     return (
-        <section id="work" className="py-section md:py-section-lg bg-page border-t border-slate-800">
-            <div className="container mx-auto px-6 max-w-6xl">
+        <section id="work" className="relative py-section md:py-section-lg bg-page border-t border-slate-800">
+            <div className="bg-noise" aria-hidden="true" />
+            <div className="container relative z-10 mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"

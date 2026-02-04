@@ -31,8 +31,9 @@ const itemVariants = {
 
 export function Testimonials() {
     return (
-        <section className="py-section md:py-section-lg border-y border-slate-800 bg-page" id="testimonials">
-            <div className="container mx-auto px-6 max-w-6xl">
+        <section className="relative py-section md:py-section-lg border-y border-slate-800 bg-page" id="testimonials">
+            <div className="bg-noise" aria-hidden="true" />
+            <div className="container relative z-10 mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
