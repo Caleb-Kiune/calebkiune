@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
@@ -93,15 +94,15 @@ export function Hero() {
                             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
                         >
                             <a
-                                href="https://cal.com/caleb-kiune-7dcvda/technical-strategy-call"
+                                href="https://wa.me/254705774171?text=Hi%20Caleb,%20I%20checked%20out%20your%20portfolio."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-white text-slate-900 text-sm font-semibold tracking-wide transition-transform active:scale-95"
+                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-[#25D366] hover:bg-[#128C7E] text-white text-sm font-semibold tracking-wide transition-all shadow-lg shadow-emerald-900/20 active:scale-95 border-none"
                             >
-                                <span className="absolute inset-0 bg-gradient-to-r from-emerald-200/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 <span className="relative flex items-center gap-2">
-                                    Book Strategy Call
-                                    <ArrowRight className="w-4 h-4" />
+                                    Chat on WhatsApp
+                                    <FaWhatsapp className="w-5 h-5" />
                                 </span>
                             </a>
 
