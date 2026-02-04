@@ -96,7 +96,7 @@ export function Footer() {
             {/* Background Watermark - The Visual Anchor */}
             <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none opacity-[0.02]">
                 <h1 className="text-[15vw] md:text-[12vw] font-bold text-white leading-none text-center tracking-tighter whitespace-nowrap select-none">
-                    CALEB KIUNE
+                    KIUNE
                 </h1>
             </div>
         </footer>
