@@ -3,8 +3,8 @@
 import { useActionState, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { CheckCircle2, Loader2, Send, Calendar, MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { CheckCircle2, Loader2, Send, Calendar, MessageCircle, ChevronDown, Briefcase, Users, HelpCircle, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { submitContactForm } from "@/app/actions";
 
@@ -25,6 +25,19 @@ export function Contact() {
 
     // We can also keep local state for success view if we want to reset form or toggle view
     const [showSuccess, setShowSuccess] = useState(false);
+
+    // Custom dropdown state
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedType, setSelectedType] = useState("");
+
+    // Inquiry type options
+    const inquiryOptions = [
+        { id: "freelance", label: "Project Inquiry", icon: Briefcase },
+        { id: "fulltime", label: "Long-term Partnership", icon: Users },
+        { id: "other", label: "General Inquiry", icon: HelpCircle },
+    ];
+
+    const selectedOption = inquiryOptions.find(opt => opt.id === selectedType);
 
     useEffect(() => {
         if (state?.success) {
@@ -107,20 +120,94 @@ export function Contact() {
 
                             {/* Inquiry Type Dropdown */}
                             <div className="space-y-2">
-                                <label htmlFor="type" className="text-sm font-medium text-slate-300">
+                                <label className="text-sm font-medium text-slate-300">
                                     I am interested in...
                                 </label>
-                                <select
-                                    id="type"
-                                    name="type"
-                                    className={cn(inputClasses, state?.errors?.type && "border-red-500 focus:ring-red-500")}
-                                    defaultValue=""
-                                >
-                                    <option value="" disabled className="bg-slate-900 text-slate-500">Select an option</option>
-                                    <option value="freelance" className="bg-slate-900">Project Inquiry</option>
-                                    <option value="fulltime" className="bg-slate-900">Long-term Partnership</option>
-                                    <option value="other" className="bg-slate-900">General Inquiry</option>
-                                </select>
+
+                                {/* Hidden input for form action */}
+                                <input type="hidden" name="type" value={selectedType} />
+
+                                <div className="relative">
+                                    {/* Click outside overlay */}
+                                    {isOpen && (
+                                        <div
+                                            className="fixed inset-0 z-10"
+                                            onClick={() => setIsOpen(false)}
+                                        />
+                                    )}
+
+                                    {/* Trigger Button */}
+                                    <div
+                                        onClick={() => setIsOpen(!isOpen)}
+                                        className={cn(
+                                            inputClasses,
+                                            "cursor-pointer flex items-center justify-between",
+                                            state?.errors?.type && "border-red-500 focus:ring-red-500"
+                                        )}
+                                    >
+                                        <span className={cn(
+                                            "flex items-center gap-2",
+                                            selectedOption ? "text-slate-200" : "text-slate-500"
+                                        )}>
+                                            {selectedOption ? (
+                                                <>
+                                                    <selectedOption.icon className="h-4 w-4" />
+                                                    {selectedOption.label}
+                                                </>
+                                            ) : (
+                                                "Select an option"
+                                            )}
+                                        </span>
+                                        <ChevronDown
+                                            className={cn(
+                                                "h-4 w-4 text-slate-500 transition-transform duration-200",
+                                                isOpen && "rotate-180"
+                                            )}
+                                        />
+                                    </div>
+
+                                    {/* Dropdown Menu */}
+                                    <AnimatePresence>
+                                        {isOpen && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: -8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -8 }}
+                                                transition={{ duration: 0.15 }}
+                                                className="absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-lg overflow-hidden shadow-xl"
+                                            >
+                                                {inquiryOptions.map((option) => {
+                                                    const Icon = option.icon;
+                                                    const isSelected = selectedType === option.id;
+                                                    return (
+                                                        <div
+                                                            key={option.id}
+                                                            onClick={() => {
+                                                                setSelectedType(option.id);
+                                                                setIsOpen(false);
+                                                            }}
+                                                            className={cn(
+                                                                "flex items-center justify-between px-4 py-3 cursor-pointer transition-colors",
+                                                                isSelected
+                                                                    ? "bg-primary/10 text-primary"
+                                                                    : "text-slate-300 hover:bg-slate-800"
+                                                            )}
+                                                        >
+                                                            <span className="flex items-center gap-3">
+                                                                <Icon className="h-4 w-4" />
+                                                                {option.label}
+                                                            </span>
+                                                            {isSelected && (
+                                                                <Check className="h-4 w-4" />
+                                                            )}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
                                 {state?.errors?.type && (
                                     <p className="text-sm text-red-400">{state.errors.type[0]}</p>
                                 )}
