@@ -8,9 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
     { name: "Work", href: "#work" },
-    { name: "Expertise", href: "#about" },
-    { name: "Skills", href: "#tech-stack" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#services" },
+    { name: "Reviews", href: "#testimonials" },
 ];
 
 export function Header() {

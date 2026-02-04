@@ -96,7 +96,7 @@ const categoryVariants = {
 
 export function TechStack() {
     return (
-        <section className="py-section md:py-section-lg bg-slate-950" id="tech-stack">
+        <section className="py-section md:py-section-lg bg-slate-950">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"

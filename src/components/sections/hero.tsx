@@ -139,7 +139,7 @@ export function Hero() {
                                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#0B0D12]/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-xl whitespace-nowrap"
                             >
                                 <span className="text-xs font-semibold text-emerald-400">
-                                    ● Available for Q1 2026
+                                    ● Open for New Projects
                                 </span>
                             </motion.div>
                         </div>
