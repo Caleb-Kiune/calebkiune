@@ -42,16 +42,16 @@ export function Contact() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
-            className="py-section md:py-section-lg px-6 border-t border-slate-800 bg-background"
+            className="py-section md:py-section-lg border-t border-slate-800 bg-background"
         >
-            <div className="container mx-auto max-w-2xl">
+            <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
                     title="Let's Work Together"
                     subtitle="Have a project in mind? Send me a message and I'll get back to you within 24 hours."
                     className="mb-10"
                 />
 
-                <div className="bg-slate-900/30 p-6 md:p-8 rounded-sm border border-slate-800 backdrop-blur-sm">
+                <div className="w-full md:max-w-2xl md:mx-auto bg-slate-900/30 p-5 sm:p-6 md:p-8 rounded-xl border border-slate-800 backdrop-blur-sm">
                     {showSuccess ? (
                         <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
                             <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
@@ -156,7 +156,7 @@ export function Contact() {
                                     disabled={isPending}
                                     whileHover={{ scale: isPending ? 1 : 1.02 }}
                                     whileTap={{ scale: isPending ? 1 : 0.98 }}
-                                    className="group relative flex-1 order-2 md:order-1 h-12 inline-flex items-center justify-center overflow-hidden rounded-lg bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="group relative flex-1 order-2 md:order-1 h-auto py-4 md:py-3 inline-flex items-center justify-center overflow-hidden rounded-lg bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
                                     {/* Shimmer overlay */}
                                     <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
@@ -182,7 +182,7 @@ export function Contact() {
                                     rel="noopener noreferrer"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="flex-1 order-1 md:order-2 h-12 inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-slate-300 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                                    className="flex-1 order-1 md:order-2 h-auto py-4 md:py-3 inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm text-slate-300 text-sm font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
                                 >
                                     <Calendar className="w-4 h-4" />
                                     Book Strategy Call
