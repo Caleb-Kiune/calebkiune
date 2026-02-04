@@ -65,7 +65,7 @@ const itemVariants = {
 
 export function SelectedWork() {
     return (
-        <section id="work" className="py-section md:py-section-lg bg-page">
+        <section id="work" className="py-section md:py-section-lg bg-page border-t border-slate-800">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"
