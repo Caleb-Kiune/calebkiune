@@ -43,7 +43,15 @@ export function Header() {
         >
             <div className="container mx-auto px-6 h-12 flex items-center justify-between relative z-50">
                 {/* Brand Logo - The "Cockpit" ID */}
-                <Link href="/" className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-slate-200 transition-colors z-50 relative" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link
+                    href="/"
+                    className="text-lg md:text-xl font-bold tracking-tight text-white hover:text-slate-200 transition-colors z-50 relative"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        setIsMobileMenuOpen(false);
+                    }}
+                >
                     CALEB KIUNE
                 </Link>
 
