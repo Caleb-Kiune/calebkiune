@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-white relative;
+    @apply bg-page text-foreground antialiased selection:bg-primary/30 selection:text-white relative;
     /* Optimize font rendering for the 'Terminal' aesthetic */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
@@ -16,6 +16,23 @@
   /* Heading Hierarchy - Editorial Display Style */
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight font-sans;
+  }
+
+  /* Custom WebKit Scrollbar - Dark Mode FinTech */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-page;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-elevated rounded-full border-[3px] border-page;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
   }
 
   /* Display headings get the Outfit font */
