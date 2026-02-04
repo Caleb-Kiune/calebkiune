@@ -9,7 +9,7 @@ const ICONS = [Layout, Server, TrendingUp];
 
 export function SkillsSection() {
     return (
-        <section className="py-24 border-y border-slate-800 bg-slate-950" id="skills">
+        <section className="scroll-mt-[72px] py-24 border-y border-slate-800 bg-slate-950" id="skills">
             <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
                     title="Technical Competence"
