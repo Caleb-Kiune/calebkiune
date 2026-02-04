@@ -42,7 +42,7 @@ export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 pt-16 pb-12">
+        <footer className="bg-page border-t border-slate-800 text-slate-400 pt-16 pb-12">
             <div className="container mx-auto px-6 max-w-6xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-16">
 
@@ -102,7 +102,7 @@ export function Footer() {
                                     key={social.label}
                                     href={social.href}
                                     target="_blank"
-                                    className="h-10 w-10 flex items-center justify-center rounded-sm bg-slate-900 border border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white hover:border-slate-700 transition-all"
+                                    className="h-10 w-10 flex items-center justify-center rounded-sm bg-surface border border-slate-800 text-slate-400 hover:bg-surface-elevated hover:text-white hover:border-slate-700 transition-all"
                                     aria-label={social.label}
                                 >
                                     <social.icon className="h-5 w-5" />
@@ -111,7 +111,7 @@ export function Footer() {
                         </div>
 
                         {/* Compliance Badge */}
-                        <div className="p-4 rounded-sm bg-slate-900/50 border border-slate-800/50">
+                        <div className="p-4 rounded-sm bg-surface border border-slate-800/50">
                             <div className="flex items-start gap-3">
                                 <div className="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
                                 <div className="space-y-1">

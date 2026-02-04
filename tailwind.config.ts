@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   // Enforce manual toggling, though we will lock to dark
@@ -19,12 +20,15 @@ const config: Config = {
     extend: {
       colors: {
         // BASE: Midnight Slate (Linear Style)
-        background: "#0F1117",
+        page: colors.slate[950], // The "Void" - New Base
+        background: "#0F1117", // Keeping for now, but 'page' is the new standard
         foreground: "#E2E8F0",
 
         // LAYERS: Glass & Surfaces
         surface: {
-          50: "rgba(255, 255, 255, 0.05)", // Ultra-light glass
+          DEFAULT: colors.slate[900], // Cards
+          elevated: colors.slate[800], // Hovers
+          50: "rgba(255, 255, 255, 0.05)", // Ultra-light glass (Kept for compatibility)
           100: "rgba(255, 255, 255, 0.10)", // Light Border/Hover
           200: "rgba(255, 255, 255, 0.20)", // Active states
         },
@@ -40,9 +44,9 @@ const config: Config = {
 
         // DOCTRINE COLORS - Refined
         primary: {
-          DEFAULT: "#5E6AD2", // LINEAR INDIGO/PURPLE - Tech & Stability
-          foreground: "#FFFFFF",
-          glow: "rgba(94, 106, 210, 0.5)",
+          DEFAULT: colors.emerald[500], // The "Money" color
+          foreground: colors.white,
+          glow: "rgba(16, 185, 129, 0.5)",
         },
         accent: {
           DEFAULT: "#F59E0B", // AMBER-500 - Warmth/Strategy (unchanged but refined)
@@ -60,13 +64,16 @@ const config: Config = {
           highlight: "rgba(255, 255, 255, 0.12)",
         },
         input: "rgba(255, 255, 255, 0.08)",
-        ring: "#5E6AD2",
+        ring: colors.emerald[500],
 
         // Destructive
         destructive: {
           DEFAULT: "hsl(0 62.8% 30.6%)",
           foreground: "hsl(0 0% 98%)",
         },
+
+        // Brands
+        whatsapp: "#25D366",
       },
       // Luxury spacing system (Ram Maheshwari negative space)
       spacing: {

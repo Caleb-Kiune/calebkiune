@@ -9,7 +9,7 @@ const ICONS = [Layout, Server, TrendingUp];
 
 export function SkillsSection() {
     return (
-        <section className="scroll-mt-[72px] py-24 border-y border-slate-800 bg-slate-950" id="skills">
+        <section className="scroll-mt-[72px] py-24 border-y border-slate-800 bg-page" id="skills">
             <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
                     title="Technical Competence"
@@ -27,11 +27,11 @@ export function SkillsSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                                className="group relative overflow-hidden rounded-md border border-slate-800 bg-slate-900/40 p-8 hover:border-slate-700 transition-colors"
+                                className="group relative overflow-hidden rounded-md border border-slate-800 bg-surface p-8 hover:border-slate-700 transition-colors"
                             >
                                 {/* Header */}
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-2 rounded-sm bg-slate-800 text-primary">
+                                    <div className="p-2 rounded-sm bg-surface-elevated text-primary">
                                         <Icon className="h-5 w-5" />
                                     </div>
                                     <h3 className="font-bold text-lg text-slate-200">{category.title}</h3>

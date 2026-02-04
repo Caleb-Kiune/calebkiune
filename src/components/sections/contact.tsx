@@ -56,7 +56,7 @@ export function Contact() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
-            className="py-section md:py-section-lg border-t border-slate-800 bg-background"
+            className="py-section md:py-section-lg border-t border-slate-800 bg-page"
         >
             <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
@@ -71,7 +71,7 @@ export function Contact() {
                         {/* Email Card */}
                         <a
                             href="mailto:calebkiune@gmail.com"
-                            className="flex items-center gap-4 p-4 rounded-xl bg-[#161b22] border border-white/5 hover:bg-[#1c2128] hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
                         >
                             <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <Mail className="h-5 w-5" />
@@ -87,9 +87,9 @@ export function Contact() {
                             href="https://wa.me/254705774171"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 rounded-xl bg-[#161b22] border border-white/5 hover:bg-[#1c2128] hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
                         >
-                            <div className="h-10 w-10 shrink-0 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500/20 transition-colors">
+                            <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <FaWhatsapp className="h-5 w-5" />
                             </div>
                             <div>

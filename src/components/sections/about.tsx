@@ -28,7 +28,7 @@ const itemVariants = {
 
 export function About() {
     return (
-        <section className="py-section border-y border-slate-800 bg-slate-950" id="about">
+        <section className="py-section border-y border-slate-800 bg-page" id="about">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start"

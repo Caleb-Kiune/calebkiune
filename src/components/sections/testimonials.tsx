@@ -31,7 +31,7 @@ const itemVariants = {
 
 export function Testimonials() {
     return (
-        <section className="py-section md:py-section-lg border-y border-slate-800 bg-background" id="testimonials">
+        <section className="py-section md:py-section-lg border-y border-slate-800 bg-page" id="testimonials">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"
@@ -55,7 +55,7 @@ export function Testimonials() {
                             <motion.div
                                 key={testimonial.id}
                                 variants={itemVariants}
-                                className="bg-slate-900/50 p-6 md:p-8 rounded-xl border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-slate-900/70 transition-all duration-300"
+                                className="bg-surface p-6 md:p-8 rounded-xl border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-surface-elevated transition-all duration-300"
                             >
                                 <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />
                                 <p className="text-slate-300 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>

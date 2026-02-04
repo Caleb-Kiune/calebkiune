@@ -64,7 +64,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             // Added hover:border-white/20 per request
-            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-[#161b22] border border-white/5 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
+            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
         >
             {/* Top: Image Section - Clean, No Overlay Buttons */}
             <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
@@ -77,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#161b22]/80 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-60" />
 
                 {/* Full Card Clickable Link (Optional UX enhancement) */}
                 {project.demoUrl && (
@@ -99,7 +99,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 {/* Reduced space-y from 4 to 2 to tighten layout further after hook removal */}
                 <div className="space-y-2 mb-4">
                     {/* Micro-Label: Minimalist Tag - No Background */}
-                    <span className="inline-block text-emerald-400 text-[10px] font-bold tracking-widest uppercase">
+                    <span className="inline-block text-primary text-[10px] font-bold tracking-widest uppercase">
                         {project.tag}
                     </span>
 
@@ -129,7 +129,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                                 <div
                                     key={tech}
                                     title={tech}
-                                    className="text-slate-500 hover:text-emerald-400 transition-colors"
+                                    className="text-slate-500 hover:text-primary transition-colors"
                                 >
                                     {Icon && <Icon className="w-4 h-4" />}
                                 </div>
@@ -143,7 +143,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                             href={project.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/link flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider hover:text-emerald-400 transition-colors"
+                            className="group/link flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider hover:text-primary transition-colors"
                         >
                             View Project
                             <ArrowUpRight className="w-4 h-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />

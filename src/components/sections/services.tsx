@@ -45,7 +45,7 @@ const itemVariants = {
 
 export function Services() {
     return (
-        <section className="py-section border-y border-slate-800 bg-slate-900/20" id="services">
+        <section className="py-section border-y border-slate-800 bg-page" id="services">
             <div className="container px-6 mx-auto max-w-6xl">
                 <motion.div
                     initial="hidden"
@@ -73,12 +73,12 @@ export function Services() {
                                     key={index}
                                     variants={itemVariants}
                                     className={cn(
-                                        "group relative overflow-hidden rounded-xl bg-slate-900/50 p-6 md:p-8 shadow-sm transition-all hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700",
+                                        "group relative overflow-hidden rounded-xl bg-surface p-6 md:p-8 shadow-sm transition-all hover:bg-surface-elevated border border-slate-800 hover:border-slate-700",
                                     )}
                                 >
                                     <div className="flex flex-col gap-5">
                                         <div className={cn(
-                                            "p-3.5 w-fit rounded-lg bg-slate-800 border border-slate-700/50 text-primary group-hover:bg-slate-700 transition-colors",
+                                            "p-3.5 w-fit rounded-lg bg-surface-elevated border border-slate-700/50 text-primary group-hover:bg-slate-700 transition-colors",
                                         )}>
                                             <IconComponent className="h-6 w-6" />
                                         </div>

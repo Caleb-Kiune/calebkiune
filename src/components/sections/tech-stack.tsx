@@ -96,7 +96,7 @@ const categoryVariants = {
 
 export function TechStack() {
     return (
-        <section className="py-section md:py-section-lg bg-slate-950">
+        <section className="py-section md:py-section-lg bg-page">
             <div className="container mx-auto px-6 max-w-6xl">
                 <motion.div
                     initial="hidden"
@@ -133,10 +133,10 @@ export function TechStack() {
                                             <motion.div
                                                 key={item.name}
                                                 variants={itemVariants}
-                                                className="group/item flex items-center gap-4 p-3 -mx-3 rounded-lg hover:bg-slate-900/50 transition-colors duration-200 cursor-default"
+                                                className="group/item flex items-center gap-4 p-3 -mx-3 rounded-lg hover:bg-surface transition-colors duration-200 cursor-default"
                                             >
                                                 {/* Icon */}
-                                                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-800/60 border border-slate-700/40 group-hover/item:border-slate-600/60 transition-colors">
+                                                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-surface-elevated/60 border border-slate-700/40 group-hover/item:border-slate-600/60 transition-colors">
                                                     <Icon className="w-4.5 h-4.5 text-slate-400 group-hover/item:text-slate-200 transition-colors" />
                                                 </div>
 

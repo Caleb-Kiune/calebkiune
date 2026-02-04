@@ -38,7 +38,7 @@ export function Header() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-slate-950/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-5"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-page/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-5"
                 }`}
         >
             <div className="container mx-auto px-6 h-12 flex items-center justify-between relative z-50">
@@ -98,7 +98,7 @@ export function Header() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2, ease: "easeInOut" }}
-                        className="absolute top-full left-0 w-full bg-slate-950 border-b border-slate-800 shadow-2xl md:hidden flex flex-col pt-2 pb-8 px-6 gap-2"
+                        className="absolute top-full left-0 w-full bg-page border-b border-slate-800 shadow-2xl md:hidden flex flex-col pt-2 pb-8 px-6 gap-2"
                         style={{ height: "calc(100vh - 4rem)" }} // Fallback full height if needed, but container flow is better
                     >
                         {/* Mobile Links List */}
@@ -108,7 +108,7 @@ export function Header() {
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="group flex items-center justify-between py-4 border-b border-slate-900 text-lg font-medium text-slate-300 hover:text-white hover:bg-slate-900/50 px-2 rounded-sm transition-all"
+                                    className="group flex items-center justify-between py-4 border-b border-slate-900 text-lg font-medium text-slate-300 hover:text-white hover:bg-surface/50 px-2 rounded-sm transition-all"
                                 >
                                     {link.name}
                                     <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-primary transition-colors" />

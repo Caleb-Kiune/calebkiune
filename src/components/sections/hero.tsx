@@ -35,7 +35,7 @@ export function Hero() {
     return (
         <section
             ref={sectionRef}
-            className="spotlight relative w-full overflow-hidden bg-[#0B0D12] pt-28 pb-16 min-h-screen flex flex-col justify-center md:pt-28 md:pb-20"
+            className="spotlight relative w-full overflow-hidden bg-page pt-28 pb-16 min-h-screen flex flex-col justify-center md:pt-28 md:pb-20"
             style={
                 {
                     "--spotlight-x": mousePos.x,
@@ -71,7 +71,7 @@ export function Hero() {
                             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
                         >
                             Automate your{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
                                 manual underwriting.
                             </span>
                         </motion.h1>
@@ -97,7 +97,7 @@ export function Hero() {
                                 href="https://wa.me/254705774171?text=Hi%20Caleb,%20I%20checked%20out%20your%20portfolio."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-[#25D366] hover:bg-[#128C7E] text-white text-sm font-semibold tracking-wide transition-all shadow-lg shadow-emerald-900/20 active:scale-95 border-none"
+                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold tracking-wide transition-all shadow-lg shadow-emerald-900/20 active:scale-95 border-none"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 <span className="relative flex items-center gap-2">
@@ -139,7 +139,7 @@ export function Hero() {
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-[#0B0D12]/90 border border-white/10 backdrop-blur-md px-4 py-2 rounded-full shadow-xl whitespace-nowrap"
                             >
-                                <span className="text-xs font-semibold text-emerald-400">
+                                <span className="text-xs font-semibold text-primary">
                                     ● Open for New Projects
                                 </span>
                             </motion.div>
