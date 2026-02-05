@@ -12,8 +12,8 @@ export const PROJECTS: ProjectCaseStudy[] = [
     subtitle: "Luxury Eco-Tourism Platform",
     heroImage: ecoPlains,
     client: "Eco Plains Safaris Ltd.",
-    role: "Full-Stack Developer",
-    timeline: "2024",
+    role: "Frontend Developer",
+    timeline: "2026",
     stack: ["React 19", "React Router 7", "Framer Motion", "Lenis", "Cloudinary"],
     challenge: [
       "In the crowded market of East African tourism, Eco Plains Safaris needed to bridge the gap between luxury travel and sustainable conservation. Existing digital platforms were often generic, failing to convey the premium, emotive experience of an eco-conscious safari adventure.",
@@ -25,11 +25,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "To solve the performance paradox, I integrated a **Cloudinary** optimization pipeline. This dynamic media layer automatically serves next-gen formats (AVIF/WebP) tailored to the user's bandwidth, ensuring that 4K wildlife photography loads instantly even on safari-lodge Wi-Fi.",
       "Finally, I dismantled the traditional booking form barrier by integrating a context-aware **WhatsApp booking engine**. This 'Direct-to-Agent' flow empowers high-intent leads to start a conversation instantly, increasing conversion rates by simplifying the path to purchase."
     ],
-    metrics: [
-      { label: "Performance", value: "98/100", description: "Mobile Lighthouse Score" },
-      { label: "Engagement", value: "+40%", description: "Session Duration" },
-      { label: "Conversion", value: "3x Leads", description: "Direct WhatsApp Integration" }
-    ],
+
     gallery: [ecoPlains],
     liveUrl: "https://eco-plains-safaris.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/eco-plains-safaris",
@@ -47,8 +43,8 @@ export const PROJECTS: ProjectCaseStudy[] = [
     subtitle: "FinTech / InsurTech Solution",
     heroImage: kentab,
     client: "Kentab Insurance",
-    role: "Lead Developer",
-    timeline: "2023",
+    role: "Full-Stack Developer",
+    timeline: "2025",
     stack: ["Next.js 14", "TypeScript", "Zod", "Nodemailer"],
     challenge: [
       "Traditionally, getting an insurance quote in Kenya involves endless phone calls and manual paperwork. Kentab Insurance Agency needed to digitize this friction-filled process, but faced a cultural hurdle: trust. Users were skeptical of online forms for financial products.",
@@ -56,15 +52,11 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "Speed was also non-negotiable. In a mobile-first market where data bundles are precious, the application needed to load and function with sub-second latency, ensuring that a user could get a quote before they lost interest."
     ],
     solution: [
-      "I built a mobile-first **Next.js 14** application that prioritizes speed and clarity. By utilizing Server-Side Rendering (SSR), I ensured that landing pages load instantly, maximizing SEO visibility and user retention from the first pixel.",
-      "To solve the trust and complexity issue, I implemented a **Zod-powered** multi-step form. This architecture validates data schema-by-schema, providing instant, encouraging feedback to the user while strictly sanitizing inputs before they ever reach the server.",
-      "For the communication layer, I engineered a logic-driven summary generator. The moment a quote is calculated, the system synthesizes the complex variables into a structured summary for the user. This transforms raw underwriting data into an actionable decision-making tool, reducing the 'Time-to-Clarity' for the potential client."
+      "I built a mobile-first **Next.js 14** application that prioritizes speed. By utilizing Server-Side Rendering (SSR), I ensured that landing pages load instantly, maximizing SEO visibility and user retention.",
+      "To solve trust issues, I implemented a **Zod-powered** multi-step form. This architecture validates data schema-by-schema, providing instant feedback while strictly sanitizing inputs.",
+      "Instead of opaque email chains, I engineered a **Logic Engine** that instantly synthesizes a structured summary. The moment a quote is calculated, the user sees an actionable breakdown decision-making tool, reducing the 'Time-to-Clarity' from hours to seconds."
     ],
-    metrics: [
-      { label: "Speed", value: "< 800ms", description: "Page Load via Next.js SSR" },
-      { label: "Conversion", value: "3x", description: "Increase in Completed Quotes" },
-      { label: "Reliability", value: "100%", description: "Type-Safe Validation via Zod" }
-    ],
+
     gallery: [kentab],
     liveUrl: "https://kentab-six.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/kentab",
@@ -82,7 +74,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
     subtitle: "Modern E-Commerce Experience",
     heroImage: happyFeet,
     client: "Happy Happy Feet",
-    role: "Frontend Architect",
+    role: "Full-Stack Developer",
     timeline: "2025",
     stack: ["Next.js 15", "Supabase", "Tailwind v4", "Framer Motion"],
     challenge: [
@@ -95,11 +87,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "To tackle the checkout friction, I developed a 'WhatsApp Bridge'. Instead of a complex payment form, the cart compiles the order into a structured WhatsApp message. This one-click action transfers the context to a human agent, boasting a significantly higher closing rate.",
       "For the frontend, I adopted **Tailwind CSS v4** and **Framer Motion**. This allowed me to create a 'textural' UI with subtle micro-interactions—like floating buttons and smooth page transitions—that elevate the perceived value of the brand."
     ],
-    metrics: [
-      { label: "Latency", value: "50ms", description: "Search Response via Client-Side Filtering" },
-      { label: "Retention", value: "+25%", description: "Cart Recovery via WhatsApp Bridge" },
-      { label: "Uptime", value: "99.9%", description: "Database Availability via Supabase" }
-    ],
+
     gallery: [happyFeet],
     liveUrl: "https://happy-happy-feet.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/Happy-Happy-Feet",

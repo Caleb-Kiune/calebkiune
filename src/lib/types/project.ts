@@ -18,12 +18,7 @@ export interface ProjectCaseStudy {
     challenge: string[]; // Business Problem (Array of paragraphs)
     solution: string[]; // Technical Approach (Array of paragraphs)
 
-    // Proof
-    metrics: {
-        label: string;
-        value: string;
-        description?: string;
-    }[];
+
 
     // Media
     gallery: StaticImageData[];

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProjectCaseStudy } from "@/lib/types/project";
 import { ArrowUpRight, Github, ArrowLeft, Layers, Calendar, User, Building2, Cpu, CheckSquare } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 
 interface CaseStudyLayoutProps {
     project: ProjectCaseStudy;
@@ -65,15 +65,15 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                     {/* Left Sidebar (col-span-4) */}
                     <aside className="lg:col-span-4 space-y-6">
                         {/* Project Preview */}
-                        <div className="relative aspect-video w-full rounded-md overflow-hidden border border-white/10 shadow-lg glass-panel">
+                        {/* Project Preview */}
+                        <div className="w-full rounded-md overflow-hidden border border-white/10 shadow-lg glass-panel">
                             <Image
                                 src={project.heroImage}
                                 alt={project.title}
-                                fill
-                                className="object-cover"
+                                className="w-full h-auto object-cover"
                                 priority
                                 placeholder="blur"
-                                sizes="(max-width: 1024px) 100vw, 33vw"
+                                sizes="(max-width: 768px) 100vw, 33vw"
                             />
                         </div>
 
@@ -130,18 +130,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                     {/* Right Content Area (col-span-8) */}
                     <div className="lg:col-span-8 space-y-6">
 
-                        {/* Metrics Row (Compact) */}
-                        {project.metrics && project.metrics.length > 0 && (
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                {project.metrics.map((metric, idx) => (
-                                    <div key={idx} className="glass-panel p-4 rounded-md border border-white/10 bg-surface/30">
-                                        <dt className="text-xs text-slate-400 font-medium mb-1">{metric.label}</dt>
-                                        <dd className="text-xl font-display font-bold text-white">{metric.value}</dd>
-                                        <span className="text-[10px] text-slate-400 block mt-0.5 truncate">{metric.description}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+
 
                         {/* Narrative Grid (Side-by-Side) */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
