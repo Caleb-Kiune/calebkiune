@@ -26,11 +26,11 @@ export function About() {
                         <div className="bg-surface border border-slate-800 p-8 rounded-card relative overflow-hidden group h-full">
                             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-primary" />
-                                The Operator's Mindset
+                                The Operator&apos;s Mindset
                             </h3>
                             <p className="text-slate-400 leading-relaxed">
-                                I didn't start as a coder—I started in operations. With over 5 years of experience in the
-                                <span className="text-slate-200 font-medium"> insurance industry</span>, I know that software isn't just about code: it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
+                                I didn&apos;t start as a coder—I started in operations. With over 5 years of experience in the
+                                <span className="text-slate-200 font-medium"> insurance industry</span>, I know that software isn&apos;t just about code: it&apos;s about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
                             </p>
                         </div>
                     </ScrollReveal>
