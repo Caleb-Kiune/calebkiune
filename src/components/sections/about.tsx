@@ -30,7 +30,7 @@ export function About() {
                             </h3>
                             <p className="text-slate-400 leading-relaxed">
                                 I didn't start as a coder—I started in operations. With over 5 years of experience in the
-                                <span className="text-slate-200 font-medium"> insurance industry</span>, I know that software isn't just about code; it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
+                                <span className="text-slate-200 font-medium"> insurance industry</span>, I know that software isn't just about code: it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
                             </p>
                         </div>
                     </ScrollReveal>
