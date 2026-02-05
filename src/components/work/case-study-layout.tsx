@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ProjectCaseStudy } from "@/lib/types/project";
-import { ProjectMetrics } from "@/components/work/project-metrics";
-import { ArrowUpRight, Github, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Github, ArrowLeft, Layers, Calendar, User, Building2, Cpu, CheckSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CaseStudyLayoutProps {
@@ -11,177 +10,187 @@ interface CaseStudyLayoutProps {
 
 export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
     return (
-        <article className="min-h-screen pb-24 relative overflow-hidden">
-            {/* Background Texture */}
+        <article className="min-h-screen bg-page pb-12 relative overflow-x-hidden">
             <div className="bg-noise fixed inset-0 z-0 pointer-events-none" />
 
-            {/* Hero Section */}
-            <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 px-6">
-                <div className="container mx-auto max-w-6xl relative z-10">
-                    <Link
-                        href="/#work"
-                        className="inline-flex items-center text-sm text-muted hover:text-white transition-colors mb-8 group"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Back to Work
-                    </Link>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-16">
-                        <div>
-                            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-[0.9] tracking-tight">
-                                {project.title}
-                            </h1>
-                            <p className="text-xl md:text-2xl text-muted font-light leading-relaxed max-w-xl">
-                                {project.subtitle}
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-4 items-start lg:items-end">
-                            {/* Actions */}
-                            <div className="flex flex-wrap gap-4">
-                                {project.liveUrl && (
-                                    <a
-                                        href={project.liveUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center px-6 py-3 bg-primary hover:bg-emerald-400 text-white rounded-button font-medium transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.2)]"
-                                    >
-                                        Visit Live Site
-                                        <ArrowUpRight className="w-4 h-4 ml-2" />
-                                    </a>
-                                )}
-                                {project.repoUrl && (
-                                    <a
-                                        href={project.repoUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center px-6 py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-button font-medium transition-all"
-                                    >
-                                        <Github className="w-4 h-4 mr-2" />
-                                        Source Code
-                                    </a>
-                                )}
-                            </div>
-                        </div>
+            {/* Compact Header Bar */}
+            <header className="fixed top-0 left-0 right-0 z-50 bg-page/80 backdrop-blur-md border-b border-white/5 h-16 flex items-center">
+                <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
+                    <div className="flex items-center gap-6">
+                        <Link
+                            href="/#work"
+                            className="text-muted hover:text-white transition-colors"
+                            title="Back to Work"
+                        >
+                            <ArrowLeft className="w-5 h-5" />
+                        </Link>
+                        <h1 className="text-xl md:text-2xl font-display font-bold text-white tracking-tight truncate">
+                            {project.title}
+                        </h1>
+                        <span className="hidden md:inline-block h-4 w-[1px] bg-white/10" />
+                        <p className="hidden md:inline-block text-sm text-muted">{project.subtitle}</p>
                     </div>
 
-                    {/* Hero Image */}
-                    <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-white/10 shadow-2xl glass-panel group">
-                        <Image
-                            src={project.heroImage}
-                            alt={project.title}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            priority
-                            placeholder="blur"
-                        />
+                    <div className="flex items-center gap-3">
+                        {project.repoUrl && (
+                            <a
+                                href={project.repoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-2 text-muted hover:text-white hover:bg-white/5 rounded-button transition-all"
+                                title="View Source Code"
+                            >
+                                <Github className="w-5 h-5" />
+                            </a>
+                        )}
+                        {project.liveUrl && (
+                            <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-emerald-400 text-white text-sm font-medium rounded-button transition-all shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                            >
+                                Live Site
+                                <ArrowUpRight className="w-4 h-4" />
+                            </a>
+                        )}
                     </div>
                 </div>
-            </section>
+            </header>
 
-            {/* Main Content Grid */}
-            <section className="container mx-auto px-6 max-w-6xl relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Main Dashboard Grid */}
+            <main className="container mx-auto px-6 max-w-7xl pt-24 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
-                    {/* Sidebar (Desktop) / Top Grid (Mobile) */}
-                    <aside className="lg:col-span-4 order-2 lg:order-1">
-                        <div className="glass-panel p-6 rounded-lg sticky top-32 space-y-8">
-                            <div>
-                                <dt className="text-sm text-muted uppercase tracking-wider mb-1">Client</dt>
-                                <dd className="text-white font-medium">{project.client}</dd>
+                    {/* Left Sidebar (col-span-4) */}
+                    <aside className="lg:col-span-4 space-y-6">
+                        {/* Project Preview */}
+                        <div className="relative aspect-video w-full rounded-md overflow-hidden border border-white/10 shadow-lg glass-panel">
+                            <Image
+                                src={project.heroImage}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                                priority
+                                placeholder="blur"
+                                sizes="(max-width: 1024px) 100vw, 33vw"
+                            />
+                        </div>
+
+                        {/* Project DNA (Vertical Impact Grid) */}
+                        <div className="glass-panel p-4 rounded-card space-y-5 border border-white/5">
+                            <div className="flex items-start gap-3">
+                                <Building2 className="w-4 h-4 text-muted mt-0.5" />
+                                <div>
+                                    <dt className="text-xs text-muted uppercase tracking-wider mb-1">Client</dt>
+                                    <dd className="text-sm text-white font-medium leading-tight">{project.client}</dd>
+                                </div>
                             </div>
-                            <div>
-                                <dt className="text-sm text-muted uppercase tracking-wider mb-1">Role</dt>
-                                <dd className="text-white font-medium">{project.role}</dd>
+                            <div className="h-[1px] bg-white/5 w-full" />
+
+                            <div className="flex items-start gap-3">
+                                <User className="w-4 h-4 text-muted mt-0.5" />
+                                <div>
+                                    <dt className="text-xs text-muted uppercase tracking-wider mb-1">Role</dt>
+                                    <dd className="text-sm text-white font-medium leading-tight">{project.role}</dd>
+                                </div>
                             </div>
-                            <div>
-                                <dt className="text-sm text-muted uppercase tracking-wider mb-1">Timeline</dt>
-                                <dd className="text-white font-medium">{project.timeline}</dd>
+                            <div className="h-[1px] bg-white/5 w-full" />
+
+                            <div className="flex items-start gap-3">
+                                <Calendar className="w-4 h-4 text-muted mt-0.5" />
+                                <div>
+                                    <dt className="text-xs text-muted uppercase tracking-wider mb-1">Timeline</dt>
+                                    <dd className="text-sm text-white font-medium leading-tight">{project.timeline}</dd>
+                                </div>
                             </div>
-                            <div>
-                                <dt className="text-sm text-muted uppercase tracking-wider mb-3">Tech Stack</dt>
-                                <dd className="flex flex-wrap gap-2">
-                                    {project.stack.map((tech) => (
-                                        <span
-                                            key={tech}
-                                            className="px-3 py-1 bg-white/5 border border-white/10 rounded-inner text-sm text-emerald-100/80"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </dd>
+                            <div className="h-[1px] bg-white/5 w-full" />
+
+                            <div className="flex items-start gap-3">
+                                <Layers className="w-4 h-4 text-muted mt-0.5" />
+                                <div className="w-full">
+                                    <dt className="text-xs text-muted uppercase tracking-wider mb-2">Tech Stack</dt>
+                                    <dd className="flex flex-wrap gap-1.5">
+                                        {project.stack.map((tech) => (
+                                            <span
+                                                key={tech}
+                                                className="px-2 py-1 bg-white/5 border border-white/10 rounded-sm text-[11px] text-emerald-100/90 font-medium"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </dd>
+                                </div>
                             </div>
                         </div>
                     </aside>
 
-                    {/* Deep Dive Content */}
-                    <div className="lg:col-span-8 order-1 lg:order-2 space-y-20">
+                    {/* Right Content Area (col-span-8) */}
+                    <div className="lg:col-span-8 space-y-6">
 
-                        {/* Metrics */}
+                        {/* Metrics Row (Compact) */}
                         {project.metrics && project.metrics.length > 0 && (
-                            <ProjectMetrics metrics={project.metrics} />
+                            <div className="grid grid-cols-3 gap-4">
+                                {project.metrics.map((metric, idx) => (
+                                    <div key={idx} className="glass-panel p-4 rounded-md border border-white/5 bg-surface/30">
+                                        <dt className="text-xs text-muted font-medium mb-1">{metric.label}</dt>
+                                        <dd className="text-xl font-display font-bold text-white">{metric.value}</dd>
+                                        <span className="text-[10px] text-white/40 block mt-0.5 truncate">{metric.description}</span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
 
-                        {/* Change: Mapped Challenge Paragraphs */}
-                        <div>
-                            <h2 className="text-2xl font-display font-bold text-primary mb-6 flex items-center">
-                                <span className="w-8 h-[1px] bg-primary mr-4" />
-                                The Challenge
-                            </h2>
-                            <div className="prose prose-invert prose-lg text-muted/90 max-w-none">
-                                {project.challenge.map((paragraph, index) => (
-                                    <p key={index} className="mb-6 last:mb-0 leading-relaxed">
-                                        {paragraph}
-                                    </p>
-                                ))}
+                        {/* Narrative Grid (Side-by-Side) */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Challenge */}
+                            <div className="glass-panel p-5 rounded-card border border-white/5">
+                                <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-primary/20 ring-1 ring-primary" />
+                                    The Challenge
+                                </h3>
+                                <div className="space-y-3 text-sm text-muted leading-relaxed">
+                                    {project.challenge.map((p, i) => (
+                                        <p key={i}>{p}</p>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Solution */}
+                            <div className="glass-panel p-5 rounded-card border border-white/5">
+                                <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400/20 ring-1 ring-emerald-400" />
+                                    The Solution
+                                </h3>
+                                <div className="space-y-3 text-sm text-muted leading-relaxed">
+                                    {project.solution.map((p, i) => (
+                                        <p key={i}>{p}</p>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
-                        {/* Change: Mapped Solution Paragraphs */}
-                        <div>
-                            <h2 className="text-2xl font-display font-bold text-primary mb-6 flex items-center">
-                                <span className="w-8 h-[1px] bg-primary mr-4" />
-                                The Solution
-                            </h2>
-                            <div className="prose prose-invert prose-lg text-muted/90 max-w-none">
-                                {project.solution.map((paragraph, index) => (
-                                    <p key={index} className="mb-6 last:mb-0 leading-relaxed">
-                                        {paragraph}
-                                    </p>
-                                ))}
+                        {/* Technical Highlights (Horizontal Feature List) */}
+                        <div className="glass-panel p-5 rounded-card border border-white/5">
+                            <div className="flex items-center gap-3 mb-4">
+                                <Cpu className="w-4 h-4 text-primary" />
+                                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Technical Highlights</h3>
                             </div>
-                        </div>
 
-                        {/* Technical Deep Dive */}
-                        <div className="mt-12">
-                            <h3 className="text-xl font-display font-bold text-white mb-6">Technical Deep Dive</h3>
-                            <ul className="space-y-4 mb-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {project.technicalHighlights.map((point, index) => (
-                                    <li key={index} className="flex items-start">
-                                        <CheckCircle2 className="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-muted leading-relaxed">{point}</span>
-                                    </li>
+                                    <div key={index} className="flex gap-3 items-start p-3 rounded-md bg-white/5 border border-white/5">
+                                        <CheckSquare className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                        <p className="text-xs text-muted leading-relaxed font-medium">
+                                            {point}
+                                        </p>
+                                    </div>
                                 ))}
-                            </ul>
-
-                            {project.repoUrl && (
-                                <a
-                                    href={project.repoUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors border-b border-white/20 hover:border-primary pb-0.5"
-                                >
-                                    <Github className="w-4 h-4 mr-2" />
-                                    View Source on GitHub
-                                </a>
-                            )}
+                            </div>
                         </div>
-
-                        {/* Gallery (Simple Grid for now) */}
-                        {/* Future improvement: Carousel */}
                     </div>
                 </div>
-            </section>
+            </main>
         </article>
     );
 }
