@@ -27,7 +27,6 @@ export function Testimonials() {
 
                     <motion.div
                         className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-                        variants={STAGGER_CONTAINER_VARIANTS}
                     >
                         {TESTIMONIALS.map((testimonial) => (
                             <motion.div

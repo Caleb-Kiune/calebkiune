@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { MapPin, TrendingUp, ShieldCheck, Clock } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 export function About() {

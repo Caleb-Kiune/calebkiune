@@ -104,7 +104,7 @@ export function Header() {
                     >
                         {/* Mobile Links List */}
                         <div className="flex flex-col space-y-1 pt-4">
-                            {NAV_LINKS.map((link, idx) => (
+                            {NAV_LINKS.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}

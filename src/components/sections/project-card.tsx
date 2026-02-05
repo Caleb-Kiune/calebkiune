@@ -58,11 +58,15 @@ interface ProjectCardProps {
     project: ProjectData;
 }
 
+// Memoized animation constants (prevents object recreation on re-render)
+const HOVER_LIFT = { y: -5 };
+const EASE_OUT_TRANSITION = { duration: 0.3, ease: "easeOut" as const };
+
 export function ProjectCard({ project }: ProjectCardProps) {
     return (
         <motion.article
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            whileHover={HOVER_LIFT}
+            transition={EASE_OUT_TRANSITION}
             // Added hover:border-white/20 per request
             className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
         >

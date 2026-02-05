@@ -79,7 +79,7 @@ export function TechStack() {
                         {TECH_STACK.map((category, categoryIdx) => (
                             <motion.div
                                 key={category.title}
-                                variants={STAGGER_CONTAINER_VARIANTS}
+                                variants={FADE_UP_VARIANTS}
                                 custom={categoryIdx}
                                 className="group"
                             >

@@ -61,10 +61,7 @@ export function SelectedWork() {
                     </motion.div>
 
                     {/* Uniform Grid - No Spanning */}
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-                        variants={STAGGER_CONTAINER_VARIANTS}
-                    >
+                    <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                         {PROJECTS.map((project) => (
                             <motion.div
                                 key={project.id}

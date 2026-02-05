@@ -3,12 +3,16 @@
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS } from "@/lib/motion";
+
+// Memoized animation constants for floating badge
+const FLOAT_ANIMATION = { y: [-5, 5, -5] };
+const FLOAT_TRANSITION = { duration: 4, repeat: Infinity, ease: "easeInOut" as const };
 
 export function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
-    const [mousePos, setMousePos] = useState({ x: "50%", y: "50%" });
+    const rafId = useRef<number>(0);
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -18,30 +22,37 @@ export function Hero() {
     const yParallax = useTransform(scrollYProgress, [0, 1], [0, 50]);
     const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            if (!sectionRef.current) return;
-            const rect = sectionRef.current.getBoundingClientRect();
-            setMousePos({
-                x: `${e.clientX - rect.left}px`,
-                y: `${e.clientY - rect.top}px`,
-            });
-        };
-        const section = sectionRef.current;
-        section?.addEventListener("mousemove", handleMouseMove);
-        return () => section?.removeEventListener("mousemove", handleMouseMove);
+    // Performance-optimized mousemove: rAF throttled + direct DOM update
+    const handleMouseMove = useCallback((e: MouseEvent) => {
+        cancelAnimationFrame(rafId.current);
+
+        rafId.current = requestAnimationFrame(() => {
+            const section = sectionRef.current;
+            if (!section) return;
+
+            const rect = section.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Direct DOM update bypasses React reconciliation
+            section.style.setProperty("--spotlight-x", `${x}px`);
+            section.style.setProperty("--spotlight-y", `${y}px`);
+        });
     }, []);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        section?.addEventListener("mousemove", handleMouseMove, { passive: true });
+        return () => {
+            section?.removeEventListener("mousemove", handleMouseMove);
+            cancelAnimationFrame(rafId.current);
+        };
+    }, [handleMouseMove]);
 
     return (
         <section
             ref={sectionRef}
             className="spotlight relative w-full overflow-hidden bg-page pt-28 pb-16 min-h-screen flex flex-col justify-center md:pt-28 md:pb-20"
-            style={
-                {
-                    "--spotlight-x": mousePos.x,
-                    "--spotlight-y": mousePos.y,
-                } as React.CSSProperties
-            }
         >
             <motion.div
                 style={{ y: yParallax }}
@@ -125,8 +136,8 @@ export function Hero() {
                             </div>
 
                             <motion.div
-                                animate={{ y: [-5, 5, -5] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                animate={FLOAT_ANIMATION}
+                                transition={FLOAT_TRANSITION}
                                 // UPDATED: Changed bg-page/50 to bg-black/40 for better contrast and blur visibility
                                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 translate-x-4 bg-black/40 border border-white/10 backdrop-blur-md px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap z-20 hover:border-primary/20 transition-colors"
                                 aria-label="Open for new projects"

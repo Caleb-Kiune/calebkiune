@@ -40,7 +40,6 @@ export function Services() {
                     </motion.div>
 
                     <motion.div
-                        variants={STAGGER_CONTAINER_VARIANTS}
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                     >
                         {services.map((service, index) => {
