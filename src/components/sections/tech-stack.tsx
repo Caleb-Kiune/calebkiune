@@ -1,7 +1,5 @@
-"use client";
-
 import { SectionHeading } from "@/components/ui/section-heading";
-import { motion } from "framer-motion";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import {
     SiNextdotjs,
     SiTypescript,
@@ -15,7 +13,6 @@ import {
 import { Smartphone } from "lucide-react";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
-import { FADE_UP_VARIANTS, STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 
 // Type for tech stack items
 interface TechItem {
@@ -61,28 +58,18 @@ export function TechStack() {
     return (
         <section className="py-section md:py-section-lg bg-page border-t border-slate-800">
             <div className="container mx-auto px-6 max-w-6xl">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={VIEWPORT_CONFIG}
-                    variants={STAGGER_CONTAINER_VARIANTS}
-                >
-                    <motion.div variants={FADE_UP_VARIANTS}>
-                        <SectionHeading
-                            title="Technical Competence"
-                            subtitle="A curated, production-grade stack built for scale and reliability."
-                            className="mb-16 md:mb-20"
-                        />
-                    </motion.div>
+                <ScrollReveal>
+                    <SectionHeading
+                        title="Technical Competence"
+                        subtitle="A curated, production-grade stack built for scale and reliability."
+                        className="mb-16 md:mb-20"
+                    />
+                </ScrollReveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
-                        {TECH_STACK.map((category, categoryIdx) => (
-                            <motion.div
-                                key={category.title}
-                                variants={FADE_UP_VARIANTS}
-                                custom={categoryIdx}
-                                className="group"
-                            >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+                    {TECH_STACK.map((category, categoryIdx) => (
+                        <ScrollReveal key={category.title} delay={100 + categoryIdx * 150}>
+                            <div className="group">
                                 {/* Category Header */}
                                 <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500 mb-6 pb-4 border-b border-slate-800/50">
                                     {category.title}
@@ -93,9 +80,8 @@ export function TechStack() {
                                     {category.items.map((item) => {
                                         const Icon = item.icon;
                                         return (
-                                            <motion.div
+                                            <div
                                                 key={item.name}
-                                                variants={FADE_UP_VARIANTS}
                                                 className="group/item flex items-center gap-4 p-3 -mx-3 rounded-inner hover:bg-surface transition-colors duration-200 cursor-default"
                                             >
                                                 {/* Icon */}
@@ -112,14 +98,14 @@ export function TechStack() {
                                                         {item.description}
                                                     </p>
                                                 </div>
-                                            </motion.div>
+                                            </div>
                                         );
                                     })}
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                            </div>
+                        </ScrollReveal>
+                    ))}
+                </div>
             </div>
         </section>
     );
