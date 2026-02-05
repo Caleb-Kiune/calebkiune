@@ -31,8 +31,8 @@ const PROJECTS: ProjectData[] = [
         id: "happy-feet",
         title: "Happy Happy Feet",
         tag: "E-Commerce",
-        metric: "Zero-Latency Search",
-        stack: ["Next.js 16", "Supabase", "Tailwind v4", "Framer Motion"],
+        metric: "Real-Time Search",
+        stack: ["Next.js 15", "Supabase", "Tailwind v4", "Framer Motion"],
         imageSrc: happyFeet,
         demoUrl: "https://happy-happy-feet.vercel.app",
     },
@@ -46,7 +46,7 @@ export function SelectedWork() {
                 <ScrollReveal>
                     <SectionHeading
                         title="Selected Work"
-                        subtitle="Real-world solutions delivering tangible business results."
+                        subtitle="Real-world solutions delivering tangible business results"
                         className="mb-16 md:mb-20"
                     />
                 </ScrollReveal>

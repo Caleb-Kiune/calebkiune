@@ -11,7 +11,7 @@ export function About() {
                 <ScrollReveal>
                     <div className="mb-12 md:mb-16">
                         <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-                            From Underwriting to <span className="text-primary">Engineering</span>.
+                            From Underwriting to <span className="text-primary">Engineering</span>
                         </h2>
                         <p className="text-slate-400 max-w-2xl text-lg">
                             I bridge the gap between complex business logic and reliable software.
@@ -29,8 +29,8 @@ export function About() {
                                 The Operator's Mindset
                             </h3>
                             <p className="text-slate-400 leading-relaxed">
-                                I didn't start as a coder—I started in Operations. With over 5 years of experience in the
-                                <span className="text-slate-200 font-medium"> Insurance Industry</span>, I know that software isn't just about code; it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
+                                I didn't start as a coder—I started in operations. With over 5 years of experience in the
+                                <span className="text-slate-200 font-medium"> insurance industry</span>, I know that software isn't just about code; it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
                             </p>
                         </div>
                     </ScrollReveal>

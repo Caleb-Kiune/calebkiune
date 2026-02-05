@@ -88,7 +88,7 @@ export function Hero() {
                             variants={FADE_UP_VARIANTS}
                             className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
                         >
-                            I build reliable,<span className="text-slate-200 font-medium">data-driven web applications</span> that streamline operations and cut manual processing time.
+                            I build reliable,<span className="text-slate-200 font-medium"> data-driven web applications</span> that streamline operations and cut manual processing time.
                         </motion.p>
 
                         <motion.div
