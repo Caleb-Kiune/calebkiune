@@ -40,7 +40,7 @@ export function Footer() {
                             </div>
 
                             <p className="text-slate-400 text-lg leading-relaxed">
-                                Building <span className="text-white font-medium">audit-proof systems</span> for the next generation of Kenyan fintech.
+                                Building <span className="text-white font-medium">resilient digital infrastructure</span> for Kenyan and global businesses.
                             </p>
                         </div>
 

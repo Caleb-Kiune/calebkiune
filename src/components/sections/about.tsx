@@ -26,11 +26,11 @@ export function About() {
                         <div className="bg-surface border border-slate-800 p-8 rounded-card relative overflow-hidden group h-full">
                             <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                                 <ShieldCheck className="w-5 h-5 text-primary" />
-                                The Audit-Proof Mindset
+                                The Operator's Mindset
                             </h3>
                             <p className="text-slate-400 leading-relaxed">
-                                Most developers just write code. I build business solutions. With my background in
-                                <span className="text-slate-200 font-medium"> Insurance Operations</span>, I understand risk, workflow efficiency, and the cost of downtime. I build systems that are not just technically sound, but operationally game-changing.
+                                I didn't start as a coder—I started in Operations. With over 5 years of experience in the
+                                <span className="text-slate-200 font-medium"> Insurance Industry</span>, I know that software isn't just about code; it's about solving business problems. I transitioned into software development because I wanted to build the tools I wished I had. Today, I combine that operational discipline with modern web development skills to build systems that are practical, efficient, and user-friendly.
                             </p>
                         </div>
                     </ScrollReveal>
@@ -77,7 +77,7 @@ export function About() {
                         <div className="bg-surface border border-slate-800 p-8 rounded-card h-full">
                             <h3 className="text-xl font-bold text-white mb-4">Technical Precision</h3>
                             <p className="text-slate-400 mb-6">
-                                I specialize in high-performance applications that scale with your revenue. Zero latency, 100% type safety, and automated compliance.
+                                I specialize in building modern applications that prioritize speed and data integrity, ensuring your system behaves predictably as your business grows.
                             </p>
 
                             {/* Mini Tech Pills */}

@@ -80,7 +80,7 @@ export function Hero() {
                         >
                             Automate your{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
-                                manual underwriting.
+                                Complex Business Workflows
                             </span>
                         </motion.h1>
 
@@ -88,7 +88,7 @@ export function Hero() {
                             variants={FADE_UP_VARIANTS}
                             className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
                         >
-                            I build <span className="text-slate-200 font-medium">audit-proof digital systems</span> that cut policy issuance time by 80%.
+                            I build reliable,<span className="text-slate-200 font-medium">data-driven web applications</span> that streamline operations and cut manual processing time.
                         </motion.p>
 
                         <motion.div

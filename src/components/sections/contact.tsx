@@ -44,8 +44,8 @@ export function Contact() {
 
     // Inquiry type options
     const inquiryOptions = [
-        { id: "freelance", label: "Project Inquiry", icon: Briefcase },
-        { id: "fulltime", label: "Long-term Partnership", icon: Users },
+        { id: "freelance", label: "Custom Software Project", icon: Briefcase },
+        { id: "fulltime", label: "Hiring / Recruitment", icon: Users },
         { id: "other", label: "General Inquiry", icon: HelpCircle },
     ];
 
