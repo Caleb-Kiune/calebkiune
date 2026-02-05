@@ -8,7 +8,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-0 pb-0">
+    <main className="flex flex-col gap-0 pb-0 relative">
       <Hero />
       <SelectedWork />
       <About />

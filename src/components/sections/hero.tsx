@@ -53,6 +53,7 @@ export function Hero() {
         <section
             ref={sectionRef}
             className="spotlight relative w-full overflow-hidden bg-page pt-28 pb-16 min-h-screen flex flex-col justify-center md:pt-28 md:pb-20"
+            style={{ position: 'relative' }}
         >
             <motion.div
                 style={{ y: yParallax }}
