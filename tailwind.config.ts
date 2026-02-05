@@ -104,9 +104,16 @@ const config: Config = {
         ],
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        // Primitives (Inherit from globals.css variable)
+        lg: "var(--radius)",         // ~0.5rem (8px)
+        md: "calc(var(--radius) - 2px)", // ~0.375rem (6px)
+        sm: "calc(var(--radius) - 4px)", // ~0.25rem (4px)
+
+        // Semantic Aliases
+        'button': "var(--radius)",        // Maps to 'lg' (8px) - For all interactive buttons
+        'input': "var(--radius)",         // Maps to 'lg' (8px) - For form inputs
+        'card': '0.75rem',                // 12px - Universal Card Radius (Strict)
+        'inner': "calc(var(--radius) - 2px)", // Maps to 'md' (6px) - For pills, tags, inner items
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],

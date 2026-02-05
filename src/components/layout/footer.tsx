@@ -23,7 +23,7 @@ export function Footer() {
                 <motion.div variants={FADE_UP_VARIANTS} className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24">
 
                     {/* CARD 1: IDENTITY (Span 5) */}
-                    <div className="md:col-span-5 bg-surface border border-slate-800 rounded-2xl p-8 flex flex-col h-full">
+                    <div className="md:col-span-5 bg-surface border border-slate-800 rounded-card p-8 flex flex-col h-full">
 
                         {/* Centered Content Block */}
                         <div className="flex-1 flex flex-col justify-center space-y-6">
@@ -51,7 +51,7 @@ export function Footer() {
                     </div>
 
                     {/* CARD 2: SOCIAL MATRIX (Span 4) */}
-                    <div className="md:col-span-4 bg-surface border border-slate-800 rounded-2xl p-2">
+                    <div className="md:col-span-4 bg-surface border border-slate-800 rounded-card p-2">
                         <div className="grid grid-cols-2 gap-2 h-full">
                             {[
                                 { icon: FaGithub, href: "https://github.com/Caleb-Kiune", label: "GitHub" },
@@ -63,7 +63,7 @@ export function Footer() {
                                     key={social.label}
                                     href={social.href}
                                     target="_blank"
-                                    className="aspect-square flex flex-col items-center justify-center gap-2 bg-page/50 hover:bg-primary/10 rounded-xl transition-all group border border-transparent hover:border-primary/20"
+                                    className="aspect-square flex flex-col items-center justify-center gap-2 bg-page/50 hover:bg-primary/10 rounded-card transition-all group border border-transparent hover:border-primary/20"
                                 >
                                     <social.icon className="w-6 h-6 text-slate-400 group-hover:text-primary transition-colors" />
                                     <span className="text-xs font-medium text-slate-500 group-hover:text-primary transition-colors">{social.label}</span>
@@ -78,7 +78,7 @@ export function Footer() {
                         <Link
                             href="/caleb-kiune-cv.pdf"
                             target="_blank"
-                            className="flex-1 bg-surface border border-slate-800 rounded-2xl p-6 flex flex-col justify-center items-center gap-3 hover:border-primary/50 transition-colors group text-center"
+                            className="flex-1 bg-surface border border-slate-800 rounded-card p-6 flex flex-col justify-center items-center gap-3 hover:border-primary/50 transition-colors group text-center"
                         >
                             <div className="p-3 rounded-full bg-slate-800 group-hover:bg-primary group-hover:text-black transition-all text-slate-300">
                                 <Download className="w-5 h-5" />
@@ -87,7 +87,7 @@ export function Footer() {
                         </Link>
 
                         {/* Legal Badge */}
-                        <div className="flex-1 bg-surface border border-slate-800 rounded-2xl p-6 flex flex-col justify-center items-center gap-2 text-center">
+                        <div className="flex-1 bg-surface border border-slate-800 rounded-card p-6 flex flex-col justify-center items-center gap-2 text-center">
                             <ShieldCheck className="w-5 h-5 text-emerald-500" />
                             <span className="text-xs text-slate-500">Data Privacy Compliant<br />(DPA 2019)</span>
                         </div>

@@ -88,7 +88,7 @@ export function Hero() {
                                 href="https://wa.me/254705774171?text=Hi%20Caleb,%20I%20checked%20out%20your%20portfolio."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-lg bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold tracking-wide transition-all shadow-lg shadow-emerald-900/20 active:scale-95 border-none"
+                                className="group relative inline-flex items-center justify-center h-12 px-8 overflow-hidden rounded-button bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold tracking-wide transition-all shadow-lg shadow-emerald-900/20 active:scale-95 border-none"
                             >
                                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 <span className="relative flex items-center gap-2">
@@ -99,7 +99,7 @@ export function Hero() {
 
                             <a
                                 href="#work"
-                                className="inline-flex items-center justify-center h-12 px-8 rounded-lg border border-white/10 bg-white/5 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors active:scale-95"
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-button border border-white/10 bg-white/5 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors active:scale-95"
                             >
                                 View Work
                             </a>

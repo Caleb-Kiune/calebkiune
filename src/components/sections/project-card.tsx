@@ -64,7 +64,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             whileHover={{ y: -5 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
             // Added hover:border-white/20 per request
-            className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
+            className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
         >
             {/* Top: Image Section - Clean, No Overlay Buttons */}
             <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">

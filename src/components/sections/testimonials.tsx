@@ -33,7 +33,7 @@ export function Testimonials() {
                             <motion.div
                                 key={testimonial.id}
                                 variants={FADE_UP_VARIANTS}
-                                className="bg-surface p-6 md:p-8 rounded-xl border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-surface-elevated transition-all duration-300"
+                                className="bg-surface p-6 md:p-8 rounded-card border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-surface-elevated transition-all duration-300"
                             >
                                 <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />
                                 <p className="text-slate-300 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>

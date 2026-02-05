@@ -27,7 +27,7 @@ export function SkillsSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                                className="group relative overflow-hidden rounded-md border border-slate-800 bg-surface p-8 hover:border-slate-700 transition-colors"
+                                className="group relative overflow-hidden rounded-inner border border-slate-800 bg-surface p-8 hover:border-slate-700 transition-colors"
                             >
                                 {/* Header */}
                                 <div className="flex items-center gap-3 mb-6">

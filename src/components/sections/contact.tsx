@@ -37,7 +37,7 @@ export function Contact() {
     }, [state?.success]);
 
     // DRY: Reusable input classes
-    const inputClasses = "w-full p-3.5 rounded-lg border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
+    const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
 
     return (
         <motion.section
@@ -61,9 +61,9 @@ export function Contact() {
                         {/* Email Card */}
                         <a
                             href="mailto:calebkiune@gmail.com"
-                            className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
                         >
-                            <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                            <div className="h-10 w-10 shrink-0 rounded-inner bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <Mail className="h-5 w-5" />
                             </div>
                             <div>
@@ -77,9 +77,9 @@ export function Contact() {
                             href="https://wa.me/254705774171"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
                         >
-                            <div className="h-10 w-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                            <div className="h-10 w-10 shrink-0 rounded-inner bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <FaWhatsapp className="h-5 w-5" />
                             </div>
                             <div>
@@ -89,7 +89,7 @@ export function Contact() {
                         </a>
                     </div>
 
-                    <div className="bg-slate-900/30 p-6 md:p-6 rounded-xl border border-slate-800 backdrop-blur-sm">
+                    <div className="bg-slate-900/30 p-6 md:p-6 rounded-card border border-slate-800 backdrop-blur-sm">
                         {showSuccess ? (
                             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
                                 <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
@@ -199,7 +199,7 @@ export function Contact() {
                                                     animate={{ opacity: 1, y: 0 }}
                                                     exit={{ opacity: 0, y: -8 }}
                                                     transition={{ duration: 0.15 }}
-                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-lg overflow-hidden shadow-xl"
+                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-input overflow-hidden shadow-xl"
                                                 >
                                                     {inquiryOptions.map((option) => {
                                                         const Icon = option.icon;
@@ -256,7 +256,7 @@ export function Contact() {
                                 </div>
 
                                 {state?.message && !state?.success && (
-                                    <div className="p-3 bg-red-900/20 border border-red-900/50 rounded-md text-sm text-red-400">
+                                    <div className="p-3 bg-red-900/20 border border-red-900/50 rounded-inner text-sm text-red-400">
                                         {state.message}
                                     </div>
                                 )}
@@ -268,7 +268,7 @@ export function Contact() {
                                         disabled={isPending}
                                         whileHover={{ scale: isPending ? 1 : 1.02 }}
                                         whileTap={{ scale: isPending ? 1 : 0.98 }}
-                                        className="group relative w-full h-auto py-4 md:py-3 inline-flex items-center justify-center overflow-hidden rounded-lg bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                                        className="group relative w-full h-auto py-4 md:py-3 inline-flex items-center justify-center overflow-hidden rounded-button bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
                                         {/* Shimmer overlay */}
                                         <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
