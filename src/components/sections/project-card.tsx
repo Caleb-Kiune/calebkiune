@@ -46,8 +46,7 @@ export interface ProjectData {
     id: string;
     title: string;
     tag: string;
-    // Removed 'hook' property as requested
-    // hook: string; 
+
     metric: string;
     stack: string[];
     imageSrc: string | StaticImageData;
@@ -67,7 +66,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <motion.article
             whileHover={HOVER_LIFT}
             transition={EASE_OUT_TRANSITION}
-            // Added hover:border-white/20 per request
             className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
         >
             {/* Top: Image Section - Clean, No Overlay Buttons */}
@@ -97,12 +95,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
 
             {/* Bottom: Content Section */}
-            {/* Reduced padding from p-5/p-6 to p-4/p-5 */}
+
             <div className="flex flex-col flex-1 p-4 md:p-5 relative z-20 pointer-events-none">
                 {/* Note: pointer-events-none allows clicks to pass through to the image link 
                     BUT we need to re-enable pointer-events for interactive elements like the button below */}
 
-                {/* Reduced space-y from 4 to 2 to tighten layout further after hook removal */}
+
                 <div className="space-y-2 mb-4">
                     {/* Micro-Label: Minimalist Tag - No Background */}
                     <span className="inline-block text-primary text-[10px] font-bold tracking-widest uppercase">
@@ -120,11 +118,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
                         </p>
                     </div>
 
-                    {/* Hook Description REMOVED as requested */}
+
                 </div>
 
                 {/* Footer Split: Icons Left | Action Button Right */}
-                {/* Reduced pt-4 to pt-3 */}
+
                 <div className="mt-auto pt-3 border-t border-white/5 flex items-center justify-between gap-4 pointer-events-auto">
 
                     {/* Left: Tech Stack Icons */}

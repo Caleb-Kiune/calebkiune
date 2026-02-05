@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
 import { z } from "zod";
 
-// Zod Schema (Moved from Server Action)
+
 const formSchema = z.object({
     name: z.string().min(2, "Name is required"),
     email: z.string().email("Invalid email address"),
@@ -28,19 +28,17 @@ type FormErrors = {
 };
 
 export function Contact() {
-    // Client-side state management
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
     const [errors, setErrors] = useState<FormErrors>({});
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    // Custom dropdown state
+
     const [isOpen, setIsOpen] = useState(false);
     const [selectedType, setSelectedType] = useState<"freelance" | "fulltime" | "other" | "">("");
 
-    // Form data state (controlled inputs for instant validation removal if we wanted, but sticking to submit-time for now to match)
-    // Actually, uncontrolled is fine with FormData, but controlled is easier for the dropdown sync.
-    // Let's stick to FormData extraction in handleSubmit to mimic the previous flow.
+
 
     // Inquiry type options
     const inquiryOptions = [
@@ -58,8 +56,6 @@ export function Contact() {
         setErrorMessage(null);
 
         const formData = new FormData(e.currentTarget);
-        // Manually ensure the custom dropdown value is included if not in form data (it is hidden input, so it should be)
-        // But better to pull from state for safety on strict enumerables
         const data = {
             name: formData.get("name") as string,
             email: formData.get("email") as string,
@@ -67,7 +63,7 @@ export function Contact() {
             message: formData.get("message") as string,
         };
 
-        // 1. Client-Side Validation
+
         const validatedFields = formSchema.safeParse(data);
 
         if (!validatedFields.success) {
@@ -79,13 +75,13 @@ export function Contact() {
         const { name, email, type, message } = validatedFields.data;
 
         try {
-            // 2. Direct Browser Fetch (Bypasses Cloudflare Server Block)
+
             const response = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Accept: "application/json",
-                    // NO User-Agent header (Browser sets it automatically)
+
                 },
                 body: JSON.stringify({
                     access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
@@ -115,7 +111,7 @@ export function Contact() {
         }
     };
 
-    // DRY: Reusable input classes
+
     const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
 
     return (

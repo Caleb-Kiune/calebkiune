@@ -71,7 +71,7 @@ export function Header() {
 
                 {/* DESKTOP CTA - Right Wing */}
                 <div className="hidden md:block">
-                    {/* UPDATED: Fixed rounded-1g typo to rounded-lg to match Hero */}
+
                     <Link
                         href="#contact"
                         className={cn(
@@ -124,7 +124,7 @@ export function Header() {
 
                         {/* Mobile CTA */}
                         <div className="mt-8">
-                            {/* UPDATED: Added rounded-lg here for consistency */}
+
                             <Link
                                 href="#contact"
                                 onClick={() => setIsMobileMenuOpen(false)}
