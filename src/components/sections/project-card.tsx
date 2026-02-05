@@ -42,7 +42,7 @@ export interface ProjectData {
   metric: string;
   stack: string[];
   imageSrc: string | StaticImageData;
-  demoUrl?: string;
+  slug: string;
 }
 
 interface ProjectCardProps {
@@ -53,15 +53,11 @@ const HOVER_LIFT = { y: -5 };
 const EASE_OUT_TRANSITION = { duration: 0.3, ease: "easeOut" as const };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const hasDemo = !!project.demoUrl;
-
   const cardContent = (
     <motion.article
       whileHover={HOVER_LIFT}
       transition={EASE_OUT_TRANSITION}
-      className={`group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40 ${
-        !hasDemo ? "group" : "" 
-      }`}
+      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40 group"
     >
       {/* Top: Image Section */}
       <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
@@ -115,26 +111,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           {/* Arrow */}
-          {hasDemo && (
-            <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-primary transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          )}
+          <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-primary transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </div>
       </div>
     </motion.article>
   );
 
-  
-  return hasDemo ? (
+  return (
     <Link
-      href={project.demoUrl!}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block group" 
-      aria-label={`View ${project.title}`}
+      href={`/work/${project.slug}`}
+      className="block group"
+      aria-label={`View Case Study for ${project.title}`}
     >
       {cardContent}
     </Link>
-  ) : (
-    cardContent
   );
 }

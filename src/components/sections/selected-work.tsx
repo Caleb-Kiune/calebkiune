@@ -1,42 +1,14 @@
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProjectCard, ProjectData } from "@/components/sections/project-card";
+import { ProjectCard } from "@/components/sections/project-card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 // Project images
-import ecoPlains from "@/assets/projects/eco-plains-safaris.png";
-import kentab from "@/assets/projects/kentab-insurance-agency.png";
-import happyFeet from "@/assets/projects/happy-happy-feet.png";
+// Project images
+// Imported implicitly via data projects
 
 
-const PROJECTS: ProjectData[] = [
-    {
-        id: "eco-plains",
-        title: "Eco Plains Safaris",
-        tag: "Conservation Tourism",
-        metric: "Luxury Eco-Tourism",
-        stack: ["React 19", "Framer Motion", "Lenis Scroll", "Cloudinary"],
-        imageSrc: ecoPlains,
-        demoUrl: "https://eco-plains-safaris.vercel.app",
-    },
-    {
-        id: "kentab",
-        title: "Kentab Insurance Agency",
-        tag: "FinTech / InsurTech",
-        metric: "Sub-Second Quotes",
-        stack: ["Next.js 14", "TypeScript", "Zod", "Nodemailer"],
-        imageSrc: kentab,
-        demoUrl: "https://kentab-six.vercel.app",
-    },
-    {
-        id: "happy-feet",
-        title: "Happy Happy Feet",
-        tag: "E-Commerce",
-        metric: "Real-Time Search",
-        stack: ["Next.js 15", "Supabase", "Tailwind v4", "Framer Motion"],
-        imageSrc: happyFeet,
-        demoUrl: "https://happy-happy-feet.vercel.app",
-    },
-];
+
+import { PROJECTS } from "@/lib/data/projects";
 
 export function SelectedWork() {
     return (
@@ -59,7 +31,17 @@ export function SelectedWork() {
                             delay={100 + index * 100}
                             className="col-span-1 h-full"
                         >
-                            <ProjectCard project={project} />
+                            <ProjectCard
+                                project={{
+                                    id: project.id,
+                                    title: project.title,
+                                    tag: project.tag,
+                                    metric: project.subtitle,
+                                    stack: project.stack,
+                                    imageSrc: project.heroImage,
+                                    slug: project.slug,
+                                }}
+                            />
                         </ScrollReveal>
                     ))}
                 </div>
