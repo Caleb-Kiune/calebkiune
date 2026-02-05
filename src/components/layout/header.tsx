@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Menu, X, MessageSquare, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -71,14 +72,18 @@ export function Header() {
                 {/* DESKTOP CTA - Right Wing */}
                 <div className="hidden md:block">
                     {/* UPDATED: Fixed rounded-1g typo to rounded-lg to match Hero */}
-                    <Button asChild size="sm" className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-button font-semibold px-5 border-0 shadow-lg shadow-emerald-900/20">
-                        <Link href="#contact">
-                            <span className="flex items-center gap-2">
-                                Let&apos;s Talk
-                                <MessageSquare className="h-4 w-4" />
-                            </span>
-                        </Link>
-                    </Button>
+                    <Link
+                        href="#contact"
+                        className={cn(
+                            buttonVariants({ size: "sm" }),
+                            "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-button font-semibold px-5 border-0 shadow-lg shadow-emerald-900/20"
+                        )}
+                    >
+                        <span className="flex items-center gap-2">
+                            Let&apos;s Talk
+                            <MessageSquare className="h-4 w-4" />
+                        </span>
+                    </Link>
                 </div>
 
                 {/* MOBILE TOGGLE */}
@@ -120,14 +125,19 @@ export function Header() {
                         {/* Mobile CTA */}
                         <div className="mt-8">
                             {/* UPDATED: Added rounded-lg here for consistency */}
-                            <Button asChild className="w-full h-12 text-base bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border-0 rounded-button">
-                                <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <span className="flex items-center justify-center gap-2">
-                                        Let&apos;s Talk
-                                        <MessageSquare className="h-4 w-4" />
-                                    </span>
-                                </Link>
-                            </Button>
+                            <Link
+                                href="#contact"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={cn(
+                                    buttonVariants({ size: "default" }),
+                                    "w-full h-12 text-base bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border-0 rounded-button"
+                                )}
+                            >
+                                <span className="flex items-center justify-center gap-2">
+                                    Let&apos;s Talk
+                                    <MessageSquare className="h-4 w-4" />
+                                </span>
+                            </Link>
                         </div>
                     </motion.div>
                 )}
