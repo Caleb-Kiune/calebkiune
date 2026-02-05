@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -63,11 +62,7 @@ export function Hero() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
 
                     {/* LEFT COLUMN: The Pitch */}
-                    {/* KEY FIX: Changed 'space-y-4' to 'space-y-8 md:space-y-6' */}
-                    {/* This adds 32px of breathing room between elements on mobile, spreading them out */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 md:space-y-6">
-
-                        {/* Headline */}
                         <motion.h1
                             variants={FADE_UP_VARIANTS}
                             className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
@@ -78,7 +73,6 @@ export function Hero() {
                             </span>
                         </motion.h1>
 
-                        {/* Subheadline */}
                         <motion.p
                             variants={FADE_UP_VARIANTS}
                             className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
@@ -86,7 +80,6 @@ export function Hero() {
                             I build <span className="text-slate-200 font-medium">audit-proof digital systems</span> that cut policy issuance time by 80%.
                         </motion.p>
 
-                        {/* CTA Buttons */}
                         <motion.div
                             variants={FADE_UP_VARIANTS}
                             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2"
@@ -130,6 +123,7 @@ export function Hero() {
                                     sizes="(max-width: 1024px) 280px, 320px"
                                 />
                             </div>
+
                             <motion.div
                                 animate={{ y: [-5, 5, -5] }}
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -137,8 +131,11 @@ export function Hero() {
                                 aria-label="Open for new projects"
                                 role="status"
                             >
-                                {/* Minimal Status Indicator: Single Static Dot */}
-                                <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                                {/* Pinging Pulse Logic */}
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                </span>
 
                                 <span className="text-xs font-mono font-medium tracking-wide text-primary uppercase">
                                     Open for Projects

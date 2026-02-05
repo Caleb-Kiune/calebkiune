@@ -70,7 +70,8 @@ export function Header() {
 
                 {/* DESKTOP CTA - Right Wing */}
                 <div className="hidden md:block">
-                    <Button asChild size="sm" className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-sm font-semibold px-5 border-0 shadow-lg shadow-emerald-900/20">
+                    {/* UPDATED: Fixed rounded-1g typo to rounded-lg to match Hero */}
+                    <Button asChild size="sm" className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-lg font-semibold px-5 border-0 shadow-lg shadow-emerald-900/20">
                         <Link href="#contact">
                             <span className="flex items-center gap-2">
                                 Let&apos;s Talk
@@ -118,7 +119,8 @@ export function Header() {
 
                         {/* Mobile CTA */}
                         <div className="mt-8">
-                            <Button asChild className="w-full h-12 text-base bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border-0">
+                            {/* UPDATED: Added rounded-lg here for consistency */}
+                            <Button asChild className="w-full h-12 text-base bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border-0 rounded-lg">
                                 <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                                     <span className="flex items-center justify-center gap-2">
                                         Let&apos;s Talk
