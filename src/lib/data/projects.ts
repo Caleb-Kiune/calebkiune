@@ -32,35 +32,12 @@ export const PROJECTS: ProjectCaseStudy[] = [
     ],
     gallery: [ecoPlains],
     liveUrl: "https://eco-plains-safaris.vercel.app",
-    codeSnippet: {
-      title: "useSmoothScroll.ts",
-      language: "typescript",
-      code: `
-import Lenis from '@studio-freight/lenis'
-import { useEffect } from 'react'
-
-export const useSmoothScroll = () => {
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      // Custom Exponential Easing for "Luxury" feel
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-      orientation: 'vertical',
-      smoothWheel: true,
-      touchMultiplier: 2,
-    })
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-    return () => lenis.destroy()
-  }, [])
-}
-      `.trim()
-    }
+    repoUrl: "https://github.com/Caleb-Kiune/eco-plains-safaris",
+    technicalHighlights: [
+      "Orchestrated a cinematic scroll experience using **Lenis** and **Framer Motion**, treating the DOM like a fluid canvas to guide user attention.",
+      "Implemented an automated **Cloudinary** pipeline that serves format-optimized (AVIF/WebP) assets based on client bandwidth for sub-second load times.",
+      "Engineered a context-aware **'Direct-to-Agent'** booking bridge that bypasses traditional forms to convert high-intent traffic directly via WhatsApp."
+    ]
   },
   {
     id: "kentab",
@@ -90,23 +67,12 @@ export const useSmoothScroll = () => {
     ],
     gallery: [kentab],
     liveUrl: "https://kentab-six.vercel.app",
-    codeSnippet: {
-      title: "QuoteSchema.ts",
-      language: "typescript",
-      code: `
-export const QuoteSchema = z.object({
-  vehicleValue: z.number().min(500000, "Minimum value is 500k"),
-  coverType: z.enum(["comprehensive", "third-party"]),
-  usage: z.enum(["private", "commercial"]),
-  // Real-time premium calculation logic attached
-  clientDetails: z.object({
-    name: z.string().min(2, "Name required"),
-    email: z.string().email("Invalid email"),
-    phone: z.string().regex(/^(\\+254|0)[17]\\d{8}$/, "Valid KE phone required")
-  })
-});
-      `.trim()
-    }
+    repoUrl: "https://github.com/Caleb-Kiune/kentab",
+    technicalHighlights: [
+      "Architected a schema-first validation layer using **Zod** to sanitize complex underwriting inputs in real-time, preventing invalid data submission.",
+      "Leveraged **Next.js Server-Side Rendering (SSR)** to achieve sub-800ms Time-to-Interactive (TTI), critical for the bandwidth-constrained local market.",
+      "Built a client-side **Logic Engine** that instantly synthesizes multi-variable quote data into an actionable summary, removing the need for server round-trips."
+    ]
   },
   {
     id: "happy-feet",
@@ -136,32 +102,11 @@ export const QuoteSchema = z.object({
     ],
     gallery: [happyFeet],
     liveUrl: "https://happy-happy-feet.vercel.app",
-    codeSnippet: {
-      title: "useInventorySubscription.ts",
-      language: "typescript",
-      code: `
-import { useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
-
-export function useInventorySubscription(productId: string, onUpdate: (newStock: number) => void) {
-  useEffect(() => {
-    const channel = supabase
-      .channel(\`product-\${productId}\`)
-      .on(
-        'postgres_changes', 
-        { event: 'UPDATE', schema: 'public', table: 'products', filter: \`id=eq.\${productId}\` }, 
-        (payload) => {
-          onUpdate(payload.new.stock_level)
-        }
-      )
-      .subscribe()
-
-    return () => {
-      supabase.removeChannel(channel)
-    }
-  }, [productId, onUpdate])
-}
-      `.trim()
-    }
+    repoUrl: "https://github.com/Caleb-Kiune/Happy-Happy-Feet",
+    technicalHighlights: [
+      "Established a real-time inventory sync using **Supabase Subscriptions** to prevent overselling high-demand items during active browsing sessions.",
+      "Developed a **'Hybrid Commerce'** checkout flow that compiles complex cart state into structured metadata for seamless off-platform completion.",
+      "Utilized **Tailwind CSS v4** and layout preservation strategies to create native-app-like transitions between product grids and detail views."
+    ]
   }
 ];

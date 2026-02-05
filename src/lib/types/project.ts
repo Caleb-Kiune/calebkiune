@@ -31,9 +31,5 @@ export interface ProjectCaseStudy {
     // Links
     liveUrl?: string; // "Visit Live Site"
     repoUrl?: string; // "View Source" (Optional)
-    codeSnippet?: {
-        title: string;
-        language: string;
-        code: string; // The "Code Spotlight"
-    };
+    technicalHighlights: string[];
 }

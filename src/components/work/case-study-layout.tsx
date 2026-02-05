@@ -2,8 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProjectCaseStudy } from "@/lib/types/project";
 import { ProjectMetrics } from "@/components/work/project-metrics";
-import { CodeBlock } from "@/components/work/code-block";
-import { ArrowUpRight, Github, ArrowLeft } from "lucide-react";
+import { ArrowUpRight, Github, ArrowLeft, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CaseStudyLayoutProps {
@@ -153,17 +152,30 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                             </div>
                         </div>
 
-                        {/* Code Spotlight */}
-                        {project.codeSnippet && (
-                            <div className="mt-12">
-                                <h3 className="text-lg font-medium text-white mb-4">Engineering Highlight</h3>
-                                <CodeBlock
-                                    title={project.codeSnippet.title}
-                                    language={project.codeSnippet.language}
-                                    code={project.codeSnippet.code}
-                                />
-                            </div>
-                        )}
+                        {/* Technical Deep Dive */}
+                        <div className="mt-12">
+                            <h3 className="text-xl font-display font-bold text-white mb-6">Technical Deep Dive</h3>
+                            <ul className="space-y-4 mb-8">
+                                {project.technicalHighlights.map((point, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <CheckCircle2 className="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
+                                        <span className="text-muted leading-relaxed">{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {project.repoUrl && (
+                                <a
+                                    href={project.repoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center text-sm font-medium text-white hover:text-primary transition-colors border-b border-white/20 hover:border-primary pb-0.5"
+                                >
+                                    <Github className="w-4 h-4 mr-2" />
+                                    View Source on GitHub
+                                </a>
+                            )}
+                        </div>
 
                         {/* Gallery (Simple Grid for now) */}
                         {/* Future improvement: Carousel */}
