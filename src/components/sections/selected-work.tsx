@@ -40,6 +40,7 @@ export function SelectedWork() {
                                     stack: project.stack,
                                     imageSrc: project.heroImage,
                                     slug: project.slug,
+                                    liveUrl: project.liveUrl,
                                 }}
                             />
                         </ScrollReveal>

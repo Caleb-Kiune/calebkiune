@@ -26,7 +26,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "Finally, I dismantled the traditional booking form barrier by integrating a context-aware **WhatsApp booking engine**. This 'Direct-to-Agent' flow empowers high-intent leads to start a conversation instantly, increasing conversion rates by simplifying the path to purchase."
     ],
 
-    gallery: [ecoPlains],
+
     liveUrl: "https://eco-plains-safaris.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/eco-plains-safaris",
     technicalHighlights: [
@@ -57,7 +57,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "Instead of opaque email chains, I engineered a **Logic Engine** that instantly synthesizes a structured summary. The moment a quote is calculated, the user sees an actionable breakdown decision-making tool, reducing the 'Time-to-Clarity' from hours to seconds."
     ],
 
-    gallery: [kentab],
+
     liveUrl: "https://kentab-six.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/kentab",
     technicalHighlights: [
@@ -88,7 +88,7 @@ export const PROJECTS: ProjectCaseStudy[] = [
       "For the frontend, I adopted **Tailwind CSS v4** and **Framer Motion**. This allowed me to create a 'textural' UI with subtle micro-interactions—like floating buttons and smooth page transitions—that elevate the perceived value of the brand."
     ],
 
-    gallery: [happyFeet],
+
     liveUrl: "https://happy-happy-feet.vercel.app",
     repoUrl: "https://github.com/Caleb-Kiune/Happy-Happy-Feet",
     technicalHighlights: [

@@ -18,10 +18,8 @@ export interface ProjectCaseStudy {
     challenge: string[]; // Business Problem (Array of paragraphs)
     solution: string[]; // Technical Approach (Array of paragraphs)
 
-
-
     // Media
-    gallery: StaticImageData[];
+    // gallery: StaticImageData[]; // Removed as unused
 
     // Links
     liveUrl?: string; // "Visit Live Site"

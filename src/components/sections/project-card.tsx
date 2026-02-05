@@ -2,38 +2,8 @@
 
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, MousePointer2, Cloud, ShieldCheck, Mail } from "lucide-react";
-import {
-  SiReact,
-  SiTailwindcss,
-  SiNextdotjs,
-  SiSupabase,
-  SiFramer,
-  SiTypescript,
-} from "react-icons/si";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import type { IconType } from "react-icons";
-import type { LucideIcon } from "lucide-react";
-
-// Tech icon mapping
-const TECH_ICONS: Record<string, IconType | LucideIcon> = {
-  React: SiReact,
-  "React.js": SiReact,
-  "React 19": SiReact,
-  "Next.js": SiNextdotjs,
-  "Next.js 14": SiNextdotjs,
-  "Next.js 16": SiNextdotjs,
-  Tailwind: SiTailwindcss,
-  "Tailwind CSS": SiTailwindcss,
-  "Tailwind v4": SiTailwindcss,
-  Supabase: SiSupabase,
-  "Framer Motion": SiFramer,
-  TypeScript: SiTypescript,
-  "Lenis Scroll": MousePointer2,
-  Cloudinary: Cloud,
-  Zod: ShieldCheck,
-  Nodemailer: Mail,
-};
 
 export interface ProjectData {
   id: string;
@@ -43,6 +13,7 @@ export interface ProjectData {
   stack: string[];
   imageSrc: string | StaticImageData;
   slug: string;
+  liveUrl?: string;
 }
 
 interface ProjectCardProps {
@@ -53,12 +24,23 @@ const HOVER_LIFT = { y: -5 };
 const EASE_OUT_TRANSITION = { duration: 0.3, ease: "easeOut" as const };
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const cardContent = (
+  // Take top 3 tech items for the preview
+  const techPreview = project.stack.slice(0, 3);
+
+  return (
     <motion.article
       whileHover={HOVER_LIFT}
       transition={EASE_OUT_TRANSITION}
-      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40 group"
+      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
     >
+      {/* PRIMARY LINK - COVERS CARD (z-10) */}
+      <Link
+        href={`/work/${project.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`View Case Study for ${project.title}`}
+        prefetch={true}
+      />
+
       {/* Top: Image Section */}
       <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
         <Image
@@ -67,63 +49,75 @@ export function ProjectCard({ project }: ProjectCardProps) {
           fill
           loading="lazy"
           decoding="async"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:blur-[2px] group-hover:brightness-50"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-60" />
+        {/* Desktop Hover Overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center z-0 pointer-events-none">
+          <span className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white text-xs font-medium border border-white/20 mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            Read Case Study
+          </span>
+          <div className="flex flex-wrapjustify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+            {techPreview.map(t => (
+              <span key={t} className="text-[10px] text-slate-300 uppercase tracking-wider font-medium">{t} •</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Base Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-surface/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity" />
+
+        {/* SECONDARY ACTION - EXTERNAL LINK (z-20) */}
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute top-3 right-3 z-20 p-2 bg-black/50 hover:bg-primary text-white backdrop-blur-md rounded-full border border-white/10 transition-colors pointer-events-auto"
+            onClick={(e) => e.stopPropagation()}
+            title="Visit Live Site"
+          >
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        )}
       </div>
 
       {/* Bottom: Content Section */}
-      <div className="flex flex-col flex-1 p-4 md:p-5 relative z-20">
-        <div className="space-y-2 mb-4">
+      <div className="flex flex-col flex-1 p-4 md:p-5 relative z-0 bg-surface">
+        <div className="space-y-3 mb-2">
           <span className="inline-block text-primary text-[10px] font-bold tracking-widest uppercase">
             {project.tag}
           </span>
 
           <div>
-            <h3 className="text-sm font-medium text-slate-400 group-hover:text-slate-300 transition-colors mb-1">
+            <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors mb-1">
               {project.title}
             </h3>
-            <p className="font-display font-bold text-2xl md:text-3xl tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-              {project.metric}
-            </p>
+
+            {/* Mobile Tech Chips (Visible by default, hidden on hover/desktop concepts conceptually, but simpler to just show) */}
+            <div className="flex flex-wrap gap-2 mt-2">
+              {techPreview.map((tech) => (
+                <span key={tech} className="text-[10px] text-slate-400 bg-white/5 px-1.5 py-0.5 rounded border border-white/5">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
+
+          <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">
+            {project.metric}
+          </p>
         </div>
 
-        {/* Footer: Icons + Arrow */}
-        <div className="mt-auto pt-3 border-t border-white/5 flex items-center justify-between gap-4">
-          {/* Tech Stack Icons */}
-          <div className="flex items-center gap-3">
-            {project.stack.map((tech) => {
-              const Icon = TECH_ICONS[tech];
-              return Icon ? (
-                <div
-                  key={tech}
-                  title={tech}
-                  className="text-slate-500 hover:text-primary transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                </div>
-              ) : null;
-            })}
-          </div>
-
-          {/* Arrow */}
-          <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-primary transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        {/* Footer: Simple Call to Action */}
+        <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+          <span className="text-xs font-medium text-slate-500 group-hover:text-white transition-colors">
+            View Case Study
+          </span>
+          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-primary transition-all group-hover:translate-x-1" />
         </div>
       </div>
     </motion.article>
-  );
-
-  return (
-    <Link
-      href={`/work/${project.slug}`}
-      className="block group"
-      aria-label={`View Case Study for ${project.title}`}
-    >
-      {cardContent}
-    </Link>
   );
 }
