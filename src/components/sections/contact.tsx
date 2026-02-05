@@ -1,25 +1,46 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { CheckCircle2, Loader2, Send, Calendar, MessageCircle, ChevronDown, Briefcase, Users, HelpCircle, Check, Mail } from "lucide-react";
+import { CheckCircle2, Loader2, Send, Briefcase, Users, HelpCircle, Check, Mail, ChevronDown } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { submitContactForm } from "@/app/actions";
 import { STAGGER_CONTAINER_VARIANTS, VIEWPORT_CONFIG } from "@/lib/motion";
+import { z } from "zod";
+
+// Zod Schema (Moved from Server Action)
+const formSchema = z.object({
+    name: z.string().min(2, "Name is required"),
+    email: z.string().email("Invalid email address"),
+    type: z.enum(["freelance", "fulltime", "other"], {
+        message: "Please select an inquiry type",
+    }),
+    message: z.string().min(5, "Message must be at least 5 characters"),
+});
+
+type FormErrors = {
+    name?: string[];
+    email?: string[];
+    type?: string[];
+    message?: string[];
+};
 
 export function Contact() {
-    // using useActionState for form state management
-    const [state, formAction, isPending] = useActionState(submitContactForm, null);
-
-    // We can also keep local state for success view if we want to reset form or toggle view
+    // Client-side state management
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [errors, setErrors] = useState<FormErrors>({});
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     // Custom dropdown state
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedType, setSelectedType] = useState("");
+    const [selectedType, setSelectedType] = useState<"freelance" | "fulltime" | "other" | "">("");
+
+    // Form data state (controlled inputs for instant validation removal if we wanted, but sticking to submit-time for now to match)
+    // Actually, uncontrolled is fine with FormData, but controlled is easier for the dropdown sync.
+    // Let's stick to FormData extraction in handleSubmit to mimic the previous flow.
 
     // Inquiry type options
     const inquiryOptions = [
@@ -30,11 +51,69 @@ export function Contact() {
 
     const selectedOption = inquiryOptions.find(opt => opt.id === selectedType);
 
-    useEffect(() => {
-        if (state?.success) {
-            setShowSuccess(true);
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setErrors({});
+        setErrorMessage(null);
+
+        const formData = new FormData(e.currentTarget);
+        // Manually ensure the custom dropdown value is included if not in form data (it is hidden input, so it should be)
+        // But better to pull from state for safety on strict enumerables
+        const data = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            type: selectedType || (formData.get("type") as string), // Prefer state
+            message: formData.get("message") as string,
+        };
+
+        // 1. Client-Side Validation
+        const validatedFields = formSchema.safeParse(data);
+
+        if (!validatedFields.success) {
+            setErrors(validatedFields.error.flatten().fieldErrors);
+            setIsSubmitting(false);
+            return;
         }
-    }, [state?.success]);
+
+        const { name, email, type, message } = validatedFields.data;
+
+        try {
+            // 2. Direct Browser Fetch (Bypasses Cloudflare Server Block)
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    // NO User-Agent header (Browser sets it automatically)
+                },
+                body: JSON.stringify({
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
+                    name,
+                    email,
+                    type,
+                    message,
+                    subject: `New Contact from Portfolio: ${type} - ${name}`,
+                    botcheck: false, // Standard Web3Forms bot protection
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setShowSuccess(true);
+                // Reset form state optionally
+                setSelectedType("");
+            } else {
+                setErrorMessage(result.message || "Failed to submit form. Please try again.");
+            }
+        } catch (error) {
+            console.error("Form submission error:", error);
+            setErrorMessage("Network error. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     // DRY: Reusable input classes
     const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
@@ -108,7 +187,7 @@ export function Contact() {
                                 </Button>
                             </div>
                         ) : (
-                            <form action={formAction} className="space-y-4">
+                            <form onSubmit={handleSubmit} className="space-y-4">
                                 {/* Name Input */}
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-sm font-medium text-slate-300">
@@ -119,10 +198,11 @@ export function Contact() {
                                         name="name"
                                         type="text"
                                         placeholder="John Doe"
-                                        className={cn(inputClasses, state?.errors?.name && "border-red-500 focus:ring-red-500")}
+                                        disabled={isSubmitting}
+                                        className={cn(inputClasses, errors.name && "border-red-500 focus:ring-red-500")}
                                     />
-                                    {state?.errors?.name && (
-                                        <p className="text-sm text-red-400">{state.errors.name[0]}</p>
+                                    {errors.name && (
+                                        <p className="text-sm text-red-400">{errors.name[0]}</p>
                                     )}
                                 </div>
 
@@ -136,10 +216,11 @@ export function Contact() {
                                         name="email"
                                         type="email"
                                         placeholder="john@example.com"
-                                        className={cn(inputClasses, state?.errors?.email && "border-red-500 focus:ring-red-500")}
+                                        disabled={isSubmitting}
+                                        className={cn(inputClasses, errors.email && "border-red-500 focus:ring-red-500")}
                                     />
-                                    {state?.errors?.email && (
-                                        <p className="text-sm text-red-400">{state.errors.email[0]}</p>
+                                    {errors.email && (
+                                        <p className="text-sm text-red-400">{errors.email[0]}</p>
                                     )}
                                 </div>
 
@@ -149,7 +230,7 @@ export function Contact() {
                                         I am interested in...
                                     </label>
 
-                                    {/* Hidden input for form action */}
+                                    {/* Hidden input for formData extraction if needed, though we use state */}
                                     <input type="hidden" name="type" value={selectedType} />
 
                                     <div className="relative">
@@ -163,11 +244,12 @@ export function Contact() {
 
                                         {/* Trigger Button */}
                                         <div
-                                            onClick={() => setIsOpen(!isOpen)}
+                                            onClick={() => !isSubmitting && setIsOpen(!isOpen)}
                                             className={cn(
                                                 inputClasses,
                                                 "cursor-pointer flex items-center justify-between",
-                                                state?.errors?.type && "border-red-500 focus:ring-red-500"
+                                                errors.type && "border-red-500 focus:ring-red-500",
+                                                isSubmitting && "opacity-70 cursor-not-allowed"
                                             )}
                                         >
                                             <span className={cn(
@@ -208,7 +290,8 @@ export function Contact() {
                                                             <div
                                                                 key={option.id}
                                                                 onClick={() => {
-                                                                    setSelectedType(option.id);
+                                                                    // Explicitly casting string to the union type
+                                                                    setSelectedType(option.id as "freelance" | "fulltime" | "other");
                                                                     setIsOpen(false);
                                                                 }}
                                                                 className={cn(
@@ -233,8 +316,8 @@ export function Contact() {
                                         </AnimatePresence>
                                     </div>
 
-                                    {state?.errors?.type && (
-                                        <p className="text-sm text-red-400">{state.errors.type[0]}</p>
+                                    {errors.type && (
+                                        <p className="text-sm text-red-400">{errors.type[0]}</p>
                                     )}
                                 </div>
 
@@ -248,16 +331,17 @@ export function Contact() {
                                         name="message"
                                         placeholder="Tell me about your project..."
                                         rows={4}
-                                        className={cn(inputClasses, state?.errors?.message && "border-red-500 focus:ring-red-500")}
+                                        disabled={isSubmitting}
+                                        className={cn(inputClasses, errors.message && "border-red-500 focus:ring-red-500")}
                                     />
-                                    {state?.errors?.message && (
-                                        <p className="text-sm text-red-400">{state.errors.message[0]}</p>
+                                    {errors.message && (
+                                        <p className="text-sm text-red-400">{errors.message[0]}</p>
                                     )}
                                 </div>
 
-                                {state?.message && !state?.success && (
+                                {errorMessage && (
                                     <div className="p-3 bg-red-900/20 border border-red-900/50 rounded-inner text-sm text-red-400">
-                                        {state.message}
+                                        {errorMessage}
                                     </div>
                                 )}
 
@@ -265,15 +349,15 @@ export function Contact() {
                                     {/* Premium Shimmer Submit Button - Full Width */}
                                     <motion.button
                                         type="submit"
-                                        disabled={isPending}
-                                        whileHover={{ scale: isPending ? 1 : 1.02 }}
-                                        whileTap={{ scale: isPending ? 1 : 0.98 }}
+                                        disabled={isSubmitting}
+                                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                                         className="group relative w-full h-auto py-4 md:py-3 inline-flex items-center justify-center overflow-hidden rounded-button bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
                                         {/* Shimmer overlay */}
                                         <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
                                         <span className="relative z-10 flex items-center gap-2">
-                                            {isPending ? (
+                                            {isSubmitting ? (
                                                 <>
                                                     <Loader2 className="h-4 w-4 animate-spin" />
                                                     Sending...
