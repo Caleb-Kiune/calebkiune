@@ -10,7 +10,7 @@ export const SKILLS_DATA: SkillCategory[] = [
     },
     {
         title: "Backend Infrastructure",
-        skills: ["Supabase", "PostgreSQL", "Prisma", "Node.js"]
+        skills: ["Node.js", "PostgreSQL", "REST APIs"]
     },
     {
         title: "Business & Tools",

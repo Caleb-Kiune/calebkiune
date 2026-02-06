@@ -4,13 +4,13 @@ import {
     SiNextdotjs,
     SiTypescript,
     SiTailwindcss,
-    SiSupabase,
+    SiNodedotjs, 
     SiPostgresql,
-    SiPrisma,
+    
     SiWhatsapp,
     SiGoogleanalytics,
 } from "react-icons/si";
-import { Smartphone } from "lucide-react";
+import { Smartphone, Globe } from "lucide-react"; 
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 
@@ -39,9 +39,9 @@ const TECH_STACK: TechCategory[] = [
     {
         title: "Backend Infrastructure",
         items: [
-            { name: "Supabase", description: "BaaS", icon: SiSupabase },
+            { name: "Node.js", description: "Runtime", icon: SiNodedotjs },
             { name: "PostgreSQL", description: "Database", icon: SiPostgresql },
-            { name: "Prisma", description: "Type-safe ORM", icon: SiPrisma },
+            { name: "REST APIs", description: "Architecture", icon: Globe },
         ],
     },
     {
