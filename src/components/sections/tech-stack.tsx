@@ -4,13 +4,13 @@ import {
     SiNextdotjs,
     SiTypescript,
     SiTailwindcss,
-    SiNodedotjs, 
+    SiNodedotjs,
     SiPostgresql,
-    
+
     SiWhatsapp,
     SiGoogleanalytics,
 } from "react-icons/si";
-import { Smartphone, Globe } from "lucide-react"; 
+import { Smartphone, Globe } from "lucide-react";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
 
@@ -85,7 +85,7 @@ export function TechStack() {
                                                 className="group/item flex items-center gap-4 p-3 -mx-3 rounded-inner hover:bg-surface transition-colors duration-200 cursor-default"
                                             >
                                                 {/* Icon */}
-                                                <div className="flex items-center justify-center w-10 h-10 rounded-inner bg-surface-elevated/60 border border-slate-700/40 group-hover/item:border-slate-600/60 transition-colors">
+                                                <div className="flex items-center justify-center w-10 h-10 rounded-inner bg-surface-elevated border border-slate-700 group-hover/item:border-slate-600 transition-colors">
                                                     <Icon className="w-4.5 h-4.5 text-slate-400 group-hover/item:text-slate-200 transition-colors" />
                                                 </div>
 

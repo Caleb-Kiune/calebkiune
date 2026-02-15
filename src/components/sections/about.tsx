@@ -79,7 +79,7 @@ export function About() {
 
                             {/* Mini Tech Pills */}
                             <div className="flex flex-wrap gap-2">
-                                {["Next.js 15", "TypeScript", "Tailwind", "Supabase", "PostgreSQL"].map((tech) => (
+                                {["Next.js", "TypeScript", "Tailwind", "Node.js", "PostgreSQL"].map((tech) => (
                                     <span key={tech} className="px-3 py-1 rounded-inner bg-slate-800 text-xs font-medium text-slate-300 border border-slate-700">
                                         {tech}
                                     </span>

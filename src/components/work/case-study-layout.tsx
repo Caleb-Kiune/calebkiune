@@ -48,7 +48,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-emerald-400 text-white text-sm font-medium rounded-button transition-all shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-emerald-400 text-white text-sm font-medium rounded-button transition-colors shadow-md shadow-black/30"
                             >
                                 Live Site
                                 <ArrowUpRight className="w-4 h-4" />

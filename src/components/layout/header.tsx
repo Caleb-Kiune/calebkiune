@@ -114,7 +114,7 @@ export function Header() {
                                     key={link.name}
                                     href={link.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="group flex items-center justify-between py-4 border-b border-slate-900 text-lg font-medium text-slate-300 hover:text-white hover:bg-surface/50 px-2 rounded-sm transition-all"
+                                    className="group flex items-center justify-between py-4 border-b border-slate-900 text-lg font-medium text-slate-300 hover:text-white hover:bg-surface px-2 rounded-sm transition-all"
                                 >
                                     {link.name}
                                     <ChevronRight className="h-4 w-4 text-slate-600 group-hover:text-primary transition-colors" />

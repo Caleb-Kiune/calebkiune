@@ -13,7 +13,7 @@ export function SectionHeading({ title, subtitle, className, ...props }: Section
                 {title}
             </h2>
             {subtitle && (
-                <p className="mx-auto md:mx-0 max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <p className="mx-auto md:mx-0 max-w-[700px] text-muted-foreground md:text-lg/relaxed lg:text-xl/relaxed">
                     {subtitle}
                 </p>
             )}

@@ -112,7 +112,7 @@ export function Contact() {
     };
 
 
-    const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-slate-900/50 text-slate-200 placeholder:text-slate-500";
+    const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-surface text-slate-200 placeholder:text-slate-500";
 
     return (
         <motion.section

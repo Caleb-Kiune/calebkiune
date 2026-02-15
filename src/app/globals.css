@@ -109,10 +109,10 @@
 
   /* Base animation class */
   .animate-fade-up {
-    animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: fade-up 0.5s cubic-bezier(0, 0, 0.2, 1) both;
   }
 
-  /* Stagger delay utilities (matching Framer's 0.15s stagger) */
+  /* Stagger delay utilities (matching Framer's 0.08s stagger) */
   .animate-delay-0 {
     animation-delay: 0ms;
   }
@@ -153,10 +153,10 @@
   /* Elements start hidden and animate when they enter viewport */
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(12px);
   }
 
   .animate-on-scroll.is-visible {
-    animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: fade-up 0.5s cubic-bezier(0, 0, 0.2, 1) forwards;
   }
 }
