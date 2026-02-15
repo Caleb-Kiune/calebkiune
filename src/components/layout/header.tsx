@@ -39,7 +39,7 @@ export function Header() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-page/80 backdrop-blur-md border-b border-white/5 py-3" : "bg-transparent py-5"
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-page border-b border-slate-800 py-3" : "bg-transparent py-5"
                 }`}
         >
             <div className="container mx-auto px-6 h-12 flex items-center justify-between relative z-50">
@@ -76,7 +76,7 @@ export function Header() {
                         href="#contact"
                         className={cn(
                             buttonVariants({ size: "sm" }),
-                            "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-button font-semibold px-5 border-0 shadow-lg shadow-emerald-900/20"
+                            "bg-primary hover:bg-emerald-400 text-white rounded-button font-semibold px-5 border-0 shadow-md shadow-black/30 transition-colors"
                         )}
                     >
                         <span className="flex items-center gap-2">
@@ -105,7 +105,7 @@ export function Header() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2, ease: "easeInOut" }}
                         className="absolute top-full left-0 w-full bg-page border-b border-slate-800 shadow-2xl md:hidden flex flex-col pt-2 pb-8 px-6 gap-2"
-                        style={{ height: "calc(100vh - 4rem)" }} // Fallback full height if needed, but container flow is better
+                        style={{ height: "calc(100vh - 4rem)" }}
                     >
                         {/* Mobile Links List */}
                         <div className="flex flex-col space-y-1 pt-4">
@@ -130,7 +130,7 @@ export function Header() {
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className={cn(
                                     buttonVariants({ size: "default" }),
-                                    "w-full h-12 text-base bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold border-0 rounded-button"
+                                    "w-full h-12 text-base bg-primary hover:bg-emerald-400 text-white font-bold border-0 rounded-button transition-colors"
                                 )}
                             >
                                 <span className="flex items-center justify-center gap-2">

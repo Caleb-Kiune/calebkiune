@@ -5,18 +5,18 @@ import { Variants } from "framer-motion";
  * Standardized animations for a consistent, premium feel.
  */
 
-// 1. Standardized Variants: The "Audit-Proof" Reveal
+// 1. Standardized Variants
 export const FADE_UP_VARIANTS: Variants = {
     hidden: {
         opacity: 0,
-        y: 24 // Subtle rise, not a jump
+        y: 12
     },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1] // Custom "Cinematic" cubic-bezier
+            duration: 0.5,
+            ease: [0.0, 0.0, 0.2, 1] // Standard ease-out
         }
     }
 };
@@ -24,14 +24,14 @@ export const FADE_UP_VARIANTS: Variants = {
 export const FADE_DOWN_VARIANTS: Variants = {
     hidden: {
         opacity: 0,
-        y: -24
+        y: -12
     },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.8,
-            ease: [0.22, 1, 0.36, 1]
+            duration: 0.5,
+            ease: [0.0, 0.0, 0.2, 1]
         }
     }
 };
@@ -41,8 +41,8 @@ export const STAGGER_CONTAINER_VARIANTS: Variants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.15, // "Unrolling" feel
-            delayChildren: 0.1,
+            staggerChildren: 0.08,
+            delayChildren: 0.05,
         },
     },
 };

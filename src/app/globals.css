@@ -58,12 +58,7 @@
     text-wrap: balance;
   }
 
-  /* Utility for the "Glass" panels */
-  .glass-panel {
-    @apply bg-surface-50 border border-white/10 backdrop-blur-md;
-  }
-
-  /* Cursor-tracking Spotlight Effect (Linear-style) */
+  /* Cursor-tracking Spotlight Effect */
   .spotlight {
     --spotlight-x: 50%;
     --spotlight-y: 50%;
@@ -74,8 +69,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(600px circle at var(--spotlight-x) var(--spotlight-y),
-        rgba(94, 106, 210, 0.12),
+    background: radial-gradient(400px circle at var(--spotlight-x) var(--spotlight-y),
+        rgba(255, 255, 255, 0.04),
         transparent 40%);
     pointer-events: none;
     z-index: 1;
@@ -103,8 +98,9 @@
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(12px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -117,15 +113,41 @@
   }
 
   /* Stagger delay utilities (matching Framer's 0.15s stagger) */
-  .animate-delay-0 { animation-delay: 0ms; }
-  .animate-delay-1 { animation-delay: 100ms; }
-  .animate-delay-2 { animation-delay: 200ms; }
-  .animate-delay-3 { animation-delay: 300ms; }
-  .animate-delay-4 { animation-delay: 400ms; }
-  .animate-delay-5 { animation-delay: 500ms; }
-  .animate-delay-6 { animation-delay: 600ms; }
-  .animate-delay-7 { animation-delay: 700ms; }
-  .animate-delay-8 { animation-delay: 800ms; }
+  .animate-delay-0 {
+    animation-delay: 0ms;
+  }
+
+  .animate-delay-1 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-2 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-3 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-4 {
+    animation-delay: 400ms;
+  }
+
+  .animate-delay-5 {
+    animation-delay: 500ms;
+  }
+
+  .animate-delay-6 {
+    animation-delay: 600ms;
+  }
+
+  .animate-delay-7 {
+    animation-delay: 700ms;
+  }
+
+  .animate-delay-8 {
+    animation-delay: 800ms;
+  }
 
   /* Scroll-triggered animation using IntersectionObserver polyfill via CSS */
   /* Elements start hidden and animate when they enter viewport */

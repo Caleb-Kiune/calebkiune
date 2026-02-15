@@ -3,7 +3,6 @@
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 export interface ProjectData {
   id: string;
@@ -20,18 +19,15 @@ interface ProjectCardProps {
   project: ProjectData;
 }
 
-const HOVER_LIFT = { y: -5 };
-const EASE_OUT_TRANSITION = { duration: 0.3, ease: "easeOut" as const };
+
 
 export function ProjectCard({ project }: ProjectCardProps) {
   // Take top 3 tech items for the preview
   const techPreview = project.stack.slice(0, 3);
 
   return (
-    <motion.article
-      whileHover={HOVER_LIFT}
-      transition={EASE_OUT_TRANSITION}
-      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-white/20 transition-all duration-300 shadow-2xl shadow-black/40"
+    <article
+      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-300 shadow-2xl shadow-black/40"
     >
       {/* PRIMARY LINK - COVERS CARD (z-10) */}
       <Link
@@ -55,10 +51,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Desktop Hover Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center z-0 pointer-events-none">
-          <span className="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white text-xs font-medium border border-white/20 mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+          <span className="px-4 py-2 bg-surface border border-slate-700 rounded-full text-white text-xs font-medium mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
             Read Case Study
           </span>
-          <div className="flex flex-wrapjustify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
+          <div className="flex flex-wrap justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
             {techPreview.map(t => (
               <span key={t} className="text-[10px] text-slate-300 uppercase tracking-wider font-medium">{t} •</span>
             ))}
@@ -74,7 +70,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute top-3 right-3 z-20 p-2 bg-black/50 hover:bg-primary text-white backdrop-blur-md rounded-full border border-white/10 transition-colors pointer-events-auto"
+            className="absolute top-3 right-3 z-20 p-2 bg-surface hover:bg-primary text-white rounded-full border border-slate-700 transition-colors pointer-events-auto"
             onClick={(e) => e.stopPropagation()}
             title="Visit Live Site"
           >
@@ -118,6 +114,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-primary transition-all group-hover:translate-x-1" />
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

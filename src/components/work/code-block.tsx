@@ -9,7 +9,7 @@ interface CodeBlockProps {
 
 export function CodeBlock({ title, language, code, className }: CodeBlockProps) {
     return (
-        <div className={cn("glass-panel rounded-lg overflow-hidden", className)}>
+        <div className={cn("bg-surface rounded-card border border-slate-800 overflow-hidden", className)}>
             <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-white/5">
                 <span className="text-sm font-mono text-muted">{title}</span>
                 <div className="flex gap-1.5">

@@ -14,7 +14,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
             <div className="bg-noise fixed inset-0 z-0 pointer-events-none" />
 
             {/* Compact Header Bar */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-page/80 backdrop-blur-md border-b border-white/5 h-16 flex items-center">
+            <header className="fixed top-0 left-0 right-0 z-50 bg-page border-b border-slate-800 h-16 flex items-center">
                 <div className="container mx-auto px-4 md:px-6 max-w-7xl flex items-center justify-between">
                     <div className="flex items-center gap-4 md:gap-6">
                         <Link
@@ -66,7 +66,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                     <aside className="lg:col-span-4 space-y-6">
                         {/* Project Preview */}
                         {/* Project Preview */}
-                        <div className="w-full rounded-md overflow-hidden border border-white/10 shadow-lg glass-panel">
+                        <div className="w-full rounded-md overflow-hidden border border-slate-800 shadow-lg bg-surface">
                             <Image
                                 src={project.heroImage}
                                 alt={project.title}
@@ -78,7 +78,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         </div>
 
                         {/* Project DNA (Vertical Impact Grid) */}
-                        <div className="glass-panel p-4 rounded-card border border-white/10">
+                        <div className="bg-surface p-4 rounded-card border border-slate-800">
                             <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-5">
                                 <div className="flex items-start gap-3">
                                     <Building2 className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
@@ -135,7 +135,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         {/* Narrative Grid (Side-by-Side) */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Challenge */}
-                            <div className="glass-panel p-5 rounded-card border border-white/10">
+                            <div className="bg-surface p-5 rounded-card border border-slate-800">
                                 <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-primary/20 ring-1 ring-primary" />
                                     The Challenge
@@ -148,7 +148,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                             </div>
 
                             {/* Solution */}
-                            <div className="glass-panel p-5 rounded-card border border-white/10">
+                            <div className="bg-surface p-5 rounded-card border border-slate-800">
                                 <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-emerald-400/20 ring-1 ring-emerald-400" />
                                     The Solution
@@ -162,7 +162,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         </div>
 
                         {/* Technical Highlights (Horizontal Feature List) */}
-                        <div className="glass-panel p-5 rounded-card border border-white/10">
+                        <div className="bg-surface p-5 rounded-card border border-slate-800">
                             <div className="flex items-center gap-3 mb-4">
                                 <Cpu className="w-4 h-4 text-primary" />
                                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">Technical Highlights</h3>

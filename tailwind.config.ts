@@ -20,17 +20,13 @@ const config: Config = {
     extend: {
       colors: {
         // BASE: Midnight Slate (Linear Style)
-        page: colors.slate[950], // The "Void" - New Base
-        background: "#0F1117", // Keeping for now, but 'page' is the new standard
+        page: colors.slate[950], // The "Void" — Canonical Background
         foreground: "#E2E8F0",
 
         // LAYERS: Glass & Surfaces
         surface: {
           DEFAULT: colors.slate[900], // Cards
           elevated: colors.slate[800], // Hovers
-          50: "rgba(255, 255, 255, 0.05)", // Ultra-light glass (Kept for compatibility)
-          100: "rgba(255, 255, 255, 0.10)", // Light Border/Hover
-          200: "rgba(255, 255, 255, 0.20)", // Active states
         },
 
         card: {
@@ -46,7 +42,6 @@ const config: Config = {
         primary: {
           DEFAULT: colors.emerald[500], // The "Money" color
           foreground: colors.white,
-          glow: "rgba(16, 185, 129, 0.5)",
         },
         accent: {
           DEFAULT: "#F59E0B", // AMBER-500 - Warmth/Strategy (unchanged but refined)

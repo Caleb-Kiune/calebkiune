@@ -164,7 +164,7 @@ export function Contact() {
                         </a>
                     </div>
 
-                    <div className="bg-slate-900/30 p-6 md:p-6 rounded-card border border-slate-800 backdrop-blur-sm">
+                    <div className="bg-surface p-6 md:p-6 rounded-card border border-slate-800">
                         {showSuccess ? (
                             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
                                 <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
@@ -277,7 +277,7 @@ export function Contact() {
                                                     animate={{ opacity: 1, y: 0 }}
                                                     exit={{ opacity: 0, y: -8 }}
                                                     transition={{ duration: 0.15 }}
-                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-input overflow-hidden shadow-xl"
+                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-surface border border-slate-800 rounded-input overflow-hidden shadow-xl"
                                                 >
                                                     {inquiryOptions.map((option) => {
                                                         const Icon = option.icon;
@@ -341,32 +341,26 @@ export function Contact() {
                                     </div>
                                 )}
 
-                                <div className="pt-2">
-                                    {/* Premium Shimmer Submit Button - Full Width */}
-                                    <motion.button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                                        className="group relative w-full h-auto py-4 md:py-3 inline-flex items-center justify-center overflow-hidden rounded-button bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-lg shadow-white/10 transition-all duration-300 hover:shadow-white/20 disabled:opacity-70 disabled:cursor-not-allowed"
-                                    >
-                                        {/* Shimmer overlay */}
-                                        <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:translate-x-full transition-transform duration-700 ease-out" />
-                                        <span className="relative z-10 flex items-center gap-2">
-                                            {isSubmitting ? (
-                                                <>
-                                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                                    Sending...
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Send className="h-4 w-4" />
-                                                    Send Message
-                                                </>
-                                            )}
-                                        </span>
-                                    </motion.button>
-                                </div>
+                                {/* Submit Button */}
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="w-full h-auto py-4 md:py-3 inline-flex items-center justify-center rounded-button bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-md shadow-black/30 transition-colors hover:bg-slate-200 disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98]"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="h-4 w-4 animate-spin" />
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Send className="h-4 w-4" />
+                                                Send Message
+                                            </>
+                                        )}
+                                    </span>
+                                </button>
 
                                 {/* Privacy Footer */}
                                 <p className="text-xs text-center text-slate-500 mt-4">

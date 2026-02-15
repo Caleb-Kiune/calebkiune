@@ -2,12 +2,6 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { ProjectCard } from "@/components/sections/project-card";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
-// Project images
-// Project images
-// Imported implicitly via data projects
-
-
-
 import { PROJECTS } from "@/lib/data/projects";
 
 export function SelectedWork() {
