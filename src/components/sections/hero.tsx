@@ -75,13 +75,9 @@ export function Hero() {
                             className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
                         >
                             I build reliable,<span className="text-slate-200 font-medium"> data-driven web applications</span> that streamline operations and cut manual processing time.
-                        </motion.p>
-
-                        <motion.p
-                            variants={FADE_UP_VARIANTS}
-                            className="text-sm font-mono text-primary tracking-wide"
-                        >
-                            Currently accepting projects
+                            <span className="block mt-3 text-xs font-mono text-primary tracking-wide">
+                                Currently accepting projects
+                            </span>
                         </motion.p>
 
                         <motion.div
