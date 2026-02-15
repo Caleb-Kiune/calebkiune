@@ -193,7 +193,7 @@ export function Contact() {
                                         id="name"
                                         name="name"
                                         type="text"
-                                        placeholder="John Doe"
+                                        placeholder="Your full name"
                                         disabled={isSubmitting}
                                         className={cn(inputClasses, errors.name && "border-red-500 focus:ring-red-500")}
                                     />
@@ -211,7 +211,7 @@ export function Contact() {
                                         id="email"
                                         name="email"
                                         type="email"
-                                        placeholder="john@example.com"
+                                        placeholder="caleb@example.com"
                                         disabled={isSubmitting}
                                         className={cn(inputClasses, errors.email && "border-red-500 focus:ring-red-500")}
                                     />
