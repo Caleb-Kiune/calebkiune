@@ -42,14 +42,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Desktop Hover Overlay — only shown when liveUrl exists */}
       {hasLiveUrl && (
         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center z-0 pointer-events-none">
-          <span className="px-4 py-2 bg-surface border border-border-highlight rounded-full text-foreground text-xs font-medium mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+          <span className="px-4 py-2 bg-surface border border-border-highlight rounded-full text-foreground text-xs font-medium transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
             Visit Live Site
           </span>
-          <div className="flex flex-wrap justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
-            {techPreview.map(t => (
-              <span key={t} className="text-[10px] text-foreground/70 uppercase tracking-wider font-medium">{t} •</span>
-            ))}
-          </div>
         </div>
       )}
 
