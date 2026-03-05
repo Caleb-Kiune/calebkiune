@@ -17,14 +17,14 @@ export function ProjectMetrics({ metrics, className }: ProjectMetricsProps) {
             {metrics.map((metric, index) => (
                 <div
                     key={index}
-                    className="bg-surface rounded-card border border-slate-800 p-6 group hover:border-slate-700 transition-colors"
+                    className="bg-surface rounded-card border border-border p-6 group hover:border-border-highlight transition-colors"
                 >
-                    <dt className="text-sm font-medium text-muted mb-1">{metric.label}</dt>
-                    <dd className="text-2xl md:text-3xl font-display font-bold text-white relative z-10">
+                    <dt className="text-sm font-medium text-muted-foreground mb-1">{metric.label}</dt>
+                    <dd className="text-2xl md:text-3xl font-display font-bold text-foreground relative z-10">
                         {metric.value}
                     </dd>
                     {metric.description && (
-                        <span className="text-xs text-white/40 mt-1 relative z-10">{metric.description}</span>
+                        <span className="text-xs text-foreground/40 mt-1 relative z-10">{metric.description}</span>
                     )}
                 </div>
             ))}

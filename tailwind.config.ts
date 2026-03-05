@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import colors from "tailwindcss/colors";
 
 const config: Config = {
   // Enforce manual toggling, though we will lock to dark
@@ -19,56 +18,59 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // BASE: Midnight Slate (Linear Style)
-        page: colors.slate[950], // The "Void" — Canonical Background
-        foreground: "#E2E8F0",
+        // BASE: Theme-aware via CSS variables
+        page: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
 
-        // LAYERS: Glass & Surfaces
+        // LAYERS: Surfaces
         surface: {
-          DEFAULT: colors.slate[900], // Cards
-          elevated: colors.slate[800], // Hovers
+          DEFAULT: "hsl(var(--surface))",
+          elevated: "hsl(var(--surface-elevated))",
         },
 
         card: {
-          DEFAULT: "#161B22", // Solid fallback
-          foreground: "#E2E8F0",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         popover: {
-          DEFAULT: "#0F1117",
-          foreground: "#E2E8F0",
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
 
-        // DOCTRINE COLORS - Refined
+        // DOCTRINE COLORS
         primary: {
-          DEFAULT: colors.emerald[500], // The "Money" color
-          foreground: colors.white,
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         accent: {
-          DEFAULT: "#F59E0B", // AMBER-500 - Warmth/Strategy (unchanged but refined)
-          foreground: "#0F172A",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         muted: {
-          DEFAULT: "#1E293B",
-          foreground: "#8A93A3", // Linear's signature text grey
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
 
-        // UTILITY - Refined border system (Linear micro-borders)
+        // UTILITY: Border system
         border: {
-          DEFAULT: "rgba(255, 255, 255, 0.08)",
-          subtle: "rgba(255, 255, 255, 0.05)",
-          highlight: "rgba(255, 255, 255, 0.12)",
+          DEFAULT: "hsl(var(--border))",
+          subtle: "hsl(var(--border-subtle))",
+          highlight: "hsl(var(--border-highlight))",
         },
-        input: "rgba(255, 255, 255, 0.08)",
-        ring: colors.emerald[500],
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
 
         // Destructive
         destructive: {
-          DEFAULT: "hsl(0 62.8% 30.6%)",
-          foreground: "hsl(0 0% 98%)",
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
 
-        // Brands
+        // Brands (static — always same in both themes)
         whatsapp: "#25D366",
+
+        // Glass adapters (for bg-glass/5, border-glass/10, etc.)
+        glass: "hsl(var(--glass-bg))",
       },
       // Luxury spacing system (Ram Maheshwari negative space)
       spacing: {

@@ -112,7 +112,7 @@ export function Contact() {
     };
 
 
-    const inputClasses = "w-full p-3.5 rounded-input border border-slate-700 focus:ring-2 focus:ring-primary outline-none transition-all bg-surface text-slate-200 placeholder:text-slate-500";
+    const inputClasses = "w-full p-3.5 rounded-input border border-border-highlight focus:ring-2 focus:ring-primary outline-none transition-all bg-surface text-foreground placeholder:text-muted-foreground";
 
     return (
         <motion.section
@@ -121,7 +121,7 @@ export function Contact() {
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
             variants={STAGGER_CONTAINER_VARIANTS}
-            className="py-section md:py-section-lg border-t border-slate-800 bg-page"
+            className="py-section md:py-section-lg border-t border-border bg-page"
         >
             <div className="container mx-auto px-6 max-w-6xl">
                 <SectionHeading
@@ -136,14 +136,14 @@ export function Contact() {
                         {/* Email Card */}
                         <a
                             href="mailto:calebkiune@gmail.com"
-                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-border hover:bg-surface-elevated hover:border-border-highlight transition-all group"
                         >
                             <div className="h-10 w-10 shrink-0 rounded-inner bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <Mail className="h-5 w-5" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-medium text-slate-200 group-hover:text-white">Email Me</h3>
-                                <p className="text-xs text-slate-500">calebkiune@gmail.com</p>
+                                <h3 className="text-sm font-medium text-foreground/80 group-hover:text-foreground">Email Me</h3>
+                                <p className="text-xs text-muted-foreground">calebkiune@gmail.com</p>
                             </div>
                         </a>
 
@@ -152,32 +152,32 @@ export function Contact() {
                             href="https://wa.me/254705774171"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-slate-800 hover:bg-surface-elevated hover:border-white/10 transition-all group"
+                            className="flex items-center gap-4 p-4 rounded-card bg-surface border border-border hover:bg-surface-elevated hover:border-border-highlight transition-all group"
                         >
                             <div className="h-10 w-10 shrink-0 rounded-inner bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
                                 <FaWhatsapp className="h-5 w-5" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-medium text-slate-200 group-hover:text-white">WhatsApp</h3>
-                                <p className="text-xs text-slate-500">+254 705 774 171</p>
+                                <h3 className="text-sm font-medium text-foreground/80 group-hover:text-foreground">WhatsApp</h3>
+                                <p className="text-xs text-muted-foreground">+254 705 774 171</p>
                             </div>
                         </a>
                     </div>
 
-                    <div className="bg-surface p-6 md:p-6 rounded-card border border-slate-800">
+                    <div className="bg-surface p-6 md:p-6 rounded-card border border-border">
                         {showSuccess ? (
                             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
                                 <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
                                     <CheckCircle2 className="h-6 w-6" />
                                 </div>
-                                <h3 className="text-xl font-semibold text-white">Message Sent!</h3>
-                                <p className="text-slate-400">
+                                <h3 className="text-xl font-semibold text-foreground">Message Sent!</h3>
+                                <p className="text-muted-foreground">
                                     Thanks for reaching out. I&apos;ll be in touch shortly.
                                 </p>
                                 <Button
                                     variant="outline"
                                     onClick={() => setShowSuccess(false)}
-                                    className="mt-4 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
+                                    className="mt-4 border-border-highlight text-foreground/70 hover:bg-surface-elevated hover:text-foreground"
                                 >
                                     Send another message
                                 </Button>
@@ -186,7 +186,7 @@ export function Contact() {
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 {/* Name Input */}
                                 <div className="space-y-2">
-                                    <label htmlFor="name" className="text-sm font-medium text-slate-300">
+                                    <label htmlFor="name" className="text-sm font-medium text-foreground/70">
                                         Name
                                     </label>
                                     <input
@@ -204,7 +204,7 @@ export function Contact() {
 
                                 {/* Email Input */}
                                 <div className="space-y-2">
-                                    <label htmlFor="email" className="text-sm font-medium text-slate-300">
+                                    <label htmlFor="email" className="text-sm font-medium text-foreground/70">
                                         Email
                                     </label>
                                     <input
@@ -222,7 +222,7 @@ export function Contact() {
 
                                 {/* Inquiry Type Dropdown */}
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-slate-300">
+                                    <label className="text-sm font-medium text-foreground/70">
                                         I am interested in...
                                     </label>
 
@@ -250,7 +250,7 @@ export function Contact() {
                                         >
                                             <span className={cn(
                                                 "flex items-center gap-2",
-                                                selectedOption ? "text-slate-200" : "text-slate-500"
+                                                selectedOption ? "text-foreground" : "text-muted-foreground"
                                             )}>
                                                 {selectedOption ? (
                                                     <>
@@ -263,7 +263,7 @@ export function Contact() {
                                             </span>
                                             <ChevronDown
                                                 className={cn(
-                                                    "h-4 w-4 text-slate-500 transition-transform duration-200",
+                                                    "h-4 w-4 text-muted-foreground transition-transform duration-200",
                                                     isOpen && "rotate-180"
                                                 )}
                                             />
@@ -277,7 +277,7 @@ export function Contact() {
                                                     animate={{ opacity: 1, y: 0 }}
                                                     exit={{ opacity: 0, y: -8 }}
                                                     transition={{ duration: 0.15 }}
-                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-surface border border-slate-800 rounded-input overflow-hidden shadow-xl"
+                                                    className="absolute top-full left-0 right-0 mt-2 z-20 bg-surface border border-border rounded-input overflow-hidden shadow-xl"
                                                 >
                                                     {inquiryOptions.map((option) => {
                                                         const Icon = option.icon;
@@ -294,7 +294,7 @@ export function Contact() {
                                                                     "flex items-center justify-between px-4 py-3 cursor-pointer transition-colors",
                                                                     isSelected
                                                                         ? "bg-primary/10 text-primary"
-                                                                        : "text-slate-300 hover:bg-slate-800"
+                                                                        : "text-foreground/70 hover:bg-surface-elevated"
                                                                 )}
                                                             >
                                                                 <span className="flex items-center gap-3">
@@ -319,7 +319,7 @@ export function Contact() {
 
                                 {/* Message Input */}
                                 <div className="space-y-2">
-                                    <label htmlFor="message" className="text-sm font-medium text-slate-300">
+                                    <label htmlFor="message" className="text-sm font-medium text-foreground/70">
                                         Message
                                     </label>
                                     <textarea
@@ -345,7 +345,7 @@ export function Contact() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full h-auto py-4 md:py-3 inline-flex items-center justify-center rounded-button bg-white text-[#0F1117] text-sm font-semibold uppercase tracking-wide shadow-md shadow-black/30 transition-colors hover:bg-slate-200 disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98]"
+                                    className="w-full h-auto py-4 md:py-3 inline-flex items-center justify-center rounded-button bg-foreground text-page text-sm font-semibold uppercase tracking-wide shadow-md shadow-black/[var(--shadow-strength)] transition-colors hover:bg-foreground/90 disabled:opacity-70 disabled:cursor-not-allowed active:scale-[0.98]"
                                 >
                                     <span className="flex items-center gap-2">
                                         {isSubmitting ? (
@@ -363,7 +363,7 @@ export function Contact() {
                                 </button>
 
                                 {/* Privacy Footer */}
-                                <p className="text-xs text-center text-slate-500 mt-4">
+                                <p className="text-xs text-center text-muted-foreground mt-4">
                                     I read every message personally.
                                 </p>
 

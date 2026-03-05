@@ -14,21 +14,21 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
             <div className="bg-noise fixed inset-0 z-0 pointer-events-none" />
 
             {/* Compact Header Bar */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-page border-b border-slate-800 h-16 flex items-center">
+            <header className="fixed top-0 left-0 right-0 z-50 bg-page border-b border-border h-16 flex items-center">
                 <div className="container mx-auto px-4 md:px-6 max-w-7xl flex items-center justify-between">
                     <div className="flex items-center gap-4 md:gap-6">
                         <Link
                             href="/#work"
-                            className="text-muted hover:text-white transition-colors"
+                            className="text-muted-foreground hover:text-foreground transition-colors"
                             title="Back to Work"
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </Link>
-                        <h1 className="text-lg md:text-2xl font-display font-bold text-white tracking-tight truncate max-w-[150px] md:max-w-none">
+                        <h1 className="text-lg md:text-2xl font-display font-bold text-foreground tracking-tight truncate max-w-[150px] md:max-w-none">
                             {project.title}
                         </h1>
-                        <span className="hidden md:inline-block h-4 w-[1px] bg-white/10" />
-                        <p className="hidden md:inline-block text-sm text-slate-400">{project.subtitle}</p>
+                        <span className="hidden md:inline-block h-4 w-[1px] bg-glass/10" />
+                        <p className="hidden md:inline-block text-sm text-muted-foreground">{project.subtitle}</p>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                                 href={project.repoUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-2 text-slate-400 hover:text-white hover:bg-white/5 rounded-button transition-all"
+                                className="p-2 text-muted-foreground hover:text-foreground hover:bg-glass/5 rounded-button transition-all"
                                 title="View Source Code"
                             >
                                 <Github className="w-5 h-5" />
@@ -48,7 +48,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-emerald-400 text-white text-sm font-medium rounded-button transition-colors shadow-md shadow-black/30"
+                                className="flex items-center gap-2 px-4 py-2 bg-primary hover:bg-emerald-400 text-white text-sm font-medium rounded-button transition-colors shadow-md shadow-black/[var(--shadow-strength)]"
                             >
                                 Live Site
                                 <ArrowUpRight className="w-4 h-4" />
@@ -66,7 +66,7 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                     <aside className="lg:col-span-4 space-y-6">
                         {/* Project Preview */}
                         {/* Project Preview */}
-                        <div className="w-full rounded-md overflow-hidden border border-slate-800 shadow-lg bg-surface">
+                        <div className="w-full rounded-md overflow-hidden border border-border shadow-lg bg-surface">
                             <Image
                                 src={project.heroImage}
                                 alt={project.title}
@@ -78,44 +78,44 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         </div>
 
                         {/* Project DNA (Vertical Impact Grid) */}
-                        <div className="bg-surface p-4 rounded-card border border-slate-800">
+                        <div className="bg-surface p-4 rounded-card border border-border">
                             <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-5">
                                 <div className="flex items-start gap-3">
-                                    <Building2 className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                                    <Building2 className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                                     <div>
-                                        <dt className="text-xs text-slate-500 uppercase tracking-wider mb-1">Client</dt>
-                                        <dd className="text-sm text-slate-200 font-medium leading-tight">{project.client}</dd>
+                                        <dt className="text-xs text-muted-foreground/80 uppercase tracking-wider mb-1">Client</dt>
+                                        <dd className="text-sm text-foreground/80 font-medium leading-tight">{project.client}</dd>
                                     </div>
                                 </div>
-                                <div className="h-[1px] bg-white/5 w-full hidden lg:block" />
+                                <div className="h-[1px] bg-glass/5 w-full hidden lg:block" />
 
                                 <div className="flex items-start gap-3">
-                                    <User className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                                    <User className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                                     <div>
-                                        <dt className="text-xs text-slate-500 uppercase tracking-wider mb-1">Role</dt>
-                                        <dd className="text-sm text-slate-200 font-medium leading-tight">{project.role}</dd>
+                                        <dt className="text-xs text-muted-foreground/80 uppercase tracking-wider mb-1">Role</dt>
+                                        <dd className="text-sm text-foreground/80 font-medium leading-tight">{project.role}</dd>
                                     </div>
                                 </div>
-                                <div className="h-[1px] bg-white/5 w-full hidden lg:block" />
+                                <div className="h-[1px] bg-glass/5 w-full hidden lg:block" />
 
                                 <div className="flex items-start gap-3">
-                                    <Calendar className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                                    <Calendar className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                                     <div>
-                                        <dt className="text-xs text-slate-500 uppercase tracking-wider mb-1">Timeline</dt>
-                                        <dd className="text-sm text-slate-200 font-medium leading-tight">{project.timeline}</dd>
+                                        <dt className="text-xs text-muted-foreground/80 uppercase tracking-wider mb-1">Timeline</dt>
+                                        <dd className="text-sm text-foreground/80 font-medium leading-tight">{project.timeline}</dd>
                                     </div>
                                 </div>
-                                <div className="h-[1px] bg-white/5 w-full hidden lg:block" />
+                                <div className="h-[1px] bg-glass/5 w-full hidden lg:block" />
 
                                 <div className="flex items-start gap-3 col-span-2 lg:col-span-1">
-                                    <Layers className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" />
+                                    <Layers className="w-4 h-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                                     <div className="w-full">
-                                        <dt className="text-xs text-slate-500 uppercase tracking-wider mb-2">Tech Stack</dt>
+                                        <dt className="text-xs text-muted-foreground/80 uppercase tracking-wider mb-2">Tech Stack</dt>
                                         <dd className="flex flex-wrap gap-1.5">
                                             {project.stack.map((tech) => (
                                                 <span
                                                     key={tech}
-                                                    className="px-2 py-1 bg-white/5 border border-white/10 rounded-sm text-[11px] text-emerald-100/90 font-medium whitespace-nowrap"
+                                                    className="px-2 py-1 bg-glass/5 border border-glass/10 rounded-sm text-[11px] text-primary/90 font-medium whitespace-nowrap"
                                                 >
                                                     {tech}
                                                 </span>
@@ -135,12 +135,12 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         {/* Narrative Grid (Side-by-Side) */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Challenge */}
-                            <div className="bg-surface p-5 rounded-card border border-slate-800">
-                                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <div className="bg-surface p-5 rounded-card border border-border">
+                                <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-primary/20 ring-1 ring-primary" />
                                     The Challenge
                                 </h3>
-                                <div className="space-y-3 text-sm text-slate-300 leading-relaxed">
+                                <div className="space-y-3 text-sm text-foreground/70 leading-relaxed">
                                     {project.challenge.map((p, i) => (
                                         <p key={i}>{p}</p>
                                     ))}
@@ -148,12 +148,12 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                             </div>
 
                             {/* Solution */}
-                            <div className="bg-surface p-5 rounded-card border border-slate-800">
-                                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <div className="bg-surface p-5 rounded-card border border-border">
+                                <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-emerald-400/20 ring-1 ring-emerald-400" />
                                     The Solution
                                 </h3>
-                                <div className="space-y-3 text-sm text-slate-300 leading-relaxed">
+                                <div className="space-y-3 text-sm text-foreground/70 leading-relaxed">
                                     {project.solution.map((p, i) => (
                                         <p key={i}>{p}</p>
                                     ))}
@@ -162,17 +162,17 @@ export function CaseStudyLayout({ project }: CaseStudyLayoutProps) {
                         </div>
 
                         {/* Technical Highlights (Horizontal Feature List) */}
-                        <div className="bg-surface p-5 rounded-card border border-slate-800">
+                        <div className="bg-surface p-5 rounded-card border border-border">
                             <div className="flex items-center gap-3 mb-4">
                                 <Cpu className="w-4 h-4 text-primary" />
-                                <h3 className="text-sm font-bold text-white uppercase tracking-wider">Technical Highlights</h3>
+                                <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">Technical Highlights</h3>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {project.technicalHighlights.map((point, index) => (
-                                    <div key={index} className="flex gap-3 items-start p-3 rounded-md bg-white/5 border border-white/10">
+                                    <div key={index} className="flex gap-3 items-start p-3 rounded-md bg-glass/5 border border-glass/10">
                                         <CheckSquare className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+                                        <p className="text-xs text-foreground/70 leading-relaxed font-medium">
                                             {point}
                                         </p>
                                     </div>

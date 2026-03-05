@@ -54,8 +54,8 @@ export const metadata: Metadata = {
 };
 
 import { Footer } from "@/components/layout/footer";
-
 import { Header } from "@/components/layout/header";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 export default function RootLayout({
   children,
@@ -67,9 +67,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${outfit.variable} ${geistMono.variable} relative font-sans min-h-screen bg-page text-foreground antialiased selection:bg-primary selection:text-primary-foreground`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Header />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

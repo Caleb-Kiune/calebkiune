@@ -62,7 +62,7 @@ export function Hero() {
                     <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-8 md:space-y-6">
                         <motion.h1
                             variants={FADE_UP_VARIANTS}
-                            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight"
+                            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
                         >
                             Automate your{" "}
                             <span className="text-primary">
@@ -72,9 +72,9 @@ export function Hero() {
 
                         <motion.p
                             variants={FADE_UP_VARIANTS}
-                            className="text-base sm:text-lg text-slate-400 max-w-lg leading-relaxed"
+                            className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed"
                         >
-                            I build reliable,<span className="text-slate-200 font-medium"> data-driven web applications</span> that streamline operations and cut manual processing time.
+                            I build reliable,<span className="text-foreground/80 font-medium"> data-driven web applications</span> that streamline operations and cut manual processing time.
                             <span className="block mt-3 text-xs font-mono text-primary tracking-wide">
                                 Currently accepting projects
                             </span>
@@ -88,7 +88,7 @@ export function Hero() {
                                 href="https://wa.me/254705774171?text=Hi%20Caleb,%20I%20checked%20out%20your%20portfolio."
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center h-12 px-8 rounded-button bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold tracking-wide transition-colors shadow-md shadow-black/30 active:scale-95"
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-button bg-whatsapp hover:bg-whatsapp/90 text-white text-sm font-semibold tracking-wide transition-colors shadow-md shadow-black/[var(--shadow-strength)] active:scale-95"
                             >
                                 <span className="flex items-center gap-2">
                                     Chat on WhatsApp
@@ -98,7 +98,7 @@ export function Hero() {
 
                             <a
                                 href="#work"
-                                className="inline-flex items-center justify-center h-12 px-8 rounded-button border border-slate-800 bg-surface text-slate-300 text-sm font-medium hover:bg-surface-elevated hover:text-white transition-colors active:scale-95"
+                                className="inline-flex items-center justify-center h-12 px-8 rounded-button border border-border bg-surface text-foreground/70 text-sm font-medium hover:bg-surface-elevated hover:text-foreground transition-colors active:scale-95"
                             >
                                 View Work
                             </a>
@@ -111,7 +111,7 @@ export function Hero() {
                         className="relative hidden md:flex flex-col items-center justify-center max-h-[400px]"
                     >
                         <div className="relative w-[280px] h-[280px] lg:w-[320px] lg:h-[320px]">
-                            <div className="relative w-full h-full rounded-full border border-slate-800 overflow-hidden shadow-2xl shadow-black/60">
+                            <div className="relative w-full h-full rounded-full border border-border overflow-hidden shadow-2xl shadow-black/[var(--shadow-strength)]">
                                 <Image
                                     src="/caleb-kiune.jpg"
                                     alt="Caleb Kiune"

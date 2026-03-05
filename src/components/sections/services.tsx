@@ -18,7 +18,7 @@ const IconMap: Record<string, LucideIcon> = {
 
 export function Services() {
     return (
-        <section className="relative py-section border-y border-slate-800 bg-page" id="services">
+        <section className="relative py-section border-y border-border bg-page" id="services">
             <div className="bg-noise" aria-hidden="true" />
             <div className="container relative z-10 px-6 mx-auto max-w-6xl">
                 <ScrollReveal>
@@ -35,15 +35,15 @@ export function Services() {
 
                         return (
                             <ScrollReveal key={index} delay={100 + index * 100}>
-                                <div className="group relative overflow-hidden rounded-card bg-surface p-6 md:p-8 shadow-sm transition-all hover:bg-surface-elevated border border-slate-800 hover:border-slate-700 h-full">
+                                <div className="group relative overflow-hidden rounded-card bg-surface p-6 md:p-8 shadow-sm transition-all hover:bg-surface-elevated border border-border hover:border-border-highlight h-full">
                                     <div className="flex flex-col gap-5">
-                                        <div className="p-3.5 w-fit rounded-inner bg-surface-elevated border border-slate-700/50 text-primary group-hover:bg-slate-700 transition-colors">
+                                        <div className="p-3.5 w-fit rounded-inner bg-surface-elevated border border-border/50 text-primary group-hover:bg-border-highlight transition-colors">
                                             <IconComponent className="h-6 w-6" />
                                         </div>
 
                                         <div className="space-y-2.5">
-                                            <h3 className="font-display font-bold text-xl text-slate-200 group-hover:text-white transition-colors">{service.title}</h3>
-                                            <p className="text-slate-400 text-sm leading-relaxed group-hover:text-slate-300 transition-colors">
+                                            <h3 className="font-display font-bold text-xl text-foreground/80 group-hover:text-foreground transition-colors">{service.title}</h3>
+                                            <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground/70 transition-colors">
                                                 {service.description}
                                             </p>
                                         </div>

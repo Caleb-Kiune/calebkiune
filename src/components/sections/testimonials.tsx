@@ -5,7 +5,7 @@ import { Quote } from "lucide-react";
 
 export function Testimonials() {
     return (
-        <section className="relative py-section md:py-section-lg border-y border-slate-800 bg-page" id="testimonials">
+        <section className="relative py-section md:py-section-lg border-y border-border bg-page" id="testimonials">
             <div className="bg-noise" aria-hidden="true" />
             <div className="container relative z-10 mx-auto px-6 max-w-6xl">
                 <ScrollReveal>
@@ -23,12 +23,12 @@ export function Testimonials() {
                             delay={100 + index * 100}
                             className="h-full"
                         >
-                            <div className="bg-surface p-6 md:p-8 rounded-card border border-slate-800 flex flex-col gap-5 hover:border-slate-700 hover:bg-surface-elevated transition-all duration-300 h-full">
+                            <div className="bg-surface p-6 md:p-8 rounded-card border border-border flex flex-col gap-5 hover:border-border-highlight hover:bg-surface-elevated transition-all duration-300 h-full">
                                 <Quote className="h-8 w-8 text-accent/50 fill-accent/10" />
-                                <p className="text-slate-300 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
-                                <div className="pt-4 border-t border-slate-800">
-                                    <p className="font-display font-semibold text-white tracking-tight">{testimonial.name}</p>
-                                    <p className="text-sm text-slate-500">{testimonial.role}, {testimonial.company}</p>
+                                <p className="text-foreground/70 italic flex-grow leading-relaxed">&quot;{testimonial.quote}&quot;</p>
+                                <div className="pt-4 border-t border-border">
+                                    <p className="font-display font-semibold text-foreground tracking-tight">{testimonial.name}</p>
+                                    <p className="text-sm text-muted-foreground/80">{testimonial.role}, {testimonial.company}</p>
                                 </div>
                             </div>
                         </ScrollReveal>

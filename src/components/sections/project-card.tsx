@@ -42,12 +42,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
       {/* Desktop Hover Overlay — only shown when liveUrl exists */}
       {hasLiveUrl && (
         <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center z-0 pointer-events-none">
-          <span className="px-4 py-2 bg-surface border border-slate-700 rounded-full text-white text-xs font-medium mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+          <span className="px-4 py-2 bg-surface border border-border-highlight rounded-full text-foreground text-xs font-medium mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
             Visit Live Site
           </span>
           <div className="flex flex-wrap justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75">
             {techPreview.map(t => (
-              <span key={t} className="text-[10px] text-slate-300 uppercase tracking-wider font-medium">{t} •</span>
+              <span key={t} className="text-[10px] text-foreground/70 uppercase tracking-wider font-medium">{t} •</span>
             ))}
           </div>
         </div>
@@ -60,7 +60,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <article
-      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-slate-800 hover:border-slate-700 hover:-translate-y-0.5 transition-all duration-300 shadow-2xl shadow-black/40"
+      className="group relative flex flex-col h-full overflow-hidden rounded-card bg-surface border border-border hover:border-border-highlight hover:-translate-y-0.5 transition-all duration-300 shadow-2xl shadow-black/[var(--shadow-strength)]"
     >
       {/* Top: Image Section — links to live site when available */}
       {hasLiveUrl ? (
@@ -69,12 +69,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Visit live site — ${project.title}`}
-          className="relative block w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5 active:scale-[0.98] transition-transform"
+          className="relative block w-full aspect-video overflow-hidden bg-surface border-b border-glass/5 active:scale-[0.98] transition-transform"
         >
           {imageContent}
         </a>
       ) : (
-        <div className="relative w-full aspect-video overflow-hidden bg-slate-900 border-b border-white/5">
+        <div className="relative w-full aspect-video overflow-hidden bg-surface border-b border-glass/5">
           {imageContent}
         </div>
       )}
@@ -88,21 +88,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </span>
 
           <div>
-            <h3 className="text-xl font-display font-bold text-white group-hover:text-primary transition-colors mb-1">
+            <h3 className="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors mb-1">
               {project.title}
             </h3>
 
             {/* Mobile Tech Chips */}
             <div className="flex flex-wrap gap-2 mt-2">
               {techPreview.map((tech) => (
-                <span key={tech} className="text-[10px] text-slate-400 bg-white/5 px-1.5 py-0.5 rounded border border-white/5">
+                <span key={tech} className="text-[10px] text-muted-foreground bg-glass/5 px-1.5 py-0.5 rounded border border-glass/5">
                   {tech}
                 </span>
               ))}
             </div>
           </div>
 
-          <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
             {project.metric}
           </p>
         </div>
@@ -110,13 +110,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {/* Footer: Case study link */}
         <Link
           href={`/work/${project.slug}`}
-          className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between active:scale-[0.98] transition-transform"
+          className="mt-auto pt-4 border-t border-glass/5 flex items-center justify-between active:scale-[0.98] transition-transform"
           aria-label={`View case study for ${project.title}`}
         >
-          <span className="text-xs font-medium text-slate-500 group-hover:text-white transition-colors">
+          <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors">
             View Case Study
           </span>
-          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-primary transition-all group-hover:translate-x-1" />
+          <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-all group-hover:translate-x-1" />
         </Link>
       </div>
     </article>
